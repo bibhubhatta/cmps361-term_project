@@ -6,6 +6,25 @@
 #define ASSEMBLER_VC1620_H
 
 #include <array>
+#include <unordered_map>
+#include <string>
+
+
+const std::unordered_map<std::string, std::string> opcodeMap = {
+        {"ADD",   "01"},
+        {"SUB",   "02"},
+        {"MULT",  "03"},
+        {"DIV",   "04"},
+        {"COPY",  "05"},
+        {"READ",  "07"},
+        {"WRITE", "08"},
+        {"B",     "09"},
+        {"BM",    "10"},
+        {"BZ",    "11"},
+        {"BP",    "12"},
+        {"HALT",  "13"}
+};
+
 
 class Memory {
 public:
