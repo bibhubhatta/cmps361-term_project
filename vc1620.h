@@ -25,6 +25,20 @@ const std::unordered_map<std::string, std::string> opcodeMap = {
         {"HALT",  "13"}
 };
 
+enum Opcode {
+    ADD = 1,
+    SUB = 2,
+    MULT = 3,
+    DIV = 4,
+    COPY = 5,
+    READ = 7,
+    WRITE = 8,
+    B = 9,
+    BM = 10,
+    BZ = 11,
+    BP = 12,
+    HALT = 13
+};
 
 class Memory {
 public:
