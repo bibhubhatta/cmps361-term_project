@@ -32,7 +32,6 @@ void Assembler::PassI()
 		}
 		// Parse the line and get the instruction type.
 		Instruction::InstructionType st = m_inst.ParseInstruction(line);
-
 		// If this is an end statement, there is nothing left to do in pass I.
 		// Pass II will determine if the end is the last statement and report an error if it isn't.
 		if (st == Instruction::ST_End) return;
@@ -51,4 +50,14 @@ void Assembler::PassI()
 		// Compute the location of the next instruction.
 		loc = m_inst.LocationNextInstruction(loc);
 	}
+}
+
+void Assembler::PassII()
+{
+	cout << "Implement Assembler::PassII\n";
+}
+
+void Assembler::RunProgramInEmulator()
+{
+	cout << "Implement Assembler::RunProgramInEmulator()\n";
 }

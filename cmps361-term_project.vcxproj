@@ -22,6 +22,7 @@
     <ClCompile Include="Assem.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="FileAccess.cpp" />
+    <ClCompile Include="Instruction.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="SymTab.cpp" />
   </ItemGroup>

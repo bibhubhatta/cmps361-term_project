@@ -32,3 +32,8 @@ SymbolTable::AddSymbol(const string& a_symbol, int a_loc)
 	// Record a the  location in the symbol table.
 	m_symbolTable[a_symbol] = a_loc;
 }
+
+void SymbolTable::DisplaySymbolTable()
+{
+	cout << "Implement SymbolTable::DisplaySymbolTable\n";
+}
