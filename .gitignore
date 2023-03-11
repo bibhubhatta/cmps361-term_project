@@ -34,3 +34,5 @@
 cmake-build-debug/
 
 .idea/
+/out/build/x64-Debug
+/.vs
