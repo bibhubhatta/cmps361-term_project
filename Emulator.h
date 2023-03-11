@@ -5,24 +5,21 @@
 #define _EMULATOR_H
 
 class emulator {
-
 public:
 
-    const static int MEMSZ = 100'000;	// The size of the memory of the VC407.
-    emulator() {
+	const static int MEMSZ = 100'000;	// The size of the memory of the VC407.
+	emulator() {
+		m_memory.resize(MEMSZ, 0);
+	}
+	// Records instructions and data into simulated memory.
+	bool insertMemory(int a_location, long long a_contents);
 
-         m_memory.resize(MEMSZ, 0);
-    }
-    // Records instructions and data into simulated memory.
-    bool insertMemory( int a_location, long long a_contents );
-    
-    // Runs the program recorded in memory.
-    bool runProgram( );
+	// Runs the program recorded in memory.
+	bool runProgram();
 
 private:
 
-    vector<long long> m_memory;  	// Memory for the VC1620
+	vector<long long> m_memory;  	// Memory for the VC1620
 };
 
 #endif
-

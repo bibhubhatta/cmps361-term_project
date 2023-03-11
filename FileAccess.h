@@ -9,24 +9,22 @@
 #include <string>
 
 class FileAccess {
-
 public:
 
-    // Opens the file.
-    FileAccess( int argc, char *argv[] );
+	// Opens the file.
+	FileAccess(int argc, char* argv[]);
 
-    // Closes the file.
-    ~FileAccess( );
+	// Closes the file.
+	~FileAccess();
 
-    // Get the next line from the source file.  Returns true if there was one.
-    bool GetNextLine( string &a_line );
+	// Get the next line from the source file.  Returns true if there was one.
+	bool GetNextLine(string& a_line);
 
-    // Put the file pointer back to the beginning of the file.
-    void rewind( );
+	// Put the file pointer back to the beginning of the file.
+	void rewind();
 
 private:
 
-    ifstream m_sfile;		// Source file object.
+	ifstream m_sfile;		// Source file object.
 };
 #endif
-
