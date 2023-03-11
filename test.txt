@@ -1,0 +1,16 @@
+;this is a test
+        org    100
+hi     read    x;comment immediately after statement       
+hay  copy   y, x ; This is the another comment.
+        WRITE    x; to show that operation codes are case insensitive
+          bp      hi y; shows we don't have to have everything line up.
+        halt
+
+;test
+x      dc      5
+y      ds      1
+z      ds      99
+b      dc      555
+a      dc      100
+        end
+ 
