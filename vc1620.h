@@ -51,8 +51,30 @@ public:
 
     int read(int address) const;
 
+    void display(int start, int end) const;
+
+    void clear();
+
 private:
-    std::array<int, MEMORY_SIZE> memory;
+    std::array<unsigned int, MEMORY_SIZE> memory;
+    unsigned int instruction_counter {100};
+};
+
+class VC1620 {
+public:
+    VC1620();
+
+    void load_program(const std::string &filename);
+
+    void run();
+
+    void step();
+
+    void display_memory(int start, int end) const;
+
+private:
+    Memory memory_;
+
 };
 
 #endif //ASSEMBLER_VC1620_H
