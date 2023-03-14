@@ -83,16 +83,45 @@ InstructionType Instruction::get_type() const
     if (_is_comment_or_empty(_original_instruction))
         return Comment;
 
-    std::string lower_symbolic_opcode{_get_upper_case(_symbolic_opcode)};
+    std::string upper_symbolic_opcode{_get_upper_case(_symbolic_opcode)};
 
-    if (lower_symbolic_opcode == "END")
-        return End;
-
-    return AssemblerInstr;
+    if (auto it{INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
+        it != INSTRUCTION_TYPE.end())
+    {
+        return it->second;
+    }
+    else
+    {
+        std::cerr << "Error: Invalid instruction: " << _original_instruction
+                  << '\n';
+        exit(1);
+    }
 }
 
-int Instruction::get_location_of_next_instruction(int current_location) const
+int Instruction::get_location_of_next_instruction(
+    const Instruction& current_instruction, int current_location)
 {
-    std::cout << "Implement Instruction::get_location_of_next_instruction\n";
-    return 0;
+    int next_location{current_location + 1};
+
+    if (current_instruction.get_symbolic_opcode() == "ORG")
+    {
+        next_location = current_instruction.get_symbolic_operand_1();
+    }
+
+    return next_location;
+}
+
+std::string Instruction::get_symbolic_opcode() const
+{
+    return _get_upper_case(_symbolic_opcode);
+}
+
+int Instruction::get_symbolic_operand_1() const
+{
+    return std::stoi(_symbolic_operand_1);
+}
+
+std::string Instruction::get_original_instruction() const
+{
+    return _original_instruction;
 }

@@ -15,7 +15,7 @@ Assembler::Assembler(const std::string& source_file_path)
 // Establish the location of the labels.
 void Assembler::pass_1()
 {
-    int location_of_instruction_to_be_generated = 0;
+    int current_instruction_location = 0;
 
     while (!_instructions_file.end_of_file())
     {
@@ -31,15 +31,14 @@ void Assembler::pass_1()
         default:
             if (current_instruction.is_label())
             {
-                _symbol_table.add_symbol(
-                    current_instruction.get_label(),
-                    location_of_instruction_to_be_generated);
+                _symbol_table.add_symbol(current_instruction.get_label(),
+                                         current_instruction_location);
             }
         }
 
-        location_of_instruction_to_be_generated =
-            current_instruction.get_location_of_next_instruction(
-                location_of_instruction_to_be_generated);
+        current_instruction_location =
+            Instruction::get_location_of_next_instruction(
+                current_instruction, current_instruction_location);
     }
 }
 
