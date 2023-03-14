@@ -19,14 +19,10 @@ Instruction::Instruction(std::string_view line) : _original_instruction(line)
 bool Instruction::_is_comment_or_empty(std::string_view line)
 {
     if (line.empty()) // Empty line
-    {
         return true;
-    }
 
-    if (line.find(';') != std::string::npos) // Comment
-    {
+    if (line[0] == ';') // Comment
         return true;
-    }
 
     return false;
 }
