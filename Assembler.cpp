@@ -28,17 +28,17 @@ void Assembler::pass_1()
             return;
         case InstructionType::Comment:
             continue;
+
         default:
             if (current_instruction.is_label())
             {
                 _symbol_table.add_symbol(current_instruction.get_label(),
                                          current_instruction_location);
             }
+            current_instruction_location =
+                Instruction::get_location_of_next_instruction(
+                    current_instruction, current_instruction_location);
         }
-
-        current_instruction_location =
-            Instruction::get_location_of_next_instruction(
-                current_instruction, current_instruction_location);
     }
 }
 
