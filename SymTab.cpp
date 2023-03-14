@@ -3,6 +3,7 @@
 // commenting functions.
 //
 
+#include <iomanip>
 #include <iostream>
 
 #include "SymTab.h"
@@ -20,10 +21,16 @@ void SymbolTable::add_symbol(const std::string& symbol, int location)
 
 void SymbolTable::display_symbol_table() const
 {
-    std::cout << "Symbol Table:\n";
+    std::cout << std::setw(10) << std::left << "Symbol #"          // Column 1
+              << std::setw(10) << std::left << "Symbol"            // Column 2
+              << std::setw(10) << std::left << "Location" << '\n'; // Column 3
+
+    int counter{0};
     for (const auto& [symbol, location] : _symbol_table)
     {
-        std::cout << symbol << " " << location << "\n";
+        std::cout << std::setw(10) << std::left << counter++ // Column 1
+                  << std::setw(10) << std::left << symbol    // Column 2
+                  << std::setw(10) << std::left << location << '\n';
     }
 }
 
