@@ -67,13 +67,13 @@ void Instruction::_parse()
     }
 }
 
-std::string Instruction::_get_lower_case(const std::string& str)
+std::string Instruction::_get_upper_case(const std::string& str)
 {
-    std::string lower;
+    std::string upper;
     for (auto c : str)
-        lower += std::tolower(c);
+        upper += std::toupper(c);
 
-    return lower;
+    return upper;
 }
 
 InstructionType Instruction::get_type() const
@@ -83,9 +83,9 @@ InstructionType Instruction::get_type() const
     if (_is_comment_or_empty(_original_instruction))
         return Comment;
 
-    std::string lower_symbolic_opcode{_get_lower_case(lower_symbolic_opcode)};
+    std::string lower_symbolic_opcode{_get_upper_case(_symbolic_opcode)};
 
-    if (lower_symbolic_opcode == "halt")
+    if (lower_symbolic_opcode == "END")
         return End;
 
     return AssemblerInstr;

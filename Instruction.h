@@ -59,5 +59,5 @@ class Instruction
 
     void _parse();
 
-    static std::string _get_lower_case(const std::string& str);
+    static std::string _get_upper_case(const std::string& str);
 };
