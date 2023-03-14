@@ -11,7 +11,8 @@ Instruction::Instruction(std::string_view line) : _original_instruction(line)
         return;
     }
 
-    _uncommented_instruction = _get_uncommented_instruction(std::string());
+    _uncommented_instruction =
+        _get_uncommented_instruction(_original_instruction);
 
     _parse();
 }
@@ -66,11 +67,11 @@ void Instruction::_parse()
     }
 }
 
-std::string Instruction::_get_lower_case(std::string_view str)
+std::string Instruction::_get_lower_case(const std::string& str)
 {
     std::string lower;
-    for (char c : str)
-        lower += tolower(c);
+    for (auto c : str)
+        lower += std::tolower(c);
 
     return lower;
 }
