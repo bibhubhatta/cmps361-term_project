@@ -30,7 +30,7 @@ void Assembler::pass_1()
         default:
             if (current_instruction.is_label())
             {
-                _symbol_table.AddSymbol(
+                _symbol_table.add_symbol(
                     current_instruction.get_label(),
                     location_of_instruction_to_be_generated);
             }

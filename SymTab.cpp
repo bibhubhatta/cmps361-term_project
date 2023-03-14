@@ -7,37 +7,39 @@
 
 #include "SymTab.h"
 
-/*
-NAME
-
-    AddSymbol - adds a new symbol to the symbol table.
-
-SYNOPSIS
-
-    void AddSymbol( const string &a_symbol, int a_loc );
-        a_symbol	-> The name of the symbol to be added to the symbol table.
-        a_loc		-> the location to be associated with the symbol.
-
-DESCRIPTION
-
-    This function will place the symbol "a_symbol" and its location "a_loc"
-    in the symbol table.
-*/
-void SymbolTable::AddSymbol(const std::string& a_symbol, int a_loc)
+void SymbolTable::add_symbol(const std::string& symbol, int location)
 {
-    // If the symbol is already in the symbol table, record it as multiply
-    // defined.
-    std::map<std::string, int>::iterator st = m_symbolTable.find(a_symbol);
-    if (st != m_symbolTable.end())
+    if (_in_table(symbol))
     {
-        st->second = multiplyDefinedSymbol;
+        _symbol_table[symbol] = MULTIPLEY_DEFINED_SYMBOL;
         return;
     }
-    // Record a the  location in the symbol table.
-    m_symbolTable[a_symbol] = a_loc;
+
+    _symbol_table[symbol] = location;
 }
 
-void SymbolTable::DisplaySymbolTable()
+void SymbolTable::display_symbol_table() const
 {
-    std::cout << "Implement SymbolTable::DisplaySymbolTable\n";
+    std::cout << "Symbol Table:\n";
+    for (const auto& [symbol, location] : _symbol_table)
+    {
+        std::cout << symbol << " " << location << "\n";
+    }
+}
+
+bool SymbolTable::_in_table(const std::string& symbol) const
+{
+    auto symbol_pointer{_symbol_table.find(symbol)};
+    return symbol_pointer != _symbol_table.end();
+}
+
+bool SymbolTable::lookup_symbol(const std::string& symbol, int& location)
+{
+    if (!_in_table(symbol))
+    {
+        return false;
+    }
+
+    location = _symbol_table.at(symbol);
+    return true;
 }

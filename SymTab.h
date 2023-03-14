@@ -10,23 +10,20 @@
 class SymbolTable
 {
   public:
-    // Get rid of constructor and destructor later if you don't need them.
-    SymbolTable(){};
-    ~SymbolTable(){};
+    SymbolTable() = default;
+    ~SymbolTable() = default;
 
-    const int multiplyDefinedSymbol = -999;
+    const int MULTIPLEY_DEFINED_SYMBOL = -999;
 
-    // Add a new symbol to the symbol table.
-    void AddSymbol(const std::string& a_symbol, int a_loc);
+    void add_symbol(const std::string& symbol, int location);
 
-    // Display the symbol table.
-    void DisplaySymbolTable();
+    void display_symbol_table() const;
 
-    // Lookup a symbol in the symbol table.
-    bool LookupSymbol(const std::string& a_symbol, int& a_loc);
+    bool lookup_symbol(const std::string& symbol, int& location);
 
   private:
-    // This is the actual symbol table.  The symbol is the key to the map.  The
-    // value is the location.
-    std::map<std::string, int> m_symbolTable;
+    // Maps symbols to location
+    std::map<std::string, int, std::less<>> _symbol_table;
+
+    [[nodiscard]] bool _in_table(const std::string& symbol) const;
 };

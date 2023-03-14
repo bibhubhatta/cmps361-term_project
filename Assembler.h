@@ -21,7 +21,7 @@ class Assembler
     // Pass II - generate a translation
     void pass_2();
 
-    void display_symbol_table() { _symbol_table.DisplaySymbolTable(); }
+    void display_symbol_table() { _symbol_table.display_symbol_table(); }
 
     void run_program_in_emulator() const;
 
