@@ -23,7 +23,6 @@
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="FileAccess.cpp" />
     <ClCompile Include="Instruction.cpp" />
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="SymTab.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,7 +34,6 @@
     <ClInclude Include="Errors.h" />
     <ClInclude Include="FileAccess.h" />
     <ClInclude Include="Instruction.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="SymTab.h" />
   </ItemGroup>
   <ItemGroup>

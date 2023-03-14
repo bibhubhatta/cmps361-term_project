@@ -2,8 +2,10 @@
 //		Implementation of the symbol table class.  This is the format I want for
 // commenting functions.
 //
+
+#include <iostream>
+
 #include "SymTab.h"
-#include "stdafx.h"
 
 /*
 NAME
@@ -21,11 +23,11 @@ DESCRIPTION
     This function will place the symbol "a_symbol" and its location "a_loc"
     in the symbol table.
 */
-void SymbolTable::AddSymbol(const string& a_symbol, int a_loc)
+void SymbolTable::AddSymbol(const std::string& a_symbol, int a_loc)
 {
     // If the symbol is already in the symbol table, record it as multiply
     // defined.
-    map<string, int>::iterator st = m_symbolTable.find(a_symbol);
+    std::map<std::string, int>::iterator st = m_symbolTable.find(a_symbol);
     if (st != m_symbolTable.end())
     {
         st->second = multiplyDefinedSymbol;
@@ -37,5 +39,5 @@ void SymbolTable::AddSymbol(const string& a_symbol, int a_loc)
 
 void SymbolTable::DisplaySymbolTable()
 {
-    cout << "Implement SymbolTable::DisplaySymbolTable\n";
+    std::cout << "Implement SymbolTable::DisplaySymbolTable\n";
 }

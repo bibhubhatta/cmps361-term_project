@@ -6,8 +6,6 @@
 
 #include <vector>
 
-using namespace std;
-
 class emulator
 {
   public:
@@ -20,7 +18,7 @@ class emulator
     bool runProgram();
 
   private:
-    vector<long long> m_memory; // Memory for the VC1620
+    std::vector<long long> m_memory; // Memory for the VC1620
 };
 
 #endif

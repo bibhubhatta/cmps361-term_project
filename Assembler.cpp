@@ -1,9 +1,11 @@
 //
 //      Implementation of the Assembler class.
 //
+
+#include <iostream>
+
 #include "Assembler.h"
 #include "Errors.h"
-#include "stdafx.h"
 
 // Constructor for the assembler.  Note: we are passing argc and argv to the
 // file access constructor. See main program.
@@ -24,7 +26,7 @@ void Assembler::PassI()
     for (;;)
     {
         // Read the next line from the source file.
-        string line;
+        std::string line;
         if (!m_facc.GetNextLine(line))
         {
             // If there are no more lines, we are missing an end statement.
@@ -56,9 +58,9 @@ void Assembler::PassI()
     }
 }
 
-void Assembler::PassII() { cout << "Implement Assembler::PassII\n"; }
+void Assembler::PassII() { std::cout << "Implement Assembler::PassII\n"; }
 
 void Assembler::RunProgramInEmulator()
 {
-    cout << "Implement Assembler::RunProgramInEmulator()\n";
+    std::cout << "Implement Assembler::RunProgramInEmulator()\n";
 }

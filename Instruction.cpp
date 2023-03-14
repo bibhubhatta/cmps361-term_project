@@ -1,13 +1,14 @@
-#include "Instruction.h"
-#include "stdafx.h"
+#include <iostream>
 
-Instruction::InstructionType Instruction::ParseInstruction(string a_line)
+#include "Instruction.h"
+
+Instruction::InstructionType Instruction::ParseInstruction(std::string a_line)
 {
     return InstructionType();
 }
 
 int Instruction::LocationNextInstruction(int a_loc)
 {
-    cout << "Implement Instruction::LocationNextInstruction\n";
+    std::cout << "Implement Instruction::LocationNextInstruction\n";
     return 0;
 }

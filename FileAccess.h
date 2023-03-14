@@ -7,10 +7,7 @@
                       // include files
 
 #include <fstream>
-#include <stdlib.h>
 #include <string>
-
-using namespace std;
 
 class FileAccess
 {
@@ -22,12 +19,12 @@ class FileAccess
     ~FileAccess();
 
     // Get the next line from the source file.  Returns true if there was one.
-    bool GetNextLine(string& a_line);
+    bool GetNextLine(std::string& a_line);
 
     // Put the file pointer back to the beginning of the file.
     void rewind();
 
   private:
-    ifstream m_sfile; // Source file object.
+    std::ifstream m_sfile; // Source file object.
 };
 #endif

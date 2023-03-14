@@ -6,8 +6,6 @@
 
 #include <string>
 
-using namespace std;
-
 // The elements of an instruction.
 class Instruction
 {
@@ -26,23 +24,23 @@ class Instruction
         ST_End              // end instruction.
     };
     // Parse the Instruction.
-    InstructionType ParseInstruction(string a_line);
+    InstructionType ParseInstruction(std::string a_line);
 
     // Compute the location of the next instruction.
     int LocationNextInstruction(int a_loc);
 
     // To access the label
-    inline string& GetLabel() { return m_Label; };
+    inline std::string& GetLabel() { return m_Label; };
     // To determine if a label is blank.
     inline bool isLabel() { return !m_Label.empty(); };
 
   private:
     // The elemements of a instruction
-    string m_Label;   // The label.
-    string m_OpCode;  // The symbolic op code.
-    string m_Operand; // The operand.
+    std::string m_Label;   // The label.
+    std::string m_OpCode;  // The symbolic op code.
+    std::string m_Operand; // The operand.
 
-    string m_instruction; // The original instruction.
+    std::string m_instruction; // The original instruction.
 
     // Derived values.
     int m_NumOpCode; // The numerical value of the op code for machine language
