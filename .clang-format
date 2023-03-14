@@ -1,4 +1,5 @@
 ﻿---
+AlignConsecutiveDeclarations: 'true'
 AllowShortIfStatementsOnASingleLine: Never
 BreakBeforeBraces: Allman
 IndentWidth: 4
