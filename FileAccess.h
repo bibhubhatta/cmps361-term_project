@@ -13,18 +13,20 @@ class FileAccess
 {
   public:
     // Opens the file.
-    FileAccess(int argc, char* argv[]);
+    explicit FileAccess(const std::string& file_path);
 
     // Closes the file.
     ~FileAccess();
 
-    // Get the next line from the source file.  Returns true if there was one.
-    bool GetNextLine(std::string& a_line);
+    // Get the next line from the source file
+    std::string get_next_line();
+
+    bool end_of_file() const { return _source_file.eof(); };
 
     // Put the file pointer back to the beginning of the file.
     void rewind();
 
   private:
-    std::ifstream m_sfile; // Source file object.
+    std::ifstream _source_file;
 };
 #endif

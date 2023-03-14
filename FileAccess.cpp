@@ -5,49 +5,36 @@
 
 #include "FileAccess.h"
 
-// Don't forget to comment the function headers.
-FileAccess::FileAccess(int argc, char* argv[])
+FileAccess::FileAccess(const std::string& file_path)
 {
-    // Check that there is exactly one run time parameter.
-    if (argc != 2)
-    {
-        std::cerr << "Usage: Assem <FileName>" << std::endl;
-        exit(1);
-    }
-    // Open the file.  One might question if this is the best place to open the
-    // file. One might also question whether we need a file access class.
-    m_sfile.open(argv[1], std::ios::in);
+    _source_file.open(file_path, std::ios::in);
 
-    // If the open failed, report the error and terminate.
-    if (!m_sfile)
+    if (!_source_file.is_open())
     {
-        std::cerr << "Source file could not be opened, assembler terminated."
-                  << std::endl;
+        std::cerr << "Source file could not be opened, assembler terminated.\n";
         exit(1);
     }
 }
-FileAccess::~FileAccess()
-{
-    // Not that necessary in that the file will be closed when the program
-    // terminates, but good form.
-    m_sfile.close();
-}
-// Get the next line from the file.
-bool FileAccess::GetNextLine(std::string& a_line)
-{
-    // If there is no more data, return false.
-    if (m_sfile.eof())
-    {
-        return false;
-    }
-    getline(m_sfile, a_line);
 
-    // Return indicating success.
-    return true;
+FileAccess::~FileAccess() { _source_file.close(); }
+
+std::string FileAccess::get_next_line()
+{
+    if (_source_file.eof())
+    {
+        std::cerr << "End of file.\n";
+        exit(1);
+    }
+
+    std::string next_line;
+    std::getline(_source_file, next_line);
+
+    return next_line;
 }
+
 void FileAccess::rewind()
 {
     // Clean all file flags and go back to the beginning of the file.
-    m_sfile.clear();
-    m_sfile.seekg(0, std::ios::beg);
+    _source_file.clear();
+    _source_file.seekg(0, std::ios::beg);
 }

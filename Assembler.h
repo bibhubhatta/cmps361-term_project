@@ -12,8 +12,8 @@
 class Assembler
 {
   public:
-    Assembler(int argc, char* argv[]); // TODO: Change this to take filename
-    ~Assembler(); // TODO: Remove destructor if it does nothing
+    explicit Assembler(const std::string& source_file_path);
+    ~Assembler() = default;
 
     // Pass I - establish the locations of the symbols
     void pass_1();
@@ -21,7 +21,7 @@ class Assembler
     // Pass II - generate a translation
     void pass_2();
 
-    void display_symbol_table() { _symbol_table.display_symbol_table(); }
+    void display_symbol_table() const { _symbol_table.display_symbol_table(); }
 
     void run_program_in_emulator() const;
 

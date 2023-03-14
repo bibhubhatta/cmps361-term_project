@@ -1,12 +1,27 @@
 /*
  * Assembler main program.
  */
+#include <iostream>
 
 #include "Assembler.h"
 
+void check_argument_count(int argc)
+{
+    // Check that there is exactly one run time parameter.
+    if (argc != 2)
+    {
+        std::cerr << "Usage: Assem <FileName>" << std::endl;
+        exit(1);
+    }
+}
+
 int main(int argc, char* argv[])
 {
-    Assembler assem(argc, argv);
+    check_argument_count(argc);
+
+    std::string source_file_path = argv[1];
+
+    Assembler assem(source_file_path);
 
     // Establish the location of the labels:
     assem.pass_1();
