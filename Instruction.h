@@ -6,47 +6,58 @@
 
 #include <string>
 
+// Codes to indicate the type of instruction we are processing
+enum class InstructionType
+{
+    MachineLanguage, // A machine language instruction.
+    AssemblerInstr,  // Assembler Language instruction.
+    Comment,         // Comment or blank line
+    End              // end instruction.
+};
+
 // The elements of an instruction.
 class Instruction
 {
   public:
-    Instruction(){};
-    ~Instruction(){};
+    explicit Instruction(std::string_view line);
+    ~Instruction() = default;
 
-    // Codes to indicate the type of instruction we are processing.  Why is this
-    // inside the class?  We should make this an enum class.  We will do this
-    // during a lecture.
-    enum InstructionType
-    {
-        ST_MachineLanguage, // A machine language instruction.
-        ST_AssemblerInstr,  // Assembler Language instruction.
-        ST_Comment,         // Comment or blank line
-        ST_End              // end instruction.
-    };
-    // Parse the Instruction.
-    InstructionType ParseInstruction(std::string a_line);
+    [[nodiscard]] int
+    get_location_of_next_instruction(int current_location) const;
 
-    // Compute the location of the next instruction.
-    int LocationNextInstruction(int a_loc);
+    [[nodiscard]] inline bool is_label() const { return !_label.empty(); };
+    [[nodiscard]] inline std::string get_label() const { return _label; };
 
-    // To access the label
-    inline std::string& GetLabel() { return m_Label; };
-    // To determine if a label is blank.
-    inline bool isLabel() { return !m_Label.empty(); };
+    [[nodiscard]] InstructionType get_type() const;
 
   private:
-    // The elemements of a instruction
-    std::string m_Label;   // The label.
-    std::string m_OpCode;  // The symbolic op code.
-    std::string m_Operand; // The operand.
+    std::string _original_instruction;
+    std::string _uncommented_instruction;
 
-    std::string m_instruction; // The original instruction.
+    // The elements of an instruction
+    std::string _label;
+    std::string _symbolic_opcode;
+    std::string _symbolic_operand_1;
+    std::string _symbolic_operand_2;
 
     // Derived values.
-    int m_NumOpCode; // The numerical value of the op code for machine language
-                     // equivalents.
-    InstructionType m_type; // The type of instruction.
+    int _numeric_opcode{}; // machine language equivalent numeric opcode
 
-    bool m_IsNumericOperand; // == true if the operand is numeric.
-    int m_OperandValue;      // The value of the operand if it is numeric.
+    InstructionType _instruction_type;
+
+    bool _is_numeric_operand{}; // == true if the operand is numeric
+    int _operand_1{}; // The value of the first operand if it is numeric
+    int _operand_2{}; // The value of the second operand if it is numeric
+
+    // Private helper functions
+
+    static bool _is_comment_or_empty(std::string_view line);
+    static bool _contains_label(std::string_view uncommented_instruction);
+
+    [[nodiscard]] static std::string
+    _get_uncommented_instruction(const std::string& instruction);
+
+    void _parse();
+
+    static std::string _get_lower_case(std::string_view str);
 };

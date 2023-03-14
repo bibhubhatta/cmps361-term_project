@@ -19,24 +19,25 @@ void Assembler::pass_1()
     std::string line;
     while (_instructions_file.GetNextLine(line))
     {
-        switch (Instruction::InstructionType st =
-                    _instruction.ParseInstruction(line))
+        Instruction current_instruction(line);
+
+        switch (current_instruction.get_type())
         {
-        case Instruction::InstructionType::ST_End:
+        case InstructionType::End:
             return;
-        case Instruction::InstructionType::ST_Comment:
+        case InstructionType::Comment:
             continue;
         default:
-            if (_instruction.isLabel())
+            if (current_instruction.is_label())
             {
                 _symbol_table.AddSymbol(
-                    _instruction.GetLabel(),
+                    current_instruction.get_label(),
                     location_of_instruction_to_be_generated);
             }
         }
 
         location_of_instruction_to_be_generated =
-            _instruction.LocationNextInstruction(
+            current_instruction.get_location_of_next_instruction(
                 location_of_instruction_to_be_generated);
     }
 }
