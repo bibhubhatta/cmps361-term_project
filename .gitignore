@@ -31,10 +31,13 @@
 *.out
 *.app
 
-cmake-build-debug/
 
+# IDE folders
 .idea/
-/out/build/x64-Debug
-/.vs
-/x64/Debug
-/x64/Release
+.vs/
+
+# Build folders
+*build*/
+out/
+x64/
+x86/
