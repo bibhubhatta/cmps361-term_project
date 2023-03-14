@@ -26,7 +26,7 @@ class Assembler
     void run_program_in_emulator() const;
 
   private:
-    FileAccess _instructions_file;
+    FileAccess  _instructions_file;
     SymbolTable _symbol_table;
-    emulator _emulator;
+    emulator    _emulator;
 };
