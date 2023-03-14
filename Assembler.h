@@ -12,24 +12,22 @@
 class Assembler
 {
   public:
-    Assembler(int argc, char* argv[]);
-    ~Assembler();
+    Assembler(int argc, char* argv[]); // TODO: Change this to take filename
+    ~Assembler(); // TODO: Remove destructor if it does nothing
 
     // Pass I - establish the locations of the symbols
-    void PassI();
+    void pass_1();
 
     // Pass II - generate a translation
-    void PassII();
+    void pass_2();
 
-    // Display the symbols in the symbol table.
-    void DisplaySymbolTable() { m_symtab.DisplaySymbolTable(); }
+    void display_symbol_table() { _symbol_table.DisplaySymbolTable(); }
 
-    // Run emulator on the translation.
-    void RunProgramInEmulator();
+    void run_program_in_emulator() const;
 
   private:
-    FileAccess m_facc;    // File Access object
-    SymbolTable m_symtab; // Symbol table object
-    Instruction m_inst;   // Instruction object
-    emulator m_emul;      // Emulator object
+    FileAccess _instructions_file;
+    SymbolTable _symbol_table;
+    Instruction _instruction;
+    emulator _emulator;
 };

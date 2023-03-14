@@ -7,60 +7,43 @@
 #include "Assembler.h"
 #include "Errors.h"
 
-// Constructor for the assembler.  Note: we are passing argc and argv to the
-// file access constructor. See main program.
-Assembler::Assembler(int argc, char* argv[]) : m_facc(argc, argv)
-{
-    // Nothing else to do here at this point.
-}
-// Destructor currently does nothing.  You might need to add something as you
-// develope this project.  If not, we can delete it.
+Assembler::Assembler(int argc, char* argv[]) : _instructions_file(argc, argv) {}
+
 Assembler::~Assembler() {}
-// Pass I establishes the location of the labels.  You will write better
-// function comments according to the coding standards.
-void Assembler::PassI()
+
+// Establish the location of the labels.
+void Assembler::pass_1()
 {
-    int loc = 0; // Tracks the location of the instructions to be generated.
+    int location_of_instruction_to_be_generated = 0;
 
-    // Successively process each line of source code.
-    for (;;)
+    std::string line;
+    while (_instructions_file.GetNextLine(line))
     {
-        // Read the next line from the source file.
-        std::string line;
-        if (!m_facc.GetNextLine(line))
+        switch (Instruction::InstructionType st =
+                    _instruction.ParseInstruction(line))
         {
-            // If there are no more lines, we are missing an end statement.
-            // We will let this error be reported by Pass II.
+        case Instruction::InstructionType::ST_End:
             return;
-        }
-        // Parse the line and get the instruction type.
-        Instruction::InstructionType st = m_inst.ParseInstruction(line);
-        // If this is an end statement, there is nothing left to do in pass I.
-        // Pass II will determine if the end is the last statement and report an
-        // error if it isn't.
-        if (st == Instruction::ST_End)
-            return;
-
-        // Labels can only be on machine language and assembler language
-        // instructions.  So, skip comments.
-        if (st == Instruction::ST_Comment)
-        {
+        case Instruction::InstructionType::ST_Comment:
             continue;
+        default:
+            if (_instruction.isLabel())
+            {
+                _symbol_table.AddSymbol(
+                    _instruction.GetLabel(),
+                    location_of_instruction_to_be_generated);
+            }
         }
-        // If the instruction has a label, record it and its location in the
-        // symbol table.
-        if (m_inst.isLabel())
-        {
-            m_symtab.AddSymbol(m_inst.GetLabel(), loc);
-        }
-        // Compute the location of the next instruction.
-        loc = m_inst.LocationNextInstruction(loc);
+
+        location_of_instruction_to_be_generated =
+            _instruction.LocationNextInstruction(
+                location_of_instruction_to_be_generated);
     }
 }
 
-void Assembler::PassII() { std::cout << "Implement Assembler::PassII\n"; }
+void Assembler::pass_2() { std::cout << "Implement Assembler::pass_2\n"; }
 
-void Assembler::RunProgramInEmulator()
+void Assembler::run_program_in_emulator() const
 {
-    std::cout << "Implement Assembler::RunProgramInEmulator()\n";
+    std::cout << "Implement Assembler::run_program_in_emulator()\n";
 }
