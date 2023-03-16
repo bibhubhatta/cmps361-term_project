@@ -30,9 +30,8 @@ void Emulator::run_program()
         switch (opcode)
         {
         case DC:
-            continue;
         case DS:
-            continue;
+            break;
         case ADD:
             _memory[operand1] += _memory[operand2];
             break;
