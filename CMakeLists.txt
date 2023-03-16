@@ -8,6 +8,7 @@ add_executable(assembler
         SymbolTable.h SymbolTable.cpp
         HelperFunctions.h HelperFunctions.cpp
         SymbolicInstruction.h SymbolicInstruction.cpp
+        NumericInstruction.cpp NumericInstruction.h
         FileAccess.h FileAccess.cpp
         Errors.h
         Emulator.h

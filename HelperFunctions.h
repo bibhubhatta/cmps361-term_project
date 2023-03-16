@@ -15,3 +15,5 @@ bool line_contains_label(const std::string& line);
 std::string get_uncommented_line(const std::string& line);
 
 std::string get_upper_case(const std::string& str);
+
+std::string replace_commas(const std::string& str);

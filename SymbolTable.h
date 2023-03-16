@@ -21,6 +21,8 @@ class SymbolTable
 
     bool lookup_symbol(const std::string& symbol, int& location);
 
+    int get_location(const std::string& symbol) const;
+
   private:
     // Maps symbols to location
     std::map<std::string, int, std::less<>> _symbol_table;

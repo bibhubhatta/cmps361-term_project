@@ -1,4 +1,5 @@
 #include "HelperFunctions.h"
+#include <algorithm>
 
 int get_location_of_next_instruction(
     const SymbolicInstruction& current_instruction, int current_location)
@@ -55,4 +56,11 @@ std::string get_upper_case(const std::string& str)
         upper += std::toupper(c);
 
     return upper;
+}
+
+std::string replace_commas(const std::string& str)
+{
+    std::string replaced {str};
+    std::ranges::replace(replaced.begin(), replaced.end(), ',', ' ');
+    return replaced;
 }

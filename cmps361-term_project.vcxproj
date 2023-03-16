@@ -23,8 +23,9 @@
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="FileAccess.cpp" />
     <ClCompile Include="HelperFunctions.cpp" />
+    <ClCompile Include="NumericInstruction.cpp" />
     <ClCompile Include="SymbolicInstruction.cpp" />
-    <ClCompile Include="SymTab.cpp" />
+    <ClCompile Include="SymbolTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
@@ -36,8 +37,9 @@
     <ClInclude Include="FileAccess.h" />
     <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="InstructionDefinitions.h" />
+    <ClInclude Include="NumericInstruction.h" />
     <ClInclude Include="SymbolicInstruction.h" />
-    <ClInclude Include="SymTab.h" />
+    <ClInclude Include="SymbolTable.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />

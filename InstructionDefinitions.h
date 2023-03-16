@@ -13,18 +13,19 @@ enum class InstructionType
 };
 
 // Maps symbolic instruction to type
-const std::map<std::string, InstructionType, std::less<>> INSTRUCTION_TYPE {
-    // Assembler Instructions
-    {"DC", InstructionType::AssemblerInstruction},
-    {"DS", InstructionType::AssemblerInstruction},
-    {"ORG", InstructionType::AssemblerInstruction},
-    {"END", InstructionType::End},
+const std::map<std::string, InstructionType, std::less<>>
+    SYMBOLIC_INSTRUCTION_TYPE {
+        // Assembler Instructions
+        {"DC", InstructionType::AssemblerInstruction},
+        {"DS", InstructionType::AssemblerInstruction},
+        {"ORG", InstructionType::AssemblerInstruction},
+        {"END", InstructionType::End},
 
-    // Machine Language Instructions
-    {"ADD", InstructionType::MachineLanguage},   // 01
-    {"SUB", InstructionType::MachineLanguage},   // 02
-    {"MULT", InstructionType::MachineLanguage},  // 03
-    {"DIV", InstructionType::MachineLanguage},   // 04
+        // Machine Language Instructions
+        {"ADD", InstructionType::MachineLanguage},   // 01
+        {"SUB", InstructionType::MachineLanguage},   // 02
+        {"MULT", InstructionType::MachineLanguage},  // 03
+        {"DIV", InstructionType::MachineLanguage},   // 04
         {"COPY", InstructionType::MachineLanguage},  // 05
         {"READ", InstructionType::MachineLanguage},  // 07
         {"WRITE", InstructionType::MachineLanguage}, // 08

@@ -11,13 +11,14 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     if (is_comment_or_empty(line))
         return;
 
-    std::string uncommented_instruction = get_uncommented_line(line);
+    std::string processed_line {get_uncommented_line(line)};
+    processed_line = replace_commas(processed_line);
 
-    std::istringstream iss {uncommented_instruction};
+    std::istringstream iss {processed_line};
 
     std::string extra; // Used to check if there is anything after instruction
 
-    if (line_contains_label(uncommented_instruction))
+    if (line_contains_label(processed_line))
         iss >> _label;
 
     iss >> _opcode >> _operand_1 >> _operand_2 >> extra;
@@ -42,8 +43,8 @@ InstructionType SymbolicInstruction::get_type() const
 
     std::string upper_symbolic_opcode {get_upper_case(_opcode)};
 
-    if (auto it {INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
-        it != INSTRUCTION_TYPE.end())
+    if (auto it {SYMBOLIC_INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
+        it != SYMBOLIC_INSTRUCTION_TYPE.end())
     {
         return it->second;
     }
