@@ -7,6 +7,7 @@
 
 #include "Assembler.h"
 #include "Errors.h"
+#include "HelperFunctions.h"
 #include "InstructionDefinitions.h"
 
 Assembler::Assembler(const std::string& source_file_path)
@@ -21,7 +22,7 @@ void Assembler::pass_1()
 
     while (!_instructions_file.end_of_file())
     {
-        std::string line{_instructions_file.get_next_line()};
+        std::string         line{_instructions_file.get_next_line()};
         SymbolicInstruction current_instruction(line);
 
         switch (current_instruction.get_type())
@@ -32,14 +33,13 @@ void Assembler::pass_1()
             continue;
 
         default:
-            if (current_instruction.is_label())
+            if (current_instruction.contains_label())
             {
                 _symbol_table.add_symbol(current_instruction.get_label(),
                                          current_instruction_location);
             }
-            current_instruction_location =
-                SymbolicInstruction::get_location_of_next_instruction(
-                    current_instruction, current_instruction_location);
+            current_instruction_location = get_location_of_next_instruction(
+                current_instruction, current_instruction_location);
         }
     }
 }
@@ -55,7 +55,7 @@ void Assembler::pass_2()
 
     while (!_instructions_file.end_of_file())
     {
-        std::string line{_instructions_file.get_next_line()};
+        std::string         line{_instructions_file.get_next_line()};
         SymbolicInstruction current_instruction(line);
 
         switch (current_instruction.get_type())
@@ -78,14 +78,12 @@ void Assembler::pass_2()
         default:
             std::cout << std::format(
                 "{:<10}{:<15}{:<30}\n", // Set format
-                current_instruction_location,
-                current_instruction.get_numeric_instruction(),
+                current_instruction_location, current_instruction.get_opcode(),
                 current_instruction.get_original_instruction());
         }
 
-        current_instruction_location =
-            SymbolicInstruction::get_location_of_next_instruction(
-                current_instruction, current_instruction_location);
+        current_instruction_location = get_location_of_next_instruction(
+            current_instruction, current_instruction_location);
     }
 }
 

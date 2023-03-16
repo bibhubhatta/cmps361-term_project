@@ -22,6 +22,7 @@
     <ClCompile Include="Assem.cpp" />
     <ClCompile Include="Assembler.cpp" />
     <ClCompile Include="FileAccess.cpp" />
+    <ClCompile Include="HelperFunctions.cpp" />
     <ClCompile Include="SymbolicInstruction.cpp" />
     <ClCompile Include="SymTab.cpp" />
   </ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="Emulator.h" />
     <ClInclude Include="Errors.h" />
     <ClInclude Include="FileAccess.h" />
+    <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="InstructionDefinitions.h" />
     <ClInclude Include="SymbolicInstruction.h" />
     <ClInclude Include="SymTab.h" />
