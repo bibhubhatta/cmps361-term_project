@@ -26,11 +26,15 @@ int main(int argc, char* argv[])
     // Establish the location of the labels:
     assem.pass_1();
 
-    // Display the symbol table.
+    std::cout << "Symbol Table:\n\n";
     assem.display_symbol_table();
+    std::cout
+        << "___________________________________________________________\n\n";
 
-    // Output the translation.
+    std::cout << "Translation of the Assembler Language Program:\n\n";
     assem.pass_2();
+    std::cout
+        << "___________________________________________________________\n\n";
 
     // Run the emulator on the translation of the assembler language program
     // that was generated in Pass II.
