@@ -31,6 +31,8 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     }
 }
 
+bool SymbolicInstruction::contains_label() const { return !_label.empty(); }
+
 InstructionType SymbolicInstruction::get_type() const
 {
     using enum InstructionType;
@@ -62,11 +64,9 @@ std::string SymbolicInstruction::get_operand_1() const { return _operand_1; }
 
 std::string SymbolicInstruction::get_operand_2() const { return _operand_2; }
 
+std::string SymbolicInstruction::get_label() const { return _label; }
+
 std::string SymbolicInstruction::get_original_instruction() const
 {
     return _original_instruction;
 }
-
-bool SymbolicInstruction::contains_label() const { return !_label.empty(); }
-
-std::string SymbolicInstruction::get_label() const { return _label; }
