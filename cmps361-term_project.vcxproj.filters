@@ -27,7 +27,7 @@
     <ClCompile Include="SymTab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Instruction.cpp">
+    <ClCompile Include="SymbolicInstruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,10 +47,13 @@
     <ClInclude Include="FileAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Instruction.h">
+    <ClInclude Include="SymTab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SymTab.h">
+    <ClInclude Include="InstructionDefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolicInstruction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
