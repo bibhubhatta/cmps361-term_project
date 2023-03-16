@@ -45,6 +45,7 @@
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
     <Text Include="test.txt" />
+    <Text Include="test_input.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
