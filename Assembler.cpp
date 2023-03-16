@@ -7,6 +7,7 @@
 
 #include "Assembler.h"
 #include "Errors.h"
+#include "InstructionDefinitions.h"
 
 Assembler::Assembler(const std::string& source_file_path)
     : _instructions_file(source_file_path)

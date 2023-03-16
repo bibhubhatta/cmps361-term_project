@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "InstructionDefinitions.h"
 #include "SymbolicInstruction.h"
 
 SymbolicInstruction::SymbolicInstruction(std::string_view line) : _original_instruction(line)
