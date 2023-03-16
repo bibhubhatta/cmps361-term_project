@@ -2,6 +2,7 @@
 //      Implementation of the Assembler class.
 //
 
+#include <format>
 #include <iostream>
 
 #include "Assembler.h"
@@ -42,7 +43,50 @@ void Assembler::pass_1()
     }
 }
 
-void Assembler::pass_2() { std::cout << "Implement Assembler::pass_2\n"; }
+void Assembler::pass_2()
+{
+    _instructions_file.rewind();
+
+    std::cout << std::format("{:<10}{:<15}{:<30}\n", // Set format
+                             "Location", "Contents", "Original Statement");
+
+    int current_instruction_location = 0;
+
+    while (!_instructions_file.end_of_file())
+    {
+        std::string line{_instructions_file.get_next_line()};
+        Instruction current_instruction(line);
+
+        switch (current_instruction.get_type())
+        {
+        case InstructionType::End:
+            std::cout << std::format(
+                "{:<10}{:<15}{:<30}\n", // Set format
+                "",                     // No location
+                "",                     // No contents
+                current_instruction.get_original_instruction());
+            return;
+        case InstructionType::Comment:
+            std::cout << std::format(
+                "{:<10}{:<15}{:<30}\n", // Set format
+                "",                     // No location
+                "",                     // No contents
+                current_instruction.get_original_instruction());
+            continue;
+
+        default:
+            std::cout << std::format(
+                "{:<10}{:<15}{:<30}\n", // Set format
+                current_instruction_location,
+                current_instruction.get_numeric_instruction(),
+                current_instruction.get_original_instruction());
+        }
+
+        current_instruction_location =
+            Instruction::get_location_of_next_instruction(
+                current_instruction, current_instruction_location);
+    }
+}
 
 void Assembler::run_program_in_emulator() const
 {

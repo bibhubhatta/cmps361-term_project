@@ -103,9 +103,17 @@ int Instruction::get_location_of_next_instruction(
 {
     int next_location{current_location + 1};
 
-    if (current_instruction.get_symbolic_opcode() == "ORG")
+    std::string opcode{current_instruction.get_symbolic_opcode()};
+
+    if (opcode == "ORG")
     {
         next_location = current_instruction.get_symbolic_operand_1();
+    }
+
+    if (opcode == "DS")
+    {
+        next_location =
+            current_location + current_instruction.get_symbolic_operand_1();
     }
 
     return next_location;
@@ -125,3 +133,34 @@ std::string Instruction::get_original_instruction() const
 {
     return _original_instruction;
 }
+
+std::string Instruction::get_numeric_instruction() const
+{
+    std::string numeric_instruction{
+        get_numeric_opcode() + get_numeric_operand1() + get_numeric_operand2()};
+
+    return numeric_instruction;
+}
+
+std::string Instruction::get_numeric_opcode() const
+{
+    std::string numeric_opcode{std::to_string(_numeric_opcode)};
+    numeric_opcode.insert(0, 2 - numeric_opcode.size(), '0');
+    return numeric_opcode;
+}
+
+std::string Instruction::get_numeric_operand1() const
+{
+    std::string numeric_operand_1{std::to_string(_operand_1)};
+    numeric_operand_1.insert(0, 5 - numeric_operand_1.size(), '0');
+    return numeric_operand_1;
+}
+
+std::string Instruction::get_numeric_operand2() const
+{
+    std::string numeric_operand_2{std::to_string(_operand_2)};
+    numeric_operand_2.insert(0, 5 - numeric_operand_2.size(), '0');
+    return numeric_operand_2;
+}
+
+bool Instruction::is_numeric_operand() const { return _is_numeric_operand; }

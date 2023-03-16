@@ -61,6 +61,16 @@ class Instruction
 
     [[nodiscard]] std::string get_original_instruction() const;
 
+    [[nodiscard]] std::string get_numeric_instruction() const;
+
+    [[nodiscard]] std::string get_numeric_opcode() const;
+
+    [[nodiscard]] std::string get_numeric_operand1() const;
+
+    [[nodiscard]] std::string get_numeric_operand2() const;
+
+    [[nodiscard]] bool is_numeric_operand() const;
+
   private:
     std::string _original_instruction;
     std::string _uncommented_instruction;
