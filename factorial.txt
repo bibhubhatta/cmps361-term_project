@@ -1,0 +1,15 @@
+ org 100
+ read n
+ copy i n
+loop mult fac i
+     sub i one
+     bp loop i
+ write fac
+ halt
+
+one dc 1
+i dc 0
+fac dc 1
+n dc 0
+
+ end
