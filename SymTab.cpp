@@ -24,7 +24,7 @@ void SymbolTable::display_symbol_table() const
     std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
                              "Symbol #", "Symbol", "Location");
 
-    int counter{0};
+    int counter {0};
     for (const auto& [symbol, location] : _symbol_table)
     {
         std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
@@ -35,7 +35,7 @@ void SymbolTable::display_symbol_table() const
 
 bool SymbolTable::_in_table(const std::string& symbol) const
 {
-    auto symbol_pointer{_symbol_table.find(symbol)};
+    auto symbol_pointer {_symbol_table.find(symbol)};
     return symbol_pointer != _symbol_table.end();
 }
 

@@ -3,9 +3,9 @@
 int get_location_of_next_instruction(
     const SymbolicInstruction& current_instruction, int current_location)
 {
-    int next_location{current_location + 1};
+    int next_location {current_location + 1};
 
-    std::string opcode{current_instruction.get_opcode()};
+    std::string opcode {current_instruction.get_opcode()};
 
     if (opcode == "ORG")
     {
@@ -40,7 +40,7 @@ bool line_contains_label(const std::string& line)
 
 std::string get_uncommented_line(const std::string& line)
 {
-    if (auto comment_position{line.find(';')};
+    if (auto comment_position {line.find(';')};
         comment_position != std::string::npos)
     {
         return line.substr(0, comment_position);

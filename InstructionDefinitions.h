@@ -13,7 +13,7 @@ enum class InstructionType
 };
 
 // Maps symbolic instruction to type
-const std::map<std::string, InstructionType, std::less<>> INSTRUCTION_TYPE{
+const std::map<std::string, InstructionType, std::less<>> INSTRUCTION_TYPE {
     // Assembler Instructions
     {"DC", InstructionType::AssemblerInstruction},
     {"DS", InstructionType::AssemblerInstruction},

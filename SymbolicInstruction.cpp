@@ -13,7 +13,7 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
 
     std::string uncommented_instruction = get_uncommented_line(line);
 
-    std::istringstream iss{uncommented_instruction};
+    std::istringstream iss {uncommented_instruction};
 
     std::string extra; // Used to check if there is anything after instruction
 
@@ -40,9 +40,9 @@ InstructionType SymbolicInstruction::get_type() const
     if (is_comment_or_empty(_original_instruction))
         return Comment;
 
-    std::string upper_symbolic_opcode{get_upper_case(_opcode)};
+    std::string upper_symbolic_opcode {get_upper_case(_opcode)};
 
-    if (auto it{INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
+    if (auto it {INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
         it != INSTRUCTION_TYPE.end())
     {
         return it->second;
