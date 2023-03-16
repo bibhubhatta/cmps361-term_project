@@ -6,7 +6,7 @@
 #include <format>
 #include <iostream>
 
-#include "SymTab.h"
+#include "SymbolTable.h"
 
 void SymbolTable::add_symbol(const std::string& symbol, int location)
 {
