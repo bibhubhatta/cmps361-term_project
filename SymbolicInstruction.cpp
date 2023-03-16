@@ -11,8 +11,7 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     if (is_comment_or_empty(line))
         return;
 
-    std::string processed_line {get_uncommented_line(line)};
-    processed_line = replace_commas(processed_line);
+    std::string processed_line {remove_comments_and_commas(line)};
 
     std::istringstream iss {processed_line};
 
@@ -41,14 +40,12 @@ InstructionType SymbolicInstruction::get_type() const
     if (is_comment_or_empty(_original_instruction))
         return Comment;
 
-    std::string upper_symbolic_opcode {get_upper_case(_opcode)};
-
-    if (auto it {SymbolicOpcode_Type.find(upper_symbolic_opcode)};
-        it != SymbolicOpcode_Type.end())
+    try
     {
-        return it->second;
+        std::string opcode {get_opcode()};
+        return SymbolicOpcode_Type.at(opcode);
     }
-    else
+    catch (const std::out_of_range&)
     {
         std::cerr << "Error: Invalid instruction: " << _original_instruction
                   << '\n';

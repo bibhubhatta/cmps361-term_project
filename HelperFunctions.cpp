@@ -64,3 +64,9 @@ std::string replace_commas(const std::string& str)
     std::ranges::replace(replaced.begin(), replaced.end(), ',', ' ');
     return replaced;
 }
+
+std::string remove_comments_and_commas(const std::string& line)
+{
+    std::string uncommented_line {get_uncommented_line(line)};
+    return replace_commas(uncommented_line);
+}
