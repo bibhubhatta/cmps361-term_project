@@ -18,6 +18,7 @@ class NumericInstruction
     [[nodiscard]] int get_operand_2() const;
 
     [[nodiscard]] std::string get_string_representation() const;
+    [[nodiscard]] long long   get_numeric_representation() const;
 
   private:
     NumericOpcode _opcode {-1};

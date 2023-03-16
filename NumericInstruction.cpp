@@ -68,3 +68,11 @@ bool NumericInstruction::_has_no_numeric_equivalent() const
 {
     return static_cast<int>(_opcode) == -1;
 }
+
+long long NumericInstruction::get_numeric_representation() const
+{
+    if (_has_no_numeric_equivalent())
+        return 0;
+
+    return std::stoll(get_string_representation());
+}

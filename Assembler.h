@@ -23,7 +23,7 @@ class Assembler
 
     void display_symbol_table() const { _symbol_table.display_symbol_table(); }
 
-    void run_program_in_emulator() const;
+    void run_program_in_emulator();
 
   private:
     FileAccess  _instructions_file;

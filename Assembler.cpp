@@ -85,6 +85,10 @@ void Assembler::pass_2()
                 current_instruction_location,
                 current_numeric_instruction.get_string_representation(),
                 current_symbolic_instruction.get_original_instruction());
+
+            _emulator.insert(
+                current_instruction_location,
+                current_numeric_instruction.get_numeric_representation());
         }
 
         current_instruction_location = get_location_of_next_instruction(
@@ -92,7 +96,4 @@ void Assembler::pass_2()
     }
 }
 
-void Assembler::run_program_in_emulator() const
-{
-    std::cout << "Implement Assembler::run_program_in_emulator()\n";
-}
+void Assembler::run_program_in_emulator() { _emulator.run_program(); }

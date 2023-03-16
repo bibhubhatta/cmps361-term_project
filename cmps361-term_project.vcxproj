@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Assem.cpp" />
     <ClCompile Include="Assembler.cpp" />
+    <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="FileAccess.cpp" />
     <ClCompile Include="HelperFunctions.cpp" />
     <ClCompile Include="NumericInstruction.cpp" />
