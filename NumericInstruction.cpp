@@ -9,7 +9,7 @@ NumericInstruction::NumericInstruction(
 
     std::string symbolic_opcode = symbolic_instruction.get_opcode();
 
-    _opcode = NUMERIC_OPCODE.at(symbolic_opcode);
+    _opcode = SymbolicOpcode_NumericOpcode.at(symbolic_opcode);
 
     if (_has_no_numeric_equivalent())
     {
@@ -22,7 +22,7 @@ NumericInstruction::NumericInstruction(
         return;
     }
 
-    switch (NUMERIC_INSTRUCTION_OPERAND_COUNT.at(_opcode))
+    switch (NumericOpcode_OperandCount.at(_opcode))
     {
     case 0:
         break;

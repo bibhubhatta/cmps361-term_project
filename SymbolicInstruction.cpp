@@ -43,8 +43,8 @@ InstructionType SymbolicInstruction::get_type() const
 
     std::string upper_symbolic_opcode {get_upper_case(_opcode)};
 
-    if (auto it {SYMBOLIC_INSTRUCTION_TYPE.find(upper_symbolic_opcode)};
-        it != SYMBOLIC_INSTRUCTION_TYPE.end())
+    if (auto it {SymbolicOpcode_Type.find(upper_symbolic_opcode)};
+        it != SymbolicOpcode_Type.end())
     {
         return it->second;
     }
