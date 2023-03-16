@@ -40,14 +40,14 @@ const std::map<std::string, InstructionType, std::less<>> INSTRUCTION_TYPE{
 };
 
 // The elements of an instruction.
-class Instruction
+class SymbolicInstruction
 {
   public:
-    explicit Instruction(std::string_view line);
-    ~Instruction() = default;
+    explicit SymbolicInstruction(std::string_view line);
+    ~SymbolicInstruction() = default;
 
     [[nodiscard]] static int
-    get_location_of_next_instruction(const Instruction& current_instruction,
+    get_location_of_next_instruction(const SymbolicInstruction& current_instruction,
                                      int                current_location);
 
     [[nodiscard]] inline bool is_label() const { return !_label.empty(); };

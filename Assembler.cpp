@@ -21,7 +21,7 @@ void Assembler::pass_1()
     while (!_instructions_file.end_of_file())
     {
         std::string line{_instructions_file.get_next_line()};
-        Instruction current_instruction(line);
+        SymbolicInstruction current_instruction(line);
 
         switch (current_instruction.get_type())
         {
@@ -37,7 +37,7 @@ void Assembler::pass_1()
                                          current_instruction_location);
             }
             current_instruction_location =
-                Instruction::get_location_of_next_instruction(
+                SymbolicInstruction::get_location_of_next_instruction(
                     current_instruction, current_instruction_location);
         }
     }
@@ -55,7 +55,7 @@ void Assembler::pass_2()
     while (!_instructions_file.end_of_file())
     {
         std::string line{_instructions_file.get_next_line()};
-        Instruction current_instruction(line);
+        SymbolicInstruction current_instruction(line);
 
         switch (current_instruction.get_type())
         {
@@ -83,7 +83,7 @@ void Assembler::pass_2()
         }
 
         current_instruction_location =
-            Instruction::get_location_of_next_instruction(
+            SymbolicInstruction::get_location_of_next_instruction(
                 current_instruction, current_instruction_location);
     }
 }

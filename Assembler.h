@@ -6,8 +6,8 @@
 
 #include "Emulator.h"
 #include "FileAccess.h"
-#include "Instruction.h"
 #include "SymTab.h"
+#include "SymbolicInstruction.h"
 
 class Assembler
 {
