@@ -28,5 +28,5 @@ class Assembler
   private:
     FileAccess  _instructions_file;
     SymbolTable _symbol_table;
-    emulator    _emulator;
+    Emulator    _emulator;
 };

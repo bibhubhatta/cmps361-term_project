@@ -7,6 +7,7 @@
 #define _ERRORS_H
 
 #include <string>
+#include <vector>
 
 class Errors
 {

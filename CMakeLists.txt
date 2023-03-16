@@ -10,7 +10,7 @@ add_executable(assembler
         SymbolicInstruction.h SymbolicInstruction.cpp
         NumericInstruction.cpp NumericInstruction.h
         FileAccess.h FileAccess.cpp
+        Emulator.h Emulator.cpp
         Errors.h
-        Emulator.h
         Assem.cpp
         )
