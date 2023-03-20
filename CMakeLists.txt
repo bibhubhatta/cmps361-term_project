@@ -3,14 +3,12 @@ project(assembler)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_subdirectory(assembler_lib)
+target_include_directories(assembler_lib PUBLIC
+        "${PROJECT_BINARY_DIR}"
+        "${PROJECT_SOURCE_DIR}")
+
 add_executable(assembler
-        Assembler.h Assembler.cpp
-        SymbolTable.h SymbolTable.cpp
-        HelperFunctions.h HelperFunctions.cpp
-        SymbolicInstruction.h SymbolicInstruction.cpp
-        NumericInstruction.cpp NumericInstruction.h
-        FileAccess.h FileAccess.cpp
-        Emulator.h Emulator.cpp
-        Errors.h
-        Assem.cpp
-        )
+        Assem.cpp)
+
+target_link_libraries(assembler assembler_lib)

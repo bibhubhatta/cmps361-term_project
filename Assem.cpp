@@ -3,7 +3,7 @@
  */
 #include <iostream>
 
-#include "Assembler.h"
+#include <assembler_lib/Assembler.h>
 
 void check_argument_count(int argc)
 {
