@@ -14,3 +14,5 @@ add_library(assembler_lib
         Errors.h
         )
 
+target_include_directories(assembler_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
