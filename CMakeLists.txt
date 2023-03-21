@@ -12,3 +12,10 @@ add_executable(assembler
         Assem.cpp)
 
 target_link_libraries(assembler assembler_lib)
+
+
+add_subdirectory(googletest)
+
+add_executable(tests tests/test_test.cpp)
+
+target_link_libraries(tests gtest gtest_main assembler_lib)
