@@ -6,14 +6,22 @@
 #include <format>
 #include <iostream>
 
+#include "Exceptions.h"
 #include "SymbolTable.h"
 
 void SymbolTable::add_symbol(const std::string& symbol, int location)
 {
     if (_in_table(symbol))
     {
+        int previous_location {_symbol_table.at(symbol)};
+
         _symbol_table[symbol] = MULTIPLEY_DEFINED_SYMBOL;
-        return;
+
+        // If the symbol is defined more than twice, the exception won't specify
+        // the location of the second definition because location is set to
+        // MULTIPLEY_DEFINED_SYMBOL.
+
+        throw MultiplyDefinedLabelError(symbol, previous_location, location);
     }
 
     _symbol_table[symbol] = location;

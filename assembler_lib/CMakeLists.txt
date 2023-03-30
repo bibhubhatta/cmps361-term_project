@@ -12,7 +12,7 @@ add_library(assembler_lib
         FileAccess.h FileAccess.cpp
         Emulator.h Emulator.cpp
         Errors.h
-        )
+        Exceptions.h)
 
 target_include_directories(assembler_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
