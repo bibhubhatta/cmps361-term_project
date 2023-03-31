@@ -41,11 +41,26 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
  */
 void SymbolicInstruction::_check_operand_count() const
 {
-    int operand_count {get_instruction_operand_count(_opcode)};
+    int operand_count {get_instruction_operand_count(get_opcode())};
+
+    if (operand_count == 0 && !_operand_1.empty())
+    {
+        throw UnmatchedOperandCountError(_original_instruction, 0, 1);
+    }
+
+    if (operand_count == 0 && !_operand_2.empty())
+    {
+        throw UnmatchedOperandCountError(_original_instruction, 0, 2);
+    }
 
     if (operand_count == 1 && _operand_1.empty())
     {
         throw UnmatchedOperandCountError(_original_instruction, 1, 0);
+    }
+
+    if (operand_count == 1 && !_operand_2.empty())
+    {
+        throw UnmatchedOperandCountError(_original_instruction, 1, 2);
     }
 
     if (operand_count == 2 && (_operand_1.empty() || _operand_2.empty()))
