@@ -34,4 +34,5 @@ class SymbolicInstruction
     std::string _opcode;
     std::string _operand_1;
     std::string _operand_2;
+    void        _check_operand_count() const;
 };

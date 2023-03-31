@@ -1,5 +1,8 @@
-#include "HelperFunctions.h"
 #include <algorithm>
+#include <stdexcept>
+
+#include "Exceptions.h"
+#include "HelperFunctions.h"
 
 int get_location_of_next_instruction(
     const SymbolicInstruction& current_instruction, int current_location)
@@ -69,4 +72,22 @@ std::string remove_comments_and_commas(const std::string& line)
 {
     std::string uncommented_line {get_uncommented_line(line)};
     return replace_commas(uncommented_line);
+}
+
+int get_instruction_operand_count(const std::string& opcode)
+{
+    std::string upper_opcode {get_upper_case(opcode)};
+
+    using enum InstructionType;
+
+    try
+    {
+        NumericOpcode opcode_enum {
+            SymbolicOpcode_NumericOpcode.at(upper_opcode)};
+        return NumericOpcode_OperandCount.at(opcode_enum);
+    }
+    catch (const std::out_of_range&)
+    {
+        throw InvalidOpcodeError {opcode};
+    }
 }

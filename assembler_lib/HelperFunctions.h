@@ -19,3 +19,10 @@ std::string get_upper_case(const std::string& str);
 std::string replace_commas(const std::string& str);
 
 std::string remove_comments_and_commas(const std::string& line);
+
+/**
+ * @brief Get the instruction operand count
+ * @param opcode    The instruction opcode
+ * @return The number of operands for the instruction
+ */
+int get_instruction_operand_count(const std::string& opcode);

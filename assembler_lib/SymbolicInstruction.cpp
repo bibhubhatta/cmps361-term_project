@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "Exceptions.h"
 #include "HelperFunctions.h"
 #include "InstructionDefinitions.h"
 #include "SymbolicInstruction.h"
@@ -22,12 +23,38 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
 
     iss >> _opcode >> _operand_1 >> _operand_2 >> extra;
 
+    _check_operand_count();
+
     if (!extra.empty())
     {
         // TODO: Add error to error list, for now just print to console
         std::cout << "Error: Extra characters at end of instruction: "
                   << _original_instruction << std::endl;
         exit(1);
+    }
+}
+
+/**
+ * @brief Checks if the number of operands matches the number of operands for
+ * the instruction. If not, throws UnmatchedOperandCountError.
+ */
+void SymbolicInstruction::_check_operand_count() const
+{
+    int operand_count {get_instruction_operand_count(_opcode)};
+
+    if (operand_count == 1 && _operand_1.empty())
+    {
+        throw UnmatchedOperandCountError(_original_instruction, 1, 0);
+    }
+
+    if (operand_count == 2 && (_operand_1.empty() || _operand_2.empty()))
+    {
+        if (_operand_1.empty())
+            throw UnmatchedOperandCountError(_original_instruction, 2, 1);
+        else
+        {
+            throw UnmatchedOperandCountError(_original_instruction, 2, 0);
+        }
     }
 }
 
