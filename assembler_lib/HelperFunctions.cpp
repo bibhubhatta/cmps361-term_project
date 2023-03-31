@@ -91,3 +91,30 @@ int get_instruction_operand_count(const std::string& opcode)
         throw InvalidOpcodeError {opcode};
     }
 }
+
+std::string get_operand_type_str(OperandType operand_type)
+{
+    using enum OperandType;
+
+    switch (operand_type)
+    {
+    case Symbolic:
+        return "Symbolic";
+    case Numeric:
+        return "Numeric";
+    case None:
+        return "None";
+    }
+}
+
+OperandType get_operand_type(const std::string& operand)
+{
+    using enum OperandType;
+    if (operand.empty())
+        return None;
+
+    if (std::isdigit(operand[0]))
+        return Numeric;
+
+    return Symbolic;
+}

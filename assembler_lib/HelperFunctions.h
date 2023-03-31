@@ -26,3 +26,17 @@ std::string remove_comments_and_commas(const std::string& line);
  * @return The number of operands for the instruction
  */
 int get_instruction_operand_count(const std::string& opcode);
+
+/**
+ * @brief Get the instruction operand type
+ * @param operand   The operand
+ * @return The operand type
+ */
+OperandType get_operand_type(const std::string& operand);
+
+/**
+ * @brief Get the instruction operand type
+ * @param operand_type The operand type
+ * @return The string representation of the operand type
+ */
+std::string get_operand_type_str(OperandType operand_type);

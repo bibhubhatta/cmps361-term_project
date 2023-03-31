@@ -35,4 +35,10 @@ class SymbolicInstruction
     std::string _operand_1;
     std::string _operand_2;
     void        _check_operand_count() const;
+
+    /**
+     * @brief Checks if the operand type matches the operand type for
+     * the instruction. If not, throws UnmatchedOperandTypeError.
+     */
+    void _check_operand_type() const;
 };

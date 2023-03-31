@@ -13,9 +13,11 @@
 // 2. Undefined label. Namely, a symbolic operand does not have a matching a
 // label.
 // 3. Syntax error in construction of the label or operands. For example,
-// the operand of a DS must be numeric and those of an ADD instruction must be
-// symbolic. Labels and operand must meet the format given in the
-// specifications. Extra statement elements. Illegal operation code.
+// a. the operand of a DS must be numeric and those of an ADD instruction must
+// be symbolic.
+// b. Labels and operand must meet the format given in the specifications.
+// c. Extra statement elements.
+// d. Illegal operation code.
 // 4. Insufficient memory for the translation.
 // 5. Missing end statement or the end statement is not the last one in the
 // program. Constant too large for VC1620 memory. Missing or extra operands
@@ -52,4 +54,46 @@ TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), UnmatchedOperandCountError);
+}
+
+TEST(ErrorsTest, ThrowsInvalidOperandTypeError1)
+{
+    std::string source {" org operand\n"};
+
+    std::string source_file_path {"invalid_operand_type_symbolic.txt"};
+
+    std::ofstream source_file {source_file_path};
+    source_file << source;
+    source_file.close();
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
+}
+
+TEST(ErrorsTest, ThrowsInvalidOperandTypeError2)
+{
+    std::string source {" add 2 3"};
+
+    std::string source_file_path {"invalid_operand_type_numeric.txt"};
+
+    std::ofstream source_file {source_file_path};
+    source_file << source;
+    source_file.close();
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
+}
+
+TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
+{
+    std::string source {" mult 2 asd"};
+
+    std::string source_file_path {"invalid_operand_type_numeric_2.txt"};
+
+    std::ofstream source_file {source_file_path};
+    source_file << source;
+    source_file.close();
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
 }

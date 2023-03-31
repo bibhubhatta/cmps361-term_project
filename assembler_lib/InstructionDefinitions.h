@@ -104,3 +104,35 @@ const std::map<NumericOpcode, int, std::less<>> NumericOpcode_OperandCount {
     {NumericOpcode::BZ, 2},
     {NumericOpcode::BP, 2},
     {NumericOpcode::HALT, 0}};
+
+// Types of operands
+enum class OperandType
+{
+    Symbolic,
+    Numeric,
+    None
+};
+
+// Maps symbolic opcode to type of operand
+const std::map<std::string, OperandType, std::less<>>
+    SymbolicOpcode_OperandType {
+
+        // Assembler Instructions
+        {"DC", OperandType::Numeric},
+        {"DS", OperandType::Numeric},
+        {"ORG", OperandType::Numeric},
+        {"END", OperandType::None},
+
+        // Machine Language Instructions
+        {"ADD", OperandType::Symbolic},
+        {"SUB", OperandType::Symbolic},
+        {"MULT", OperandType::Symbolic},
+        {"DIV", OperandType::Symbolic},
+        {"COPY", OperandType::Symbolic},
+        {"READ", OperandType::Symbolic},
+        {"WRITE", OperandType::Symbolic},
+        {"B", OperandType::Symbolic},
+        {"BM", OperandType::Symbolic},
+        {"BZ", OperandType::Symbolic},
+        {"BP", OperandType::Symbolic},
+        {"HALT", OperandType::None}};

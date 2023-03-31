@@ -24,6 +24,7 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     iss >> _opcode >> _operand_1 >> _operand_2 >> extra;
 
     _check_operand_count();
+    _check_operand_type();
 
     if (!extra.empty())
     {
@@ -94,4 +95,46 @@ std::string SymbolicInstruction::get_label() const { return _label; }
 std::string SymbolicInstruction::get_original_instruction() const
 {
     return _original_instruction;
+}
+
+void SymbolicInstruction::_check_operand_type() const
+{
+    using enum OperandType;
+
+    std::string opcode {get_opcode()};
+    int         operand_count {get_instruction_operand_count(opcode)};
+    OperandType expected_type {SymbolicOpcode_OperandType.at(opcode)};
+    OperandType actual_type_1 {get_operand_type(_operand_1)};
+    OperandType actual_type_2 {get_operand_type(_operand_2)};
+
+    switch (operand_count)
+    {
+    case 0:
+        break;
+    case 1:
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            get_operand_type(_operand_1))
+        {
+            throw InvalidOperandTypeError(_operand_1, expected_type,
+                                          actual_type_1);
+        }
+        break;
+    case 2:
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            get_operand_type(_operand_1))
+        {
+            throw InvalidOperandTypeError(_operand_1, expected_type,
+                                          actual_type_1);
+        }
+
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            get_operand_type(_operand_2))
+        {
+            throw InvalidOperandTypeError(_operand_2, expected_type,
+                                          actual_type_2);
+        }
+        break;
+    default:
+        break;
+    }
 }

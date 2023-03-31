@@ -5,6 +5,8 @@
 #include <string>
 #include <utility>
 
+#include "HelperFunctions.h"
+
 class InvalidOpcodeError : public std::exception
 {
   public:
@@ -72,4 +74,31 @@ class UnmatchedOperandCountError : public std::exception
     std::string _symbolic_opcode;
     int         _expected_count {0};
     int         _actual_count {0};
+};
+
+class InvalidOperandTypeError : public std::exception
+{
+  public:
+    explicit InvalidOperandTypeError(std::string operand, OperandType expected,
+                                     OperandType actual)
+        : _operand(std::move(operand)), _expected(expected), _actual(actual)
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        std::string expected {get_operand_type_str(_expected)};
+        std::string actual {get_operand_type_str(_actual)};
+
+        std::string message {
+            std::format("Invalid operand type: {} expected {} but found {}",
+                        _operand, expected, actual)};
+
+        return message.c_str();
+    }
+
+  private:
+    std::string _operand;
+    OperandType _expected {OperandType::None};
+    OperandType _actual {OperandType::None};
 };
