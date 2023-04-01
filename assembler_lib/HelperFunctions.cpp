@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 #include <stdexcept>
 
 #include "Exceptions.h"
@@ -119,4 +120,12 @@ OperandType get_operand_type(const std::string& operand)
         return Numeric;
 
     return Symbolic;
+}
+
+void create_source_file(const std::string& source,
+                        const std::string& source_file_path)
+{
+    std::ofstream source_file {source_file_path};
+    source_file << source;
+    source_file.close();
 }

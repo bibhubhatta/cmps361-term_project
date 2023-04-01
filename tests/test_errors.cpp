@@ -6,6 +6,7 @@
 
 #include "Assembler.h"
 #include "Exceptions.h"
+#include "HelperFunctions.h"
 #include "SymbolicInstruction.h"
 
 // Test the following errors:
@@ -31,9 +32,7 @@ TEST(ErrorsTest, ThrowsMultiplyDefinedLabelsError)
 
     std::string source_file_path {"multiply_defined_labels.txt"};
 
-    std::ofstream source_file {source_file_path};
-    source_file << source;
-    source_file.close();
+    create_source_file(source, source_file_path);
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), MultiplyDefinedLabelError);
@@ -48,9 +47,7 @@ TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
 
     std::string source_file_path {"unmatched_operand_count.txt"};
 
-    std::ofstream source_file {source_file_path};
-    source_file << source;
-    source_file.close();
+    create_source_file(source, source_file_path);
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), UnmatchedOperandCountError);
@@ -62,9 +59,7 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError1)
 
     std::string source_file_path {"invalid_operand_type_symbolic.txt"};
 
-    std::ofstream source_file {source_file_path};
-    source_file << source;
-    source_file.close();
+    create_source_file(source, source_file_path);
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
@@ -76,9 +71,7 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError2)
 
     std::string source_file_path {"invalid_operand_type_numeric.txt"};
 
-    std::ofstream source_file {source_file_path};
-    source_file << source;
-    source_file.close();
+    create_source_file(source, source_file_path);
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
@@ -90,9 +83,7 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
 
     std::string source_file_path {"invalid_operand_type_numeric_2.txt"};
 
-    std::ofstream source_file {source_file_path};
-    source_file << source;
-    source_file.close();
+    create_source_file(source, source_file_path);
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);

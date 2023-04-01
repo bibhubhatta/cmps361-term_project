@@ -40,3 +40,11 @@ OperandType get_operand_type(const std::string& operand);
  * @return The string representation of the operand type
  */
 std::string get_operand_type_str(OperandType operand_type);
+
+/**
+ * @brief Create a source file with the given source code and path
+ * @param source
+ * @param source_file_path
+ */
+void create_source_file(const std::string& source,
+                        const std::string& source_file_path);
