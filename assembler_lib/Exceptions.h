@@ -12,7 +12,7 @@ class InvalidOpcodeError : public std::exception
   public:
     explicit InvalidOpcodeError(std::string opcode)
         : _opcode(std::move(opcode)), _message {std::format(
-                                          "Invalid opcode: {}", _opcode)}
+                                          "Invalid opcode: '{}'", _opcode)}
     {
     }
 

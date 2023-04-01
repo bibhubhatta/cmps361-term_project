@@ -100,3 +100,15 @@ TEST(ErrorsTest, ExtraStatementElementsError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), ExtraStatementElementsError);
 }
+
+TEST(ErrorsTest, ThrowsInvalidOpcodeError)
+{
+    std::string source {" invalid opcode\n"};
+
+    std::string source_file_path {"invalid_operation_code.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidOpcodeError);
+}
