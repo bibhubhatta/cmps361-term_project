@@ -29,4 +29,10 @@ class Assembler
     FileAccess  _instructions_file;
     SymbolTable _symbol_table;
     Emulator    _emulator;
+
+    /**
+     * @brief Checks if the memory is sufficient to hold the program.
+     * @param last_instruction_location The location of the last instruction.
+     */
+    void _check_memory_sufficiency(int last_instruction_location) const;
 };

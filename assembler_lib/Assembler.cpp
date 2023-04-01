@@ -7,6 +7,7 @@
 
 #include "Assembler.h"
 #include "Errors.h"
+#include "Exceptions.h"
 #include "HelperFunctions.h"
 #include "InstructionDefinitions.h"
 #include "NumericInstruction.h"
@@ -42,6 +43,17 @@ void Assembler::pass_1()
             current_instruction_location = get_location_of_next_instruction(
                 current_instruction, current_instruction_location);
         }
+    }
+
+    _check_memory_sufficiency(current_instruction_location);
+}
+
+void Assembler::_check_memory_sufficiency(int last_instruction_location) const
+{
+    if (last_instruction_location >= Emulator::MEMORY_SIZE)
+    {
+        throw InsufficientMemoryError(last_instruction_location + 1,
+                                      Emulator::MEMORY_SIZE);
     }
 }
 

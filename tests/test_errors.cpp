@@ -112,3 +112,22 @@ TEST(ErrorsTest, ThrowsInvalidOpcodeError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOpcodeError);
 }
+
+TEST(ErrorsTest, ThrowsInsufficientMemoryError)
+{
+    std::string source {" org 100\n"};
+
+    for (int i = 0; i < 100'000 - 100; i++)
+    {
+        source += " ds 1\n";
+    }
+
+    source += " dc 1\n";
+
+    std::string source_file_path {"insufficient_memory.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InsufficientMemoryError);
+}

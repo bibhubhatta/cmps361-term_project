@@ -131,3 +131,25 @@ class ExtraStatementElementsError : public std::exception
 
     std::string _message;
 };
+
+class InsufficientMemoryError : public std::exception
+{
+  public:
+    explicit InsufficientMemoryError(int required, int available)
+        : _required(required), _available(available),
+          _message {std::format("Insufficient memory required {} available {}",
+                                _required, _available)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    int _required {0};
+    int _available {0};
+
+    std::string _message;
+};
