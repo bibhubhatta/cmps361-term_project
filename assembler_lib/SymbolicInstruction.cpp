@@ -25,13 +25,14 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
 
     _check_operand_count();
     _check_operand_type();
+    _check_extra_elements(extra);
+}
 
+void SymbolicInstruction::_check_extra_elements(const std::string& extra) const
+{
     if (!extra.empty())
     {
-        // TODO: Add error to error list, for now just print to console
-        std::cout << "Error: Extra characters at end of instruction: "
-                  << _original_instruction << std::endl;
-        exit(1);
+        throw ExtraStatementElementsError(_original_instruction, extra);
     }
 }
 

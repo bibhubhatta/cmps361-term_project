@@ -41,4 +41,11 @@ class SymbolicInstruction
      * the instruction. If not, throws UnmatchedOperandTypeError.
      */
     void _check_operand_type() const;
+
+    /**
+     * @brief Checks if there are any extra elements in the instruction. If so,
+     * throws ExtraStatementElementsError.
+     * @param extra The extra elements in the instruction.
+     */
+    void _check_extra_elements(const std::string& extra) const;
 };

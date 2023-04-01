@@ -107,3 +107,27 @@ class InvalidOperandTypeError : public std::exception
 
     std::string _message;
 };
+
+class ExtraStatementElementsError : public std::exception
+{
+  public:
+    explicit ExtraStatementElementsError(std::string statement,
+                                         std::string extra)
+        : _statement(std::move(statement)),
+          _extra(std::move(extra)), _message {std::format(
+                                        "Extra  element '{}' in '{}'", _extra,
+                                        _statement)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _statement;
+    std::string _extra;
+
+    std::string _message;
+};

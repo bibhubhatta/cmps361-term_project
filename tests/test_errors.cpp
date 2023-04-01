@@ -88,3 +88,15 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
 }
+
+TEST(ErrorsTest, ExtraStatementElementsError)
+{
+    std::string source {" add one two three\n"};
+
+    std::string source_file_path {"extra_statement_elements.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), ExtraStatementElementsError);
+}
