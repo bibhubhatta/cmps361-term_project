@@ -105,6 +105,8 @@ std::string get_operand_type_str(OperandType operand_type)
     case None:
         return "None";
     }
+
+    return "Unknown";
 }
 
 OperandType get_operand_type(const std::string& operand)

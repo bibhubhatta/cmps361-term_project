@@ -10,19 +10,21 @@
 class InvalidOpcodeError : public std::exception
 {
   public:
-    explicit InvalidOpcodeError(std::string opcode) : _opcode(std::move(opcode))
+    explicit InvalidOpcodeError(std::string opcode)
+        : _opcode(std::move(opcode)), _message {std::format(
+                                          "Invalid opcode: {}", _opcode)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        std::string message {std::format("Invalid opcode: {}", _opcode)};
-
-        return message.c_str();
+        return _message.c_str();
     }
 
   private:
     std::string _opcode;
+
+    std::string _message;
 };
 
 class MultiplyDefinedLabelError : public std::exception
@@ -31,23 +33,23 @@ class MultiplyDefinedLabelError : public std::exception
     explicit MultiplyDefinedLabelError(std::string label, int previous_location,
                                        int new_location)
         : _label(std::move(label)), _previous_location(previous_location),
-          _new_location(new_location)
+          _new_location(new_location),
+          _message {std::format("Multiply defined label: {} at {} and {}",
+                                _label, _previous_location, _new_location)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        std::string message {
-            std::format("Multiply defined label: {} at {} and {}", _label,
-                        _previous_location, _new_location)};
-
-        return message.c_str();
+        return _message.c_str();
     }
 
   private:
     std::string _label;
     int         _previous_location {0};
     int         _new_location {0};
+
+    std::string _message;
 };
 
 class UnmatchedOperandCountError : public std::exception
@@ -56,24 +58,24 @@ class UnmatchedOperandCountError : public std::exception
     explicit UnmatchedOperandCountError(std::string symbolic_opcode,
                                         int expected_count, int actual_count)
         : _symbolic_opcode(std::move(symbolic_opcode)),
-          _expected_count(expected_count), _actual_count(actual_count)
+          _expected_count(expected_count), _actual_count(actual_count),
+          _message {std::format("Unmatched operand count in {} expected {} but "
+                                "found {}",
+                                _symbolic_opcode, _expected_count,
+                                _actual_count)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        std::string message {
-            std::format("Unmatched operand count for label: {} expected {} but "
-                        "found {}",
-                        _symbolic_opcode, _expected_count, _actual_count)};
-
-        return message.c_str();
+        return _message.c_str();
     }
 
   private:
     std::string _symbolic_opcode;
     int         _expected_count {0};
     int         _actual_count {0};
+    std::string _message;
 };
 
 class InvalidOperandTypeError : public std::exception
@@ -81,7 +83,12 @@ class InvalidOperandTypeError : public std::exception
   public:
     explicit InvalidOperandTypeError(std::string operand, OperandType expected,
                                      OperandType actual)
-        : _operand(std::move(operand)), _expected(expected), _actual(actual)
+        : _operand(std::move(operand)), _expected(expected),
+          _actual(actual), _message {std::format(
+                               "Invalid operand type: '{}' expected {} but "
+                               "found {}",
+                               _operand, get_operand_type_str(_expected),
+                               get_operand_type_str(_actual))}
     {
     }
 
@@ -90,15 +97,13 @@ class InvalidOperandTypeError : public std::exception
         std::string expected {get_operand_type_str(_expected)};
         std::string actual {get_operand_type_str(_actual)};
 
-        std::string message {
-            std::format("Invalid operand type: {} expected {} but found {}",
-                        _operand, expected, actual)};
-
-        return message.c_str();
+        return _message.c_str();
     }
 
   private:
     std::string _operand;
     OperandType _expected {OperandType::None};
     OperandType _actual {OperandType::None};
+
+    std::string _message;
 };
