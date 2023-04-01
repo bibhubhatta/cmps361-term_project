@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.18)
 project(assembler_lib)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -15,4 +15,3 @@ add_library(assembler_lib
         Exceptions.h)
 
 target_include_directories(assembler_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-

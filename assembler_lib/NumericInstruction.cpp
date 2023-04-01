@@ -1,4 +1,4 @@
-#include <format>
+#include <fmt/core.h>
 
 #include "NumericInstruction.h"
 
@@ -57,9 +57,9 @@ std::string NumericInstruction::get_string_representation() const
         return "";
     }
 
-    std::string opcode {std::format("{:02}", static_cast<int>(_opcode))};
-    std::string operand1 {std::format("{:05}", _operand1)};
-    std::string operand2 {std::format("{:05}", _operand2)};
+    std::string opcode {fmt::format("{:02}", static_cast<int>(_opcode))};
+    std::string operand1 {fmt::format("{:05}", _operand1)};
+    std::string operand2 {fmt::format("{:05}", _operand2)};
 
     return opcode + operand1 + operand2;
 }

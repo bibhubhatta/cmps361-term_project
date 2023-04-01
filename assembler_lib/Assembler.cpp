@@ -2,8 +2,9 @@
 //      Implementation of the Assembler class.
 //
 
-#include <format>
 #include <iostream>
+
+#include <fmt/core.h>
 
 #include "Assembler.h"
 #include "Errors.h"
@@ -61,7 +62,7 @@ void Assembler::pass_2()
 {
     _instructions_file.rewind();
 
-    std::cout << std::format("{:<10}{:<15}{:<30}\n", // Set format
+    std::cout << fmt::format("{:<10}{:<15}{:<30}\n", // Set format
                              "Location", "Contents", "Original Statement");
 
     int current_instruction_location = 0;
@@ -74,14 +75,14 @@ void Assembler::pass_2()
         switch (current_symbolic_instruction.get_type())
         {
         case InstructionType::End:
-            std::cout << std::format(
+            std::cout << fmt::format(
                 "{:<10}{:<15}{:<30}\n", // Set format
                 "",                     // No location
                 "",                     // No contents
                 current_symbolic_instruction.get_original_instruction());
             return;
         case InstructionType::Comment:
-            std::cout << std::format(
+            std::cout << fmt::format(
                 "{:<10}{:<15}{:<30}\n", // Set format
                 "",                     // No location
                 "",                     // No contents
@@ -92,7 +93,7 @@ void Assembler::pass_2()
             NumericInstruction current_numeric_instruction(
                 current_symbolic_instruction, _symbol_table);
 
-            std::cout << std::format(
+            std::cout << fmt::format(
                 "{:<10}{:<15}{:<30}\n", // Set format
                 current_instruction_location,
                 current_numeric_instruction.get_string_representation(),

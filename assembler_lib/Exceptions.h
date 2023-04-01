@@ -1,7 +1,7 @@
 #pragma once
 
 #include <exception>
-#include <format>
+#include <fmt/core.h>
 #include <string>
 #include <utility>
 
@@ -11,7 +11,7 @@ class InvalidOpcodeError : public std::exception
 {
   public:
     explicit InvalidOpcodeError(std::string opcode)
-        : _opcode(std::move(opcode)), _message {std::format(
+        : _opcode(std::move(opcode)), _message {fmt::format(
                                           "Invalid opcode: '{}'", _opcode)}
     {
     }
@@ -34,7 +34,7 @@ class MultiplyDefinedLabelError : public std::exception
                                        int new_location)
         : _label(std::move(label)), _previous_location(previous_location),
           _new_location(new_location),
-          _message {std::format("Multiply defined label: {} at {} and {}",
+          _message {fmt::format("Multiply defined label: {} at {} and {}",
                                 _label, _previous_location, _new_location)}
     {
     }
@@ -59,7 +59,7 @@ class UnmatchedOperandCountError : public std::exception
                                         int expected_count, int actual_count)
         : _symbolic_opcode(std::move(symbolic_opcode)),
           _expected_count(expected_count), _actual_count(actual_count),
-          _message {std::format("Unmatched operand count in {} expected {} but "
+          _message {fmt::format("Unmatched operand count in {} expected {} but "
                                 "found {}",
                                 _symbolic_opcode, _expected_count,
                                 _actual_count)}
@@ -84,7 +84,7 @@ class InvalidOperandTypeError : public std::exception
     explicit InvalidOperandTypeError(std::string operand, OperandType expected,
                                      OperandType actual)
         : _operand(std::move(operand)), _expected(expected),
-          _actual(actual), _message {std::format(
+          _actual(actual), _message {fmt::format(
                                "Invalid operand type: '{}' expected {} but "
                                "found {}",
                                _operand, get_operand_type_str(_expected),
@@ -114,7 +114,7 @@ class ExtraStatementElementsError : public std::exception
     explicit ExtraStatementElementsError(std::string statement,
                                          std::string extra)
         : _statement(std::move(statement)),
-          _extra(std::move(extra)), _message {std::format(
+          _extra(std::move(extra)), _message {fmt::format(
                                         "Extra  element '{}' in '{}'", _extra,
                                         _statement)}
     {
@@ -137,7 +137,7 @@ class InsufficientMemoryError : public std::exception
   public:
     explicit InsufficientMemoryError(int required, int available)
         : _required(required), _available(available),
-          _message {std::format("Insufficient memory required {} available {}",
+          _message {fmt::format("Insufficient memory required {} available {}",
                                 _required, _available)}
     {
     }
