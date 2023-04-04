@@ -40,8 +40,8 @@ enum class NumericOpcode
     // Assembler Instructions
     DC = 0,
     DS = -1,  // has no numeric instruction
-    ORG = -1, // has no numeric instruction
-    END = -1, // has no numeric instruction
+    ORG = -2, // has no numeric instruction
+    END = -3, // has no numeric instruction
 
     // Machine Language Instructions
     ADD = 1,

@@ -132,3 +132,17 @@ TEST(ErrorsTest, ThrowsInsufficientMemoryError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InsufficientMemoryError);
 }
+
+TEST(ErrorsTest, ThrowsMissingEndStatementError)
+{
+    std::string source {" org 100\n"
+                        "one dc 1\n"
+                        "two dc 2\n"};
+
+    std::string source_file_path {"missing_end_statement.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), MissingEndStatementError);
+}

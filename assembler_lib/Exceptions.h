@@ -153,3 +153,16 @@ class InsufficientMemoryError : public std::exception
 
     std::string _message;
 };
+
+class MissingEndStatementError : public std::exception
+{
+  public:
+    MissingEndStatementError() = default;
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _message {"Missing END statement"};
+};

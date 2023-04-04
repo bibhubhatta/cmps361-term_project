@@ -48,6 +48,7 @@ void Assembler::pass_1()
     }
 
     _check_memory_sufficiency(current_instruction_location);
+    throw MissingEndStatementError();
 }
 
 void Assembler::_check_memory_sufficiency(int last_instruction_location) const
