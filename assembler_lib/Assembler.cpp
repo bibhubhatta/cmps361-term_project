@@ -61,6 +61,8 @@ void Assembler::_check_if_end_is_valid()
         statements_after_end += _instructions_file.get_next_line();
     }
 
+    trim(statements_after_end);
+
     if (!statements_after_end.empty())
     {
         throw StatementAfterEndError(statements_after_end);

@@ -162,3 +162,20 @@ TEST(ErrorsTest, StatementAfterEndError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), StatementAfterEndError);
 }
+
+TEST(ErrorsTest, NotStatementAfterEndError)
+{
+    std::string source {" org 100\n"
+                        "one dc 1\n"
+                        "two dc 2\n"
+                        " end\n"
+                        "\n"
+                        "\t"};
+
+    std::string source_file_path {"not_statement_after_end.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_NO_THROW(assembler.pass_1());
+}
