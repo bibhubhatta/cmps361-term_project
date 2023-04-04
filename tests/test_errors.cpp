@@ -123,6 +123,7 @@ TEST(ErrorsTest, ThrowsInsufficientMemoryError)
     }
 
     source += " dc 1\n";
+    source += " end\n";
 
     std::string source_file_path {"insufficient_memory.txt"};
 

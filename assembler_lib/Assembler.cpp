@@ -31,6 +31,7 @@ void Assembler::pass_1()
         switch (current_instruction.get_type())
         {
         case InstructionType::End:
+            _check_memory_sufficiency(current_instruction_location);
             return;
         case InstructionType::Comment:
             continue;
