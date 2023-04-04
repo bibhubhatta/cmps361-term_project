@@ -165,3 +165,23 @@ class MissingEndStatementError : public std::exception
   private:
     std::string _message {"Missing END statement"};
 };
+
+class StatementAfterEndError : public std::exception
+{
+  public:
+    explicit StatementAfterEndError(std::string statement)
+        : _statement(std::move(statement)),
+          _message {fmt::format("Statement after END: '{}'", _statement)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _statement;
+
+    std::string _message;
+};

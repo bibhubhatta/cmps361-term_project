@@ -32,6 +32,8 @@ void Assembler::pass_1()
         {
         case InstructionType::End:
             _check_memory_sufficiency(current_instruction_location);
+            _check_if_end_is_valid();
+
             return;
         case InstructionType::Comment:
             continue;
@@ -49,6 +51,20 @@ void Assembler::pass_1()
 
     _check_memory_sufficiency(current_instruction_location);
     throw MissingEndStatementError();
+}
+
+void Assembler::_check_if_end_is_valid()
+{
+    std::string statements_after_end;
+    while (!_instructions_file.end_of_file())
+    {
+        statements_after_end += _instructions_file.get_next_line();
+    }
+
+    if (!statements_after_end.empty())
+    {
+        throw StatementAfterEndError(statements_after_end);
+    }
 }
 
 void Assembler::_check_memory_sufficiency(int last_instruction_location) const

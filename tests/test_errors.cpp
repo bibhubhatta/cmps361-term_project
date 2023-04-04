@@ -146,3 +146,19 @@ TEST(ErrorsTest, ThrowsMissingEndStatementError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), MissingEndStatementError);
 }
+
+TEST(ErrorsTest, StatementAfterEndError)
+{
+    std::string source {" org 100\n"
+                        "one dc 1\n"
+                        "two dc 2\n"
+                        " end\n"
+                        " three dc 3\n"};
+
+    std::string source_file_path {"statement_after_end.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), StatementAfterEndError);
+}

@@ -35,4 +35,12 @@ class Assembler
      * @param last_instruction_location The location of the last instruction.
      */
     void _check_memory_sufficiency(int last_instruction_location) const;
+
+    /**
+     * @brief Checks if the end statement is valid and throws error if not.
+     * @details The end statement is valid if it is the last statement in the
+     * program and there are no statements after it. If the end statement is
+     * invalid, a StatementAfterEndError is thrown.
+     */
+    void _check_if_end_is_valid();
 };
