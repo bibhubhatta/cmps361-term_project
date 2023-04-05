@@ -62,7 +62,7 @@ int SymbolTable::get_location(const std::string& symbol) const
 {
     if (!_in_table(symbol))
     {
-        std::cerr << "Symbol not in table: " << symbol << "\n";
+        throw UndefinedLabelError(symbol);
     }
 
     return _symbol_table.at(symbol);

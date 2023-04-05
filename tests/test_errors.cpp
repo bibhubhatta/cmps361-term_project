@@ -27,6 +27,22 @@ TEST(ErrorsTest, ThrowsMultiplyDefinedLabelsError)
 
 // 2. Undefined label. Namely, a symbolic operand does not have a matching a
 // label.
+TEST(ErrorsTest, ThrowsUndefinedLabelError)
+{
+    std::string source {" org 100\n"
+                        "one dc 1\n"
+                        " add one two\n"
+                        " end"};
+
+    std::string source_file_path {"undefined_label.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+
+    assembler.pass_1();
+    ASSERT_THROW(assembler.pass_2(), UndefinedLabelError);
+}
 
 // 3. Syntax error in construction of the label or operands. For example,
 // a. the operand of a DS must be numeric and those of an ADD instruction must
@@ -41,22 +57,6 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError1)
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
-}
-
-// b. Labels and operand must meet the format given in the specifications.
-TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
-{
-    std::string source {" org 100\n"
-                        "one dc 1\n"
-                        "two dc 2\n"
-                        " add one \n"};
-
-    std::string source_file_path {"unmatched_operand_count.txt"};
-
-    create_source_file(source, source_file_path);
-
-    Assembler assembler {source_file_path};
-    ASSERT_THROW(assembler.pass_1(), UnmatchedOperandCountError);
 }
 TEST(ErrorsTest, ThrowsInvalidOperandTypeError2)
 {
@@ -79,6 +79,22 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
 
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
+}
+
+// b. Labels and operand must meet the format given in the specifications.
+TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
+{
+    std::string source {" org 100\n"
+                        "one dc 1\n"
+                        "two dc 2\n"
+                        " add one \n"};
+
+    std::string source_file_path {"unmatched_operand_count.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), UnmatchedOperandCountError);
 }
 
 // c. Extra statement elements.

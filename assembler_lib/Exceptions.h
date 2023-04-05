@@ -205,3 +205,23 @@ class InvalidConstantSizeError : public std::exception
 
     std::string _message;
 };
+
+class UndefinedLabelError : public std::exception
+{
+  public:
+    explicit UndefinedLabelError(std::string label)
+        : _label(std::move(label)),
+          _message {fmt::format("Undefined label: '{}'", _label)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _label;
+
+    std::string _message;
+};
