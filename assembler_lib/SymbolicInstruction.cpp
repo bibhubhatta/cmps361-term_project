@@ -26,6 +26,7 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     _check_operand_count();
     _check_operand_type();
     _check_extra_elements(extra);
+    _check_constant_size();
 }
 
 void SymbolicInstruction::_check_extra_elements(const std::string& extra) const
@@ -152,5 +153,15 @@ void SymbolicInstruction::_check_operand_type() const
         break;
     default:
         break;
+    }
+}
+
+void SymbolicInstruction::_check_constant_size() const
+{
+    std::string opcode {get_upper_case(_opcode)};
+
+    if (opcode == "DC" && (stoi(_operand_1) > 99'999 || stoi(_operand_1) < 0))
+    {
+        throw InvalidConstantSizeError(_original_instruction, stoi(_operand_1));
     }
 }

@@ -48,4 +48,10 @@ class SymbolicInstruction
      * @param extra The extra elements in the instruction.
      */
     void _check_extra_elements(const std::string& extra) const;
+
+    /**
+     * @brief Checks if the current instruction is "DC." Then, checks if the
+     * constant size is valid. If not, throws InvalidConstantSizeError.
+     */
+    void _check_constant_size() const;
 };

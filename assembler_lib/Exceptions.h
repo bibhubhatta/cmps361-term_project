@@ -182,3 +182,26 @@ class StatementAfterEndError : public std::exception
 
     std::string _message;
 };
+
+class InvalidConstantSizeError : public std::exception
+{
+  public:
+    explicit InvalidConstantSizeError(std::string constant, int value)
+        : _constant(std::move(constant)), _value(value),
+          _message {fmt::format("Invalid constant size: '{}' value {}. "
+                                "Constant must be between 0 and 99,999",
+                                _constant, _value)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _constant;
+    int         _value {0};
+
+    std::string _message;
+};

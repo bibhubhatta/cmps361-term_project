@@ -179,3 +179,17 @@ TEST(ErrorsTest, DoesNotThrowStatementAfterEndError)
     Assembler assembler {source_file_path};
     ASSERT_NO_THROW(assembler.pass_1());
 }
+
+TEST(ErrorsTest, ThrowsInvalidConstantSizeError)
+{
+    std::string source {" org 100\n"
+                        "large_constant dc 100000\n"
+                        " end\n"};
+
+    std::string source_file_path {"constant_too_large.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidConstantSizeError);
+}
