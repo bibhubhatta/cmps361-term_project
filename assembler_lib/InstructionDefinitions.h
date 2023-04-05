@@ -41,6 +41,7 @@ const std::map<std::string, InstructionType, std::less<>> SymbolicOpcode_Type {
     {"BP", InstructionType::MachineLanguage},
     {"HALT", InstructionType::MachineLanguage}};
 
+// Maps symbolic opcode to numeric opcode
 enum class NumericOpcode
 {
     // Assembler Instructions
