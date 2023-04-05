@@ -66,7 +66,7 @@ std::string NumericInstruction::get_string_representation() const
 
 bool NumericInstruction::_has_no_numeric_equivalent() const
 {
-    return static_cast<int>(_opcode) == -1;
+    return static_cast<int>(_opcode) <= -1;
 }
 
 long long NumericInstruction::get_numeric_representation() const
