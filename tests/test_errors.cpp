@@ -147,7 +147,7 @@ TEST(ErrorsTest, ThrowsMissingEndStatementError)
     ASSERT_THROW(assembler.pass_1(), MissingEndStatementError);
 }
 
-TEST(ErrorsTest, StatementAfterEndError)
+TEST(ErrorsTest, ThrowsStatementAfterEndError)
 {
     std::string source {" org 100\n"
                         "one dc 1\n"
@@ -163,7 +163,7 @@ TEST(ErrorsTest, StatementAfterEndError)
     ASSERT_THROW(assembler.pass_1(), StatementAfterEndError);
 }
 
-TEST(ErrorsTest, NotStatementAfterEndError)
+TEST(ErrorsTest, DoesNotThrowStatementAfterEndError)
 {
     std::string source {" org 100\n"
                         "one dc 1\n"
