@@ -23,6 +23,7 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
 
     iss >> _opcode >> _operand_1 >> _operand_2 >> extra;
 
+    _check_label();
     _check_operand_count();
     _check_operand_type();
     _check_extra_elements(extra);
@@ -164,4 +165,11 @@ void SymbolicInstruction::_check_constant_size() const
     {
         throw InvalidConstantSizeError(_original_instruction, stoi(_operand_1));
     }
+}
+
+void SymbolicInstruction::_check_label() const
+{
+    std::string label = get_upper_case(_label);
+    if (SymbolicOpcode_Type.contains(label))
+        throw SymbolicOpcodeInLabelError(_label);
 }

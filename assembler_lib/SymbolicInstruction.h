@@ -54,4 +54,11 @@ class SymbolicInstruction
      * constant size is valid. If not, throws InvalidConstantSizeError.
      */
     void _check_constant_size() const;
+
+    /**
+     * @brief Checks if the label is valid.
+     * If the label is a symbolic instruction, throws
+     * SymbolicOpcodeInLabelError.
+     */
+    void _check_label() const;
 };

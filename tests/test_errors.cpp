@@ -205,3 +205,16 @@ TEST(ErrorsTest, ThrowsInvalidConstantSizeError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidConstantSizeError);
 }
+
+TEST(ErrorsTest, ThrowsSymbolicOpcodeInLabelError)
+{
+    std::string source {"add org 100\n"
+                        " end\n"};
+
+    std::string source_file_path {"symbolic_opcode_in_label.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), SymbolicOpcodeInLabelError);
+}
