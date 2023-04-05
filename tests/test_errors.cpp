@@ -9,20 +9,7 @@
 #include "HelperFunctions.h"
 #include "SymbolicInstruction.h"
 
-// Test the following errors:
 // 1. Multiply defined labels. (Reported after the offending statements.)
-// 2. Undefined label. Namely, a symbolic operand does not have a matching a
-// label.
-// 3. Syntax error in construction of the label or operands. For example,
-// a. the operand of a DS must be numeric and those of an ADD instruction must
-// be symbolic.
-// b. Labels and operand must meet the format given in the specifications.
-// c. Extra statement elements.
-// d. Illegal operation code.
-// 4. Insufficient memory for the translation.
-// 5. Missing end statement or the end statement is not the last one in the
-// program. Constant too large for VC1620 memory. Missing or extra operands
-
 TEST(ErrorsTest, ThrowsMultiplyDefinedLabelsError)
 {
     std::string source {" org 100\n"
@@ -38,6 +25,25 @@ TEST(ErrorsTest, ThrowsMultiplyDefinedLabelsError)
     ASSERT_THROW(assembler.pass_1(), MultiplyDefinedLabelError);
 }
 
+// 2. Undefined label. Namely, a symbolic operand does not have a matching a
+// label.
+
+// 3. Syntax error in construction of the label or operands. For example,
+// a. the operand of a DS must be numeric and those of an ADD instruction must
+// be symbolic.
+TEST(ErrorsTest, ThrowsInvalidOperandTypeError1)
+{
+    std::string source {" org operand\n"};
+
+    std::string source_file_path {"invalid_operand_type_symbolic.txt"};
+
+    create_source_file(source, source_file_path);
+
+    Assembler assembler {source_file_path};
+    ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
+}
+
+// b. Labels and operand must meet the format given in the specifications.
 TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
 {
     std::string source {" org 100\n"
@@ -52,19 +58,6 @@ TEST(ErrorsTest, ThrowsUnmatchedOperandCountError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), UnmatchedOperandCountError);
 }
-
-TEST(ErrorsTest, ThrowsInvalidOperandTypeError1)
-{
-    std::string source {" org operand\n"};
-
-    std::string source_file_path {"invalid_operand_type_symbolic.txt"};
-
-    create_source_file(source, source_file_path);
-
-    Assembler assembler {source_file_path};
-    ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
-}
-
 TEST(ErrorsTest, ThrowsInvalidOperandTypeError2)
 {
     std::string source {" add 2 3"};
@@ -76,7 +69,6 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError2)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
 }
-
 TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
 {
     std::string source {" mult 2 asd"};
@@ -89,6 +81,7 @@ TEST(ErrorsTest, ThrowsInvalidOperandTypeError3)
     ASSERT_THROW(assembler.pass_1(), InvalidOperandTypeError);
 }
 
+// c. Extra statement elements.
 TEST(ErrorsTest, ExtraStatementElementsError)
 {
     std::string source {" add one two three\n"};
@@ -101,6 +94,7 @@ TEST(ErrorsTest, ExtraStatementElementsError)
     ASSERT_THROW(assembler.pass_1(), ExtraStatementElementsError);
 }
 
+// d. Illegal operation code.
 TEST(ErrorsTest, ThrowsInvalidOpcodeError)
 {
     std::string source {" invalid opcode\n"};
@@ -113,6 +107,7 @@ TEST(ErrorsTest, ThrowsInvalidOpcodeError)
     ASSERT_THROW(assembler.pass_1(), InvalidOpcodeError);
 }
 
+// 4. Insufficient memory for the translation.
 TEST(ErrorsTest, ThrowsInsufficientMemoryError)
 {
     std::string source {" org 100\n"};
@@ -133,6 +128,8 @@ TEST(ErrorsTest, ThrowsInsufficientMemoryError)
     ASSERT_THROW(assembler.pass_1(), InsufficientMemoryError);
 }
 
+// 5. Missing end statement or the end statement is not the last one in the
+// program.
 TEST(ErrorsTest, ThrowsMissingEndStatementError)
 {
     std::string source {" org 100\n"
@@ -146,7 +143,6 @@ TEST(ErrorsTest, ThrowsMissingEndStatementError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), MissingEndStatementError);
 }
-
 TEST(ErrorsTest, ThrowsStatementAfterEndError)
 {
     std::string source {" org 100\n"
@@ -162,7 +158,6 @@ TEST(ErrorsTest, ThrowsStatementAfterEndError)
     Assembler assembler {source_file_path};
     ASSERT_THROW(assembler.pass_1(), StatementAfterEndError);
 }
-
 TEST(ErrorsTest, DoesNotThrowStatementAfterEndError)
 {
     std::string source {" org 100\n"
@@ -180,6 +175,7 @@ TEST(ErrorsTest, DoesNotThrowStatementAfterEndError)
     ASSERT_NO_THROW(assembler.pass_1());
 }
 
+// 6. Constant too large for VC1620 memory. Missing or extra operands
 TEST(ErrorsTest, ThrowsInvalidConstantSizeError)
 {
     std::string source {" org 100\n"
