@@ -94,9 +94,6 @@ class InvalidOperandTypeError : public std::exception
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        std::string expected {get_operand_type_str(_expected)};
-        std::string actual {get_operand_type_str(_actual)};
-
         return _message.c_str();
     }
 
