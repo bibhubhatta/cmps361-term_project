@@ -1,6 +1,3 @@
-//
-//  Implementation of file access class.
-//
 #include <iostream>
 
 #include "FileAccess.h"

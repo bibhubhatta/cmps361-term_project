@@ -5,9 +5,12 @@
 
 #include "Assembler.h"
 
+/**
+ * @brief Checks that there is exactly one run time parameter.
+ * @param argc
+ */
 void check_argument_count(int argc)
 {
-    // Check that there is exactly one run time parameter.
     if (argc != 2)
     {
         std::cerr << "Usage: Assem <FileName>" << std::endl;

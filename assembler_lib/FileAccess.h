@@ -1,32 +1,51 @@
-//
-//		File access to source file.
-//
-#ifndef _FILEACCESS_H // This is the way that multiple inclusions are defended
-                      // against often used in UNIX
-#define _FILEACCESS_H // We use pragmas in Visual Studio and g++.  See other
-                      // include files
+/**
+ * @file FileAccess.h
+ * @brief File access class.
+ * @details This class is responsible for opening and closing the source file.
+ * It also provides a method to get the next line from the source file.
+ */
+
+#pragma once
 
 #include <fstream>
 #include <string>
 
+/**
+ * @brief File access class.
+ * @details This class is responsible for opening and closing the source file.
+ * It also provides a method to get the next line from the source file.
+ */
 class FileAccess
 {
   public:
-    // Opens the file.
+    /**
+     * @brief Constructs a file access object.
+     * @param file_path The path to the source file.
+     */
     explicit FileAccess(const std::string& file_path);
 
-    // Closes the file.
+    /**
+     * @brief Closes the file.
+     */
     ~FileAccess();
 
-    // Get the next line from the source file
+    /**
+     * @brief Gets the next line from the source file.
+     * @return The next line from the source file.
+     */
     std::string get_next_line();
 
-    bool end_of_file() const { return _source_file.eof(); };
+    /**
+     * @brief Checks if the end of the file has been reached.
+     * @return True if the end of the file has been reached, false otherwise.
+     */
+    [[nodiscard]] bool end_of_file() const { return _source_file.eof(); };
 
-    // Put the file pointer back to the beginning of the file.
+    /**
+     * @brief Rewinds the file pointer to the beginning of the file.
+     */
     void rewind();
 
   private:
     std::ifstream _source_file;
 };
-#endif

@@ -1,7 +1,10 @@
-//
-//		Assembler class.  This is a container for all the components
-//		that make up the assembler.
-//
+/**
+ * @file Assembler.h
+ * @brief The assembler class.
+ * @details This class is the container for all the components that make up the
+ * assembler. It is responsible for assembling the program.
+ */
+
 #pragma once
 
 #include "Emulator.h"
@@ -9,20 +12,66 @@
 #include "SymbolTable.h"
 #include "SymbolicInstruction.h"
 
+/**
+ * @brief The assembler class.
+ * @details This class is the container for all the components that make up the
+ * assembler. It is responsible for assembling the program.
+ */
 class Assembler
 {
   public:
+    /**
+     * @brief Constructs an assembler object.
+     * @param source_file_path The path to the source file.
+     */
     explicit Assembler(const std::string& source_file_path);
     ~Assembler() = default;
 
-    // Pass I - establish the locations of the symbols
+    /**
+     * @brief Establishes the location of the symbols.
+     * @details This is the first pass of the assembler. It establishes the
+     * location of the symbols. It also checks if the memory is sufficient to
+     * hold the program.
+     * @throws InvalidOpcodeError
+     * @throws MultiplyDefinedLabelError
+     * @throws UnmatchedOperandCountError
+     * @throws InvalidOperandTypeError
+     * @throws ExtraStatementElementsError
+     * @throws InsufficientMemoryError
+     * @throws MissingEndStatementError
+     * @throws StatementAfterEndError
+     * @throws InvalidConstantSizeError
+     * @throws SymbolicOpcodeInLabelError
+     */
     void pass_1();
 
-    // Pass II - generate a translation
+    /**
+     * @brief Translates the symbolic instructions to numeric instructions.
+     * @details This is the second pass of the assembler. It translates the
+     * symbolic instructions to numeric instructions, and writes them to the
+     * memory.
+     * @throws InvalidOpcodeError
+     * @throws MultiplyDefinedLabelError
+     * @throws UnmatchedOperandCountError
+     * @throws InvalidOperandTypeError
+     * @throws ExtraStatementElementsError
+     * @throws InsufficientMemoryError
+     * @throws MissingEndStatementError
+     * @throws StatementAfterEndError
+     * @throws InvalidConstantSizeError
+     * @throws SymbolicOpcodeInLabelError
+     * @throws UndefinedLabelError
+     */
     void pass_2();
 
+    /**
+     * @brief Displays the symbol table.
+     */
     void display_symbol_table() const { _symbol_table.display_symbol_table(); }
 
+    /**
+     * @brief Runs the program in the emulator.
+     */
     void run_program_in_emulator();
 
   private:

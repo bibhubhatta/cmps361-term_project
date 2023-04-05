@@ -1,3 +1,9 @@
+/**
+ * @file InstructionDefinitions.h
+ * @brief Contains definitions for instructions
+ *
+ */
+
 #pragma once
 
 #include <map>

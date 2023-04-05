@@ -1,12 +1,21 @@
+/**
+ * @file Exceptions.h
+ * @brief Defines the exceptions thrown by the assembler.
+ */
+
 #pragma once
 
 #include <exception>
-#include <fmt/core.h>
 #include <string>
 #include <utility>
 
+#include <fmt/core.h>
+
 #include "HelperFunctions.h"
 
+/**
+ * @brief Exception thrown when an invalid opcode is encountered.
+ */
 class InvalidOpcodeError : public std::exception
 {
   public:
@@ -27,6 +36,9 @@ class InvalidOpcodeError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when label is defined more than once.
+ */
 class MultiplyDefinedLabelError : public std::exception
 {
   public:
@@ -53,6 +65,9 @@ class MultiplyDefinedLabelError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when an instruction has an invalid operand count.
+ */
 class UnmatchedOperandCountError : public std::exception
 {
   public:
@@ -79,6 +94,9 @@ class UnmatchedOperandCountError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when an instruction has an invalid operand type.
+ */
 class InvalidOperandTypeError : public std::exception
 {
   public:
@@ -105,6 +123,9 @@ class InvalidOperandTypeError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when an instruction has extra elements.
+ */
 class ExtraStatementElementsError : public std::exception
 {
   public:
@@ -128,6 +149,9 @@ class ExtraStatementElementsError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when memory is insufficient to run the program.
+ */
 class InsufficientMemoryError : public std::exception
 {
   public:
@@ -150,6 +174,9 @@ class InsufficientMemoryError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when END statement is missing.
+ */
 class MissingEndStatementError : public std::exception
 {
   public:
@@ -163,6 +190,9 @@ class MissingEndStatementError : public std::exception
     std::string _message {"Missing END statement"};
 };
 
+/**
+ * @brief Exception thrown when END statement is not the last statement.
+ */
 class StatementAfterEndError : public std::exception
 {
   public:
@@ -183,6 +213,9 @@ class StatementAfterEndError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when a constant is not between 0 and 99,999.
+ */
 class InvalidConstantSizeError : public std::exception
 {
   public:
@@ -206,6 +239,9 @@ class InvalidConstantSizeError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when a label is not defined.
+ */
 class UndefinedLabelError : public std::exception
 {
   public:
@@ -226,6 +262,9 @@ class UndefinedLabelError : public std::exception
     std::string _message;
 };
 
+/**
+ * @brief Exception thrown when a label is a symbolic opcode.
+ */
 class SymbolicOpcodeInLabelError : public std::exception
 {
   public:

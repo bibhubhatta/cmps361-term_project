@@ -1,7 +1,3 @@
-//
-//      Implementation of the Assembler class.
-//
-
 #include <iostream>
 
 #include <fmt/core.h>
@@ -18,7 +14,6 @@ Assembler::Assembler(const std::string& source_file_path)
 {
 }
 
-// Establish the location of the labels.
 void Assembler::pass_1()
 {
     int current_instruction_location = 0;
