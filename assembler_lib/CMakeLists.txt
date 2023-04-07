@@ -11,7 +11,7 @@ add_library(assembler_lib
         NumericInstruction.cpp NumericInstruction.h
         FileAccess.h FileAccess.cpp
         Emulator.h Emulator.cpp
-        Errors.h
+        Errors.h Errors.cpp
         Exceptions.h)
 
 target_include_directories(assembler_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

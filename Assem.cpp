@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Assembler.h"
+#include "Errors.h"
 
 /**
  * @brief Checks that there is exactly one run time parameter.
@@ -24,6 +25,8 @@ int main(int argc, char* argv[])
 
     std::string source_file_path = argv[1];
 
+    Errors::init_error_reporting();
+
     Assembler assem(source_file_path);
 
     // Establish the location of the labels:
@@ -38,6 +41,9 @@ int main(int argc, char* argv[])
     assem.pass_2();
     std::cout
         << "___________________________________________________________\n\n";
+
+    // Display the errors that were encountered during the translation.
+    Errors::display_errors();
 
     // Run the emulator on the translation of the assembler language program
     // that was generated in Pass II.

@@ -30,6 +30,12 @@ class FileAccess
     ~FileAccess();
 
     /**
+     * @brief Gets the current line from the source file.
+     * @return The current line from the source file.
+     */
+    std::string get_current_line() const;
+
+    /**
      * @brief Gets the next line from the source file.
      * @return The next line from the source file.
      */
@@ -46,6 +52,17 @@ class FileAccess
      */
     void rewind();
 
+    /**
+     * @brief Gets the current line number.
+     * @return The current line number.
+     */
+    [[nodiscard]] inline int get_current_line_number() const
+    {
+        return _current_line_number;
+    }
+
   private:
     std::ifstream _source_file;
+    int           _current_line_number {0};
+    std::string   _current_line;
 };

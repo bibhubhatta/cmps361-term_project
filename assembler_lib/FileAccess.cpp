@@ -17,6 +17,8 @@ FileAccess::~FileAccess() { _source_file.close(); }
 
 std::string FileAccess::get_next_line()
 {
+    _current_line_number++;
+
     if (_source_file.eof())
     {
         std::cerr << "End of file.\n";
@@ -26,6 +28,8 @@ std::string FileAccess::get_next_line()
     std::string next_line;
     std::getline(_source_file, next_line);
 
+    _current_line = next_line;
+
     return next_line;
 }
 
@@ -34,4 +38,6 @@ void FileAccess::rewind()
     // Clean all file flags and go back to the beginning of the file.
     _source_file.clear();
     _source_file.seekg(0, std::ios::beg);
+    _current_line_number = 0;
 }
+std::string FileAccess::get_current_line() const { return _current_line; }

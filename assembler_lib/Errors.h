@@ -1,10 +1,11 @@
-//
-// Class to manage error reporting. Note: all members are static so we can
-// access them anywhere. What other choices do we have to accomplish the same
-// thing?
-//
-#ifndef _ERRORS_H
-#define _ERRORS_H
+/**
+ * @file Errors.h
+ * @brief Error reporting class.
+ * @details This class is responsible for collecting and displaying error
+ * messages.
+ */
+
+#pragma once
 
 #include <string>
 #include <vector>
@@ -12,19 +13,22 @@
 class Errors
 {
   public:
-    // Initializes error reports.
-    static void InitErrorReporting();
+    /**
+     * @brief Initializes error reports.
+     */
+    static void init_error_reporting();
 
-    // Records an error message.
-    static void RecordError(std::string a_emsg);
+    /**
+     * @brief Records an error message.
+     * @param message The error message.
+     */
+    static void record_error(const std::string& message);
 
-    // Displays the collected error message.
-    static void DisplayErrors();
+    /**
+     * @brief Displays the collected error message.
+     */
+    static void display_errors();
 
   private:
-    static std::vector<std::string>
-        m_ErrorMsgs; // This must be declared in the .cpp file.  Why?
-                     // There is an alternative: make this an inline variable.
-    // This is a newer feature.  We will talk ablout it in class.
+    static std::vector<std::string> _error_messages;
 };
-#endif

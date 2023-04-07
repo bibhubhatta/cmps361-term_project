@@ -20,32 +20,55 @@ void Assembler::pass_1()
 
     while (!_instructions_file.end_of_file())
     {
-        std::string         line {_instructions_file.get_next_line()};
-        SymbolicInstruction current_instruction(line);
-
-        switch (current_instruction.get_type())
+        try
         {
-        case InstructionType::End:
-            _check_memory_sufficiency(current_instruction_location);
-            _check_if_end_is_valid();
+            std::string         line {_instructions_file.get_next_line()};
+            SymbolicInstruction current_instruction(line);
 
-            return;
-        case InstructionType::Comment:
-            continue;
-
-        default:
-            if (current_instruction.contains_label())
+            switch (current_instruction.get_type())
             {
-                _symbol_table.add_symbol(current_instruction.get_label(),
-                                         current_instruction_location);
+            case InstructionType::End:
+                _check_memory_sufficiency(current_instruction_location);
+                _check_if_end_is_valid();
+                return;
+            case InstructionType::Comment:
+                continue;
+
+            default:
+                if (current_instruction.contains_label())
+                {
+                    _symbol_table.add_symbol(current_instruction.get_label(),
+                                             current_instruction_location);
+                }
+                current_instruction_location = get_location_of_next_instruction(
+                    current_instruction, current_instruction_location);
             }
-            current_instruction_location = get_location_of_next_instruction(
-                current_instruction, current_instruction_location);
+        }
+
+        catch (std::exception& e)
+        {
+            _record_error(e);
         }
     }
 
-    _check_memory_sufficiency(current_instruction_location);
-    throw MissingEndStatementError();
+    try
+    {
+        _check_memory_sufficiency(current_instruction_location);
+        throw MissingEndStatementError();
+    }
+    catch (std::exception& e)
+    {
+        _record_error(e);
+    }
+}
+
+void Assembler::_record_error(const std::exception& e) const
+{
+    std::string error_description {
+        fmt::format("Error {} occurred at '{}' in line {}", e.what(),
+                    _instructions_file.get_current_line(),
+                    _instructions_file.get_current_line_number())};
+    Errors::record_error(error_description);
 }
 
 void Assembler::_check_if_end_is_valid()
@@ -84,43 +107,50 @@ void Assembler::pass_2()
 
     while (!_instructions_file.end_of_file())
     {
-        std::string         line {_instructions_file.get_next_line()};
-        SymbolicInstruction current_symbolic_instruction(line);
-
-        switch (current_symbolic_instruction.get_type())
+        try
         {
-        case InstructionType::End:
-            std::cout << fmt::format(
-                "{:<10}{:<15}{:<30}\n", // Set format
-                "",                     // No location
-                "",                     // No contents
-                current_symbolic_instruction.get_original_instruction());
-            return;
-        case InstructionType::Comment:
-            std::cout << fmt::format(
-                "{:<10}{:<15}{:<30}\n", // Set format
-                "",                     // No location
-                "",                     // No contents
-                current_symbolic_instruction.get_original_instruction());
-            continue;
+            std::string         line {_instructions_file.get_next_line()};
+            SymbolicInstruction current_symbolic_instruction(line);
 
-        default:
-            NumericInstruction current_numeric_instruction(
-                current_symbolic_instruction, _symbol_table);
+            switch (current_symbolic_instruction.get_type())
+            {
+            case InstructionType::End:
+                std::cout << fmt::format(
+                    "{:<10}{:<15}{:<30}\n", // Set format
+                    "",                     // No location
+                    "",                     // No contents
+                    current_symbolic_instruction.get_original_instruction());
+                return;
+            case InstructionType::Comment:
+                std::cout << fmt::format(
+                    "{:<10}{:<15}{:<30}\n", // Set format
+                    "",                     // No location
+                    "",                     // No contents
+                    current_symbolic_instruction.get_original_instruction());
+                continue;
 
-            std::cout << fmt::format(
-                "{:<10}{:<15}{:<30}\n", // Set format
-                current_instruction_location,
-                current_numeric_instruction.get_string_representation(),
-                current_symbolic_instruction.get_original_instruction());
+            default:
+                NumericInstruction current_numeric_instruction(
+                    current_symbolic_instruction, _symbol_table);
 
-            _emulator.insert(
-                current_instruction_location,
-                current_numeric_instruction.get_numeric_representation());
+                std::cout << fmt::format(
+                    "{:<10}{:<15}{:<30}\n", // Set format
+                    current_instruction_location,
+                    current_numeric_instruction.get_string_representation(),
+                    current_symbolic_instruction.get_original_instruction());
+
+                _emulator.insert(
+                    current_instruction_location,
+                    current_numeric_instruction.get_numeric_representation());
+            }
+
+            current_instruction_location = get_location_of_next_instruction(
+                current_symbolic_instruction, current_instruction_location);
         }
-
-        current_instruction_location = get_location_of_next_instruction(
-            current_symbolic_instruction, current_instruction_location);
+        catch (std::exception& e)
+        {
+            _record_error(e);
+        }
     }
 }
 

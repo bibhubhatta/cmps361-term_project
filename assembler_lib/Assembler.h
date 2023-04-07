@@ -92,4 +92,10 @@ class Assembler
      * invalid, a StatementAfterEndError is thrown.
      */
     void _check_if_end_is_valid();
+
+    /**
+     * @brief Records the error message in the error log.
+     * @param e The exception that was thrown.
+     */
+    void _record_error(const std::exception& e) const;
 };
