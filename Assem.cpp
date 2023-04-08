@@ -59,30 +59,38 @@ void press_enter_to_continue()
  */
 int main(int argc, char* argv[])
 {
-    check_argument_count(argc);
+    try
+    {
+        check_argument_count(argc);
 
-    std::string source_file_path = argv[1];
+        std::string source_file_path = argv[1];
 
-    Errors::init_error_reporting();
+        Errors::init_error_reporting();
 
-    Assembler assem(source_file_path);
+        Assembler assem(source_file_path);
 
-    assem.pass_1();
+        assem.pass_1();
 
-    display_symbol_table(assem);
-    press_enter_to_continue();
+        display_symbol_table(assem);
+        press_enter_to_continue();
 
-    display_translation(assem);
-    // Display the errors that were encountered during the translation.
-    Errors::display_errors();
+        display_translation(assem);
+        // Display the errors that were encountered during the translation.
+        Errors::display_errors();
 
-    press_enter_to_continue();
+        press_enter_to_continue();
 
-    // Run the emulator on the translation of the assembler language program
-    // that was generated in Pass II.
-    std::cout << "\nResults from emulating program:\n\n";
-    assem.run_program_in_emulator();
-    std::cout << "\nEnd of emulation.\n\n";
+        // Run the emulator on the translation of the assembler language program
+        // that was generated in Pass II.
+        std::cout << "\nResults from emulating program:\n\n";
+        assem.run_program_in_emulator();
+        std::cout << "\nEnd of emulation.\n\n";
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        exit(1);
+    }
 
     // Terminate indicating all is well.  If there is an unrecoverable error,
     // the program will terminate at the point that it occurred with an exit(1)
