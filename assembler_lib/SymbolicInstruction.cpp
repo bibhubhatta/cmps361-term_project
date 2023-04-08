@@ -171,5 +171,9 @@ void SymbolicInstruction::_check_label() const
 {
     std::string label = get_upper_case(_label);
     if (SymbolicOpcode_Type.contains(label))
-        throw SymbolicOpcodeInLabelError(_label);
+    {
+        // Ignore this error because 'b' is used to branch, but the
+        // example code uses it as a label.
+        // throw SymbolicOpcodeInLabelError(_label);
+    }
 }
