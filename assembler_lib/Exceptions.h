@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 
-#include <fmt/core.h>
+#include <format>
 
 #include "HelperFunctions.h"
 
@@ -21,7 +21,7 @@ class InvalidOpcodeError : public std::exception
   public:
     explicit InvalidOpcodeError(std::string opcode)
         : _opcode(std::move(opcode)),
-          _message {fmt::format("Invalid opcode: '{}'", _opcode)}
+          _message {std::format("Invalid opcode: '{}'", _opcode)}
     {
     }
 
@@ -46,7 +46,7 @@ class MultiplyDefinedLabelError : public std::exception
                                        int new_location)
         : _label(std::move(label)), _previous_location(previous_location),
           _new_location(new_location),
-          _message {fmt::format(
+          _message {std::format(
               "Multiply defined label: '{}' at address {} and address {}",
               _label, _previous_location, _new_location)}
     {
@@ -76,7 +76,7 @@ class UnmatchedOperandCountError : public std::exception
         : _symbolic_opcode(std::move(symbolic_opcode)),
           _expected_count(expected_count), _actual_count(actual_count),
           _message {
-              fmt::format("Unmatched operand count in '{}' expected {} but "
+              std::format("Unmatched operand count in '{}' expected {} but "
                           "found {}",
                           _symbolic_opcode, _expected_count, _actual_count)}
     {
@@ -103,7 +103,7 @@ class InvalidOperandTypeError : public std::exception
     explicit InvalidOperandTypeError(std::string operand, OperandType expected,
                                      OperandType actual)
         : _operand(std::move(operand)), _expected(expected), _actual(actual),
-          _message {fmt::format("Invalid operand type: '{}' expected {} but "
+          _message {std::format("Invalid operand type: '{}' expected {} but "
                                 "found {}",
                                 _operand, get_operand_type_str(_expected),
                                 get_operand_type_str(_actual))}
@@ -133,7 +133,7 @@ class ExtraStatementElementsError : public std::exception
                                          std::string extra)
         : _statement(std::move(statement)), _extra(std::move(extra)),
           _message {
-              fmt::format("Extra  element '{}' in '{}'", _extra, _statement)}
+              std::format("Extra  element '{}' in '{}'", _extra, _statement)}
     {
     }
 
@@ -157,7 +157,7 @@ class InsufficientMemoryError : public std::exception
   public:
     explicit InsufficientMemoryError(int required, int available)
         : _required(required), _available(available),
-          _message {fmt::format("Insufficient memory required {} available {}",
+          _message {std::format("Insufficient memory required {} available {}",
                                 _required, _available)}
     {
     }
@@ -198,7 +198,7 @@ class StatementAfterEndError : public std::exception
   public:
     explicit StatementAfterEndError(std::string statement)
         : _statement(std::move(statement)),
-          _message {fmt::format("Statement after END: '{}'", _statement)}
+          _message {std::format("Statement after END: '{}'", _statement)}
     {
     }
 
@@ -221,7 +221,7 @@ class InvalidConstantSizeError : public std::exception
   public:
     explicit InvalidConstantSizeError(std::string constant, int value)
         : _constant(std::move(constant)), _value(value),
-          _message {fmt::format("Invalid constant size: '{}' value {}. "
+          _message {std::format("Invalid constant size: '{}' value {}. "
                                 "Constant must be between 0 and 99,999",
                                 _constant, _value)}
     {
@@ -247,7 +247,7 @@ class UndefinedLabelError : public std::exception
   public:
     explicit UndefinedLabelError(std::string label)
         : _label(std::move(label)),
-          _message {fmt::format("Undefined label: '{}'", _label)}
+          _message {std::format("Undefined label: '{}'", _label)}
     {
     }
 
@@ -270,7 +270,7 @@ class SymbolicOpcodeInLabelError : public std::exception
   public:
     explicit SymbolicOpcodeInLabelError(std::string label)
         : _label(std::move(label)),
-          _message {fmt::format("Symbolic opcode in label: '{}'", _label)}
+          _message {std::format("Symbolic opcode in label: '{}'", _label)}
     {
     }
 

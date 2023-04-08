@@ -18,41 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Assem.cpp" />
-    <ClCompile Include="Assembler.cpp" />
-    <ClCompile Include="Emulator.cpp" />
-    <ClCompile Include="FileAccess.cpp" />
-    <ClCompile Include="HelperFunctions.cpp" />
-    <ClCompile Include="NumericInstruction.cpp" />
-    <ClCompile Include="SymbolicInstruction.cpp" />
-    <ClCompile Include="SymbolTable.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitignore" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Assembler.h" />
-    <ClInclude Include="Emulator.h" />
-    <ClInclude Include="Errors.h" />
-    <ClInclude Include="FileAccess.h" />
-    <ClInclude Include="HelperFunctions.h" />
-    <ClInclude Include="InstructionDefinitions.h" />
-    <ClInclude Include="NumericInstruction.h" />
-    <ClInclude Include="SymbolicInstruction.h" />
-    <ClInclude Include="SymbolTable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
-    <Text Include="factorial.txt" />
-    <Text Include="test.txt" />
-    <Text Include="test_input.txt" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{06c1223d-2f48-4a89-9ad2-e537a92af442}</ProjectGuid>
-    <RootNamespace>cmps361termproject</RootNamespace>
+    <ProjectGuid>{e2d9dfd0-4621-491b-ae1b-4c10113e0939}</ProjectGuid>
+    <RootNamespace>assembler</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -135,7 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)\assembler_lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +128,29 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Assem.cpp" />
+    <ClCompile Include="..\assembler_lib\Assembler.cpp" />
+    <ClCompile Include="..\assembler_lib\Emulator.cpp" />
+    <ClCompile Include="..\assembler_lib\Errors.cpp" />
+    <ClCompile Include="..\assembler_lib\FileAccess.cpp" />
+    <ClCompile Include="..\assembler_lib\HelperFunctions.cpp" />
+    <ClCompile Include="..\assembler_lib\NumericInstruction.cpp" />
+    <ClCompile Include="..\assembler_lib\SymbolicInstruction.cpp" />
+    <ClCompile Include="..\assembler_lib\SymbolTable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\assembler_lib\Assembler.h" />
+    <ClInclude Include="..\assembler_lib\Emulator.h" />
+    <ClInclude Include="..\assembler_lib\Errors.h" />
+    <ClInclude Include="..\assembler_lib\Exceptions.h" />
+    <ClInclude Include="..\assembler_lib\FileAccess.h" />
+    <ClInclude Include="..\assembler_lib\HelperFunctions.h" />
+    <ClInclude Include="..\assembler_lib\InstructionDefinitions.h" />
+    <ClInclude Include="..\assembler_lib\NumericInstruction.h" />
+    <ClInclude Include="..\assembler_lib\SymbolicInstruction.h" />
+    <ClInclude Include="..\assembler_lib\SymbolTable.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

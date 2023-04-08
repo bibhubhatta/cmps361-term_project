@@ -15,67 +15,64 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Assem.cpp">
+    <ClCompile Include="..\assembler_lib\SymbolicInstruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Assembler.cpp">
+    <ClCompile Include="..\assembler_lib\Assembler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileAccess.cpp">
+    <ClCompile Include="..\assembler_lib\FileAccess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SymbolicInstruction.cpp">
+    <ClCompile Include="..\assembler_lib\Errors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HelperFunctions.cpp">
+    <ClCompile Include="..\assembler_lib\HelperFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SymbolTable.cpp">
+    <ClCompile Include="..\assembler_lib\NumericInstruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NumericInstruction.cpp">
+    <ClCompile Include="..\assembler_lib\Emulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Emulator.cpp">
+    <ClCompile Include="..\assembler_lib\SymbolTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Assem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".gitignore" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Assembler.h">
+    <ClInclude Include="..\assembler_lib\FileAccess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Emulator.h">
+    <ClInclude Include="..\assembler_lib\Errors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Errors.h">
+    <ClInclude Include="..\assembler_lib\InstructionDefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileAccess.h">
+    <ClInclude Include="..\assembler_lib\NumericInstruction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InstructionDefinitions.h">
+    <ClInclude Include="..\assembler_lib\SymbolTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SymbolicInstruction.h">
+    <ClInclude Include="..\assembler_lib\Emulator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HelperFunctions.h">
+    <ClInclude Include="..\assembler_lib\SymbolicInstruction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SymbolTable.h">
+    <ClInclude Include="..\assembler_lib\Exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NumericInstruction.h">
+    <ClInclude Include="..\assembler_lib\HelperFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
-    <Text Include="test.txt" />
-    <Text Include="factorial.txt" />
-    <Text Include="test_input.txt" />
+    <ClInclude Include="..\assembler_lib\Assembler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

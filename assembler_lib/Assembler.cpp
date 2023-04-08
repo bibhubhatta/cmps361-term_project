@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <fmt/core.h>
+#include <format>
 
 #include "Assembler.h"
 #include "Errors.h"
@@ -65,7 +65,7 @@ void Assembler::pass_1()
 void Assembler::_record_error(const std::exception& e) const
 {
     std::string error_description {
-        fmt::format("Error {} occurred at '{}' in line {}", e.what(),
+        std::format("Error {} occurred at '{}' in line {}", e.what(),
                     _instructions_file.get_current_line(),
                     _instructions_file.get_current_line_number())};
     Errors::record_error(error_description);
@@ -100,7 +100,7 @@ void Assembler::pass_2()
 {
     _instructions_file.rewind();
 
-    std::cout << fmt::format("{:<10}{:<15}{:<30}\n", // Set format
+    std::cout << std::format("{:<10}{:<15}{:<30}\n", // Set format
                              "Location", "Contents", "Original Statement");
 
     int current_instruction_location = 0;
@@ -115,14 +115,14 @@ void Assembler::pass_2()
             switch (current_symbolic_instruction.get_type())
             {
             case InstructionType::End:
-                std::cout << fmt::format(
+                std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
                     "",                     // No location
                     "",                     // No contents
                     current_symbolic_instruction.get_original_instruction());
                 return;
             case InstructionType::Comment:
-                std::cout << fmt::format(
+                std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
                     "",                     // No location
                     "",                     // No contents
@@ -133,7 +133,7 @@ void Assembler::pass_2()
                 NumericInstruction current_numeric_instruction(
                     current_symbolic_instruction, _symbol_table);
 
-                std::cout << fmt::format(
+                std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
                     current_instruction_location,
                     current_numeric_instruction.get_string_representation(),

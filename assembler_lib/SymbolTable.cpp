@@ -3,7 +3,7 @@
 // commenting functions.
 //
 
-#include <fmt/core.h>
+#include <format>
 #include <iostream>
 
 #include "Exceptions.h"
@@ -29,13 +29,13 @@ void SymbolTable::add_symbol(const std::string& symbol, int location)
 
 void SymbolTable::display_symbol_table() const
 {
-    std::cout << fmt::format("{:<10}{:<10}{:<10}\n", // Set format
+    std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
                              "Symbol #", "Symbol", "Location");
 
     int counter {0};
     for (const auto& [symbol, location] : _symbol_table)
     {
-        std::cout << fmt::format("{:<10}{:<10}{:<10}\n", // Set format
+        std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
                                  counter, symbol, location);
         ++counter;
     }
