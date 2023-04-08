@@ -97,5 +97,5 @@ class Assembler
      * @brief Records the error message in the error log.
      * @param e The exception that was thrown.
      */
-    void _record_error(const std::exception& e) const;
+    void _record_error(const std::exception& e, const std::string& where) const;
 };

@@ -47,7 +47,7 @@ void Assembler::pass_1()
 
         catch (std::exception& e)
         {
-            _record_error(e);
+            _record_error(e, "pass 1");
         }
     }
 
@@ -58,16 +58,17 @@ void Assembler::pass_1()
     }
     catch (std::exception& e)
     {
-        _record_error(e);
+        _record_error(e, "pass 1");
     }
 }
 
-void Assembler::_record_error(const std::exception& e) const
+void Assembler::_record_error(const std::exception& e,
+                              const std::string&    where) const
 {
     std::string error_description {
-        std::format("Error {} occurred at '{}' in line {}", e.what(),
+        std::format("Error {} occurred at '{}' in line {} during {}", e.what(),
                     _instructions_file.get_current_line(),
-                    _instructions_file.get_current_line_number())};
+                    _instructions_file.get_current_line_number(), where)};
     Errors::record_error(error_description);
 }
 
@@ -149,7 +150,7 @@ void Assembler::pass_2()
         }
         catch (std::exception& e)
         {
-            _record_error(e);
+            _record_error(e, "pass 2");
         }
     }
 }
