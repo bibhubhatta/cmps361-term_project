@@ -48,9 +48,8 @@ void Emulator::run_program()
             _memory[operand1] = _memory[operand2];
             break;
         case READ:
-            std::cout << '?';
+            std::cout << "? ";
             std::cin >> _memory[operand1];
-            std::cout << std::endl;
             break;
         case WRITE:
             std::cout << _memory[operand1] << std::endl;
