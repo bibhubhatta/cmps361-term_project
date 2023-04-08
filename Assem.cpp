@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
         // that was generated in Pass II.
         std::cout << "\nResults from emulating program:\n\n";
         assem.run_program_in_emulator();
-        std::cout << "\nEnd of emulation.\n\n";
+        std::cout << "\nEnd of emulation\n\n";
     }
     catch (const std::exception& e)
     {
