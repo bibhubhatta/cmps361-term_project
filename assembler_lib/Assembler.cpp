@@ -129,9 +129,6 @@ void Assembler::pass_2()
                     "",                     // No contents
                     current_symbolic_instruction.get_original_instruction());
                 continue;
-            case InstructionType::Org:
-                _emulator.set_instruction_origin(
-                    stoi(current_symbolic_instruction.get_operand_1()));
 
             default:
                 NumericInstruction current_numeric_instruction(

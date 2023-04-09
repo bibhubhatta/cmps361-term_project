@@ -10,9 +10,9 @@ void Emulator::insert(int location, long long int contents)
 
 void Emulator::run_program()
 {
-    int current_instruction_location {_instruction_origin};
+    int current_instruction_location = 100;
 
-    while (current_instruction_location < MEMORY_SIZE)
+    while (true)
     {
         long long int current_instruction =
             _memory[current_instruction_location];
@@ -84,9 +84,4 @@ void Emulator::run_program()
 
         current_instruction_location++;
     }
-}
-
-void Emulator::set_instruction_origin(int instruction_origin)
-{
-    _instruction_origin = instruction_origin;
 }

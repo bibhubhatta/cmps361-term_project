@@ -1,5 +1,5 @@
 ;this is a test
-        org    50
+        org    100
 hi     read    x;comment immediately after statement       
 hay  copy   y, x ; This is the another comment.
         WRITE    x; to show that operation codes are case insensitive
