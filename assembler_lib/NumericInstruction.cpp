@@ -3,11 +3,11 @@
 #include "NumericInstruction.h"
 
 NumericInstruction::NumericInstruction(
-    const SymbolicInstruction& symbolic_instruction,
-    const SymbolTable&         symbol_table)
+    const SymbolicInstruction& a_symbolic_instruction,
+    const SymbolTable&         a_symbol_table)
 {
 
-    std::string symbolic_opcode = symbolic_instruction.get_opcode();
+    std::string symbolic_opcode = a_symbolic_instruction.get_opcode();
 
     _opcode = SymbolicOpcode_NumericOpcode.at(symbolic_opcode);
 
@@ -18,7 +18,7 @@ NumericInstruction::NumericInstruction(
 
     if (_opcode == NumericOpcode::DC)
     {
-        _operand2 = std::stoi(symbolic_instruction.get_operand_1());
+        _operand2 = std::stoi(a_symbolic_instruction.get_operand_1());
         return;
     }
 
@@ -29,14 +29,14 @@ NumericInstruction::NumericInstruction(
 
     case 1:
         _operand1 =
-            symbol_table.get_location(symbolic_instruction.get_operand_1());
+            a_symbol_table.get_location(a_symbolic_instruction.get_operand_1());
         break;
 
     case 2:
         _operand1 =
-            symbol_table.get_location(symbolic_instruction.get_operand_1());
+            a_symbol_table.get_location(a_symbolic_instruction.get_operand_1());
         _operand2 =
-            symbol_table.get_location(symbolic_instruction.get_operand_2());
+            a_symbol_table.get_location(a_symbolic_instruction.get_operand_2());
         break;
 
     default:

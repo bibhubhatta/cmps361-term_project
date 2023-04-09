@@ -20,9 +20,9 @@ class FileAccess
   public:
     /**
      * @brief Constructs a file access object.
-     * @param file_path The path to the source file.
+     * @param a_file_path The path to the source file.
      */
-    explicit FileAccess(const std::string& file_path);
+    explicit FileAccess(const std::string& a_file_path);
 
     /**
      * @brief Closes the file.

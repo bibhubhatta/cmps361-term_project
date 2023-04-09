@@ -9,22 +9,23 @@
 #include "Exceptions.h"
 #include "SymbolTable.h"
 
-void SymbolTable::add_symbol(const std::string& symbol, int location)
+void SymbolTable::add_symbol(const std::string& a_symbol, int a_location)
 {
-    if (_in_table(symbol))
+    if (_in_table(a_symbol))
     {
-        int previous_location {_symbol_table.at(symbol)};
+        int previous_location {_symbol_table.at(a_symbol)};
 
-        _symbol_table[symbol] = MULTIPLEY_DEFINED_SYMBOL;
+        _symbol_table[a_symbol] = MULTIPLEY_DEFINED_SYMBOL;
 
-        // If the symbol is defined more than twice, the exception won't specify
-        // the location of the second definition because location is set to
+        // If the a_symbol is defined more than twice, the exception won't specify
+        // the a_location of the second definition because a_location is set to
         // MULTIPLEY_DEFINED_SYMBOL.
 
-        throw MultiplyDefinedLabelError(symbol, previous_location, location);
+        throw MultiplyDefinedLabelError(a_symbol, previous_location,
+                                        a_location);
     }
 
-    _symbol_table[symbol] = location;
+    _symbol_table[a_symbol] = a_location;
 }
 
 void SymbolTable::display_symbol_table() const
@@ -41,29 +42,29 @@ void SymbolTable::display_symbol_table() const
     }
 }
 
-bool SymbolTable::_in_table(const std::string& symbol) const
+bool SymbolTable::_in_table(const std::string& a_symbol) const
 {
-    auto symbol_pointer {_symbol_table.find(symbol)};
+    auto symbol_pointer {_symbol_table.find(a_symbol)};
     return symbol_pointer != _symbol_table.end();
 }
 
-bool SymbolTable::lookup_symbol(const std::string& symbol, int& location)
+bool SymbolTable::lookup_symbol(const std::string& a_symbol, int& a_location)
 {
-    if (!_in_table(symbol))
+    if (!_in_table(a_symbol))
     {
         return false;
     }
 
-    location = _symbol_table.at(symbol);
+    a_location = _symbol_table.at(a_symbol);
     return true;
 }
 
-int SymbolTable::get_location(const std::string& symbol) const
+int SymbolTable::get_location(const std::string& a_symbol) const
 {
-    if (!_in_table(symbol))
+    if (!_in_table(a_symbol))
     {
-        throw UndefinedLabelError(symbol);
+        throw UndefinedLabelError(a_symbol);
     }
 
-    return _symbol_table.at(symbol);
+    return _symbol_table.at(a_symbol);
 }

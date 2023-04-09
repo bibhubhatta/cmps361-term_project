@@ -6,13 +6,13 @@
 #include "InstructionDefinitions.h"
 #include "SymbolicInstruction.h"
 
-SymbolicInstruction::SymbolicInstruction(const std::string& line)
-    : _original_instruction(line)
+SymbolicInstruction::SymbolicInstruction(const std::string& a_line)
+    : _original_instruction(a_line)
 {
-    if (is_comment_or_empty(line))
+    if (is_comment_or_empty(a_line))
         return;
 
-    std::string processed_line {remove_comments_and_commas(line)};
+    std::string processed_line {remove_comments_and_commas(a_line)};
 
     std::istringstream iss {processed_line};
 
@@ -30,11 +30,11 @@ SymbolicInstruction::SymbolicInstruction(const std::string& line)
     _check_constant_size();
 }
 
-void SymbolicInstruction::_check_extra_elements(const std::string& extra) const
+void SymbolicInstruction::_check_extra_elements(const std::string& a_extra) const
 {
-    if (!extra.empty())
+    if (!a_extra.empty())
     {
-        throw ExtraStatementElementsError(_original_instruction, extra);
+        throw ExtraStatementElementsError(_original_instruction, a_extra);
     }
 }
 

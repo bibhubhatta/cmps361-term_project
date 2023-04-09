@@ -19,12 +19,12 @@ class NumericInstruction
   public:
     /**
      * @brief Constructs a numeric instruction object.
-     * @param symbolic_instruction The symbolic instruction to convert to a
+     * @param a_symbolic_instruction The symbolic instruction to convert to a
      * numeric instruction.
-     * @param symbol_table The symbol table.
+     * @param a_symbol_table The symbol table.
      */
-    NumericInstruction(const SymbolicInstruction& symbolic_instruction,
-                       const SymbolTable&         symbol_table);
+    NumericInstruction(const SymbolicInstruction& a_symbolic_instruction,
+                       const SymbolTable&         a_symbol_table);
 
     /**
      * @brief Destroys a numeric instruction object.

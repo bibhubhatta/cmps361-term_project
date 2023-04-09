@@ -29,11 +29,11 @@ class SymbolTable
     const int MULTIPLEY_DEFINED_SYMBOL = -999;
 
     /**
-     * @brief Adds a symbol to the symbol table.
-     * @param symbol The symbol to add.
-     * @param location The location of the symbol.
+     * @brief Adds a a_symbol to the a_symbol table.
+     * @param a_symbol The a_symbol to add.
+     * @param a_location The a_location of the a_symbol.
      */
-    void add_symbol(const std::string& symbol, int location);
+    void add_symbol(const std::string& a_symbol, int a_location);
 
     /**
      * @brief Displays the symbol table.
@@ -41,27 +41,28 @@ class SymbolTable
     void display_symbol_table() const;
 
     /**
-     * @brief Checks if a symbol is in the symbol table.
-     * @param symbol The symbol to check.
-     * @return True if the symbol is in the symbol table, false otherwise.
+     * @brief Checks if a a_symbol is in the a_symbol table.
+     * @param a_symbol The a_symbol to check.
+     * @return True if the a_symbol is in the a_symbol table, false otherwise.
      */
-    [[nodiscard]] bool lookup_symbol(const std::string& symbol, int& location);
+    [[nodiscard]] bool lookup_symbol(const std::string& a_symbol,
+                                     int&               a_location);
 
     /**
-     * @brief Gets the location of a symbol.
-     * @param symbol The symbol to get the location of.
-     * @return The location of the symbol.
+     * @brief Gets the location of a a_symbol.
+     * @param a_symbol The a_symbol to get the location of.
+     * @return The location of the a_symbol.
      */
-    [[nodiscard]] int get_location(const std::string& symbol) const;
+    [[nodiscard]] int get_location(const std::string& a_symbol) const;
 
   private:
     // Maps symbols to location
     std::map<std::string, int, std::less<>> _symbol_table;
 
     /**
-     * @brief Checks if a symbol is in the symbol table.
-     * @param symbol The symbol to check.
-     * @return True if the symbol is in the symbol table, false otherwise.
+     * @brief Checks if a a_symbol is in the a_symbol table.
+     * @param a_symbol The a_symbol to check.
+     * @return True if the a_symbol is in the a_symbol table, false otherwise.
      */
-    [[nodiscard]] bool _in_table(const std::string& symbol) const;
+    [[nodiscard]] bool _in_table(const std::string& a_symbol) const;
 };

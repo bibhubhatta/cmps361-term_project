@@ -3,9 +3,9 @@
 #include "Emulator.h"
 #include "InstructionDefinitions.h"
 
-void Emulator::insert(int location, long long int contents)
+void Emulator::insert(int a_location, long long int a_contents)
 {
-    _memory[location] = contents;
+    _memory[a_location] = a_contents;
 }
 
 void Emulator::run_program()

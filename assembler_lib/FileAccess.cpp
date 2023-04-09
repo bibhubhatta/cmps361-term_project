@@ -2,9 +2,9 @@
 
 #include "FileAccess.h"
 
-FileAccess::FileAccess(const std::string& file_path)
+FileAccess::FileAccess(const std::string& a_file_path)
 {
-    _source_file.open(file_path, std::ios::in);
+    _source_file.open(a_file_path, std::ios::in);
 
     if (!_source_file.is_open())
     {

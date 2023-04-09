@@ -22,7 +22,7 @@ class SymbolicInstruction
   public:
     /**
      * @brief Constructs a symbolic instruction object.
-     * @param line The line to construct the symbolic instruction from.
+     * @param a_line The a_line to construct the symbolic instruction from.
      * @throws InvalidOpcodeError
      * @throws MultiplyDefinedLabelError
      * @throws UnmatchedOperandCountError
@@ -34,7 +34,7 @@ class SymbolicInstruction
      * @throws InvalidConstantSizeError
      * @throws SymbolicOpcodeInLabelError
      */
-    explicit SymbolicInstruction(const std::string& line);
+    explicit SymbolicInstruction(const std::string& a_line);
 
     /**
      * @brief Default destructor.
@@ -106,12 +106,12 @@ class SymbolicInstruction
     void _check_operand_type() const;
 
     /**
-     * @brief Checks if there are any extra elements in the instruction. If so,
+     * @brief Checks if there are any a_extra elements in the instruction. If so,
      * throws ExtraStatementElementsError.
-     * @param extra The extra elements in the instruction.
+     * @param a_extra The a_extra elements in the instruction.
      * @throws ExtraStatementElementsError
      */
-    void _check_extra_elements(const std::string& extra) const;
+    void _check_extra_elements(const std::string& a_extra) const;
 
     /**
      * @brief Checks if the current instruction is "DC." Then, checks if the

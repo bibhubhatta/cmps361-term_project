@@ -19,10 +19,10 @@ class Errors
     static void init_error_reporting();
 
     /**
-     * @brief Records an error message.
-     * @param message The error message.
+     * @brief Records an error a_message.
+     * @param a_message The error a_message.
      */
-    static void record_error(const std::string& message);
+    static void record_error(const std::string& a_message);
 
     /**
      * @brief Displays the collected error message.

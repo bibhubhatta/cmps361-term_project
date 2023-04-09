@@ -19,9 +19,9 @@
 class InvalidOpcodeError : public std::exception
 {
   public:
-    explicit InvalidOpcodeError(std::string opcode)
-        : _opcode(std::move(opcode)),
-          _message {std::format("Invalid opcode: '{}'", _opcode)}
+    explicit InvalidOpcodeError(std::string a_opcode)
+        : _opcode(std::move(a_opcode)),
+          _message {std::format("Invalid a_opcode: '{}'", _opcode)}
     {
     }
 
@@ -42,12 +42,13 @@ class InvalidOpcodeError : public std::exception
 class MultiplyDefinedLabelError : public std::exception
 {
   public:
-    explicit MultiplyDefinedLabelError(std::string label, int previous_location,
-                                       int new_location)
-        : _label(std::move(label)), _previous_location(previous_location),
-          _new_location(new_location),
+    explicit MultiplyDefinedLabelError(std::string a_label,
+                                       int         a_previous_location,
+                                       int         a_new_location)
+        : _label(std::move(a_label)), _previous_location(a_previous_location),
+          _new_location(a_new_location),
           _message {std::format(
-              "Multiply defined label: '{}' at address {} and address {}",
+              "Multiply defined a_label: '{}' at address {} and address {}",
               _label, _previous_location, _new_location)}
     {
     }
@@ -71,10 +72,11 @@ class MultiplyDefinedLabelError : public std::exception
 class UnmatchedOperandCountError : public std::exception
 {
   public:
-    explicit UnmatchedOperandCountError(std::string symbolic_opcode,
-                                        int expected_count, int actual_count)
-        : _symbolic_opcode(std::move(symbolic_opcode)),
-          _expected_count(expected_count), _actual_count(actual_count),
+    explicit UnmatchedOperandCountError(std::string a_symbolic_opcode,
+                                        int         a_expected_count,
+                                        int         a_actual_count)
+        : _symbolic_opcode(std::move(a_symbolic_opcode)),
+          _expected_count(a_expected_count), _actual_count(a_actual_count),
           _message {
               std::format("Unmatched operand count in '{}' expected {} but "
                           "found {}",
@@ -100,10 +102,10 @@ class UnmatchedOperandCountError : public std::exception
 class InvalidOperandTypeError : public std::exception
 {
   public:
-    explicit InvalidOperandTypeError(std::string operand, OperandType expected,
-                                     OperandType actual)
-        : _operand(std::move(operand)), _expected(expected), _actual(actual),
-          _message {std::format("Invalid operand type: '{}' expected {} but "
+    explicit InvalidOperandTypeError(std::string a_operand, OperandType a_expected,
+                                     OperandType a_actual)
+        : _operand(std::move(a_operand)), _expected(a_expected), _actual(a_actual),
+          _message {std::format("Invalid a_operand type: '{}' a_expected {} but "
                                 "found {}",
                                 _operand, get_operand_type_str(_expected),
                                 get_operand_type_str(_actual))}
@@ -129,9 +131,9 @@ class InvalidOperandTypeError : public std::exception
 class ExtraStatementElementsError : public std::exception
 {
   public:
-    explicit ExtraStatementElementsError(std::string statement,
-                                         std::string extra)
-        : _statement(std::move(statement)), _extra(std::move(extra)),
+    explicit ExtraStatementElementsError(std::string a_statement,
+                                         std::string a_extra)
+        : _statement(std::move(a_statement)), _extra(std::move(a_extra)),
           _message {
               std::format("Extra  element '{}' in '{}'", _extra, _statement)}
     {
@@ -155,9 +157,9 @@ class ExtraStatementElementsError : public std::exception
 class InsufficientMemoryError : public std::exception
 {
   public:
-    explicit InsufficientMemoryError(int required, int available)
-        : _required(required), _available(available),
-          _message {std::format("Insufficient memory required {} available {}",
+    explicit InsufficientMemoryError(int a_required, int a_available)
+        : _required(a_required), _available(a_available),
+          _message {std::format("Insufficient memory a_required {} a_available {}",
                                 _required, _available)}
     {
     }
@@ -196,8 +198,8 @@ class MissingEndStatementError : public std::exception
 class StatementAfterEndError : public std::exception
 {
   public:
-    explicit StatementAfterEndError(std::string statement)
-        : _statement(std::move(statement)),
+    explicit StatementAfterEndError(std::string a_statement)
+        : _statement(std::move(a_statement)),
           _message {std::format("Statement after END: '{}'", _statement)}
     {
     }
@@ -219,9 +221,9 @@ class StatementAfterEndError : public std::exception
 class InvalidConstantSizeError : public std::exception
 {
   public:
-    explicit InvalidConstantSizeError(std::string constant, int value)
-        : _constant(std::move(constant)), _value(value),
-          _message {std::format("Invalid constant size: '{}' value {}. "
+    explicit InvalidConstantSizeError(std::string a_constant, int a_value)
+        : _constant(std::move(a_constant)), _value(a_value),
+          _message {std::format("Invalid a_constant size: '{}' a_value {}. "
                                 "Constant must be between 0 and 99,999",
                                 _constant, _value)}
     {
@@ -245,9 +247,9 @@ class InvalidConstantSizeError : public std::exception
 class UndefinedLabelError : public std::exception
 {
   public:
-    explicit UndefinedLabelError(std::string label)
-        : _label(std::move(label)),
-          _message {std::format("Undefined label: '{}'", _label)}
+    explicit UndefinedLabelError(std::string a_label)
+        : _label(std::move(a_label)),
+          _message {std::format("Undefined a_label: '{}'", _label)}
     {
     }
 
@@ -268,9 +270,9 @@ class UndefinedLabelError : public std::exception
 class SymbolicOpcodeInLabelError : public std::exception
 {
   public:
-    explicit SymbolicOpcodeInLabelError(std::string label)
-        : _label(std::move(label)),
-          _message {std::format("Symbolic opcode in label: '{}'", _label)}
+    explicit SymbolicOpcodeInLabelError(std::string a_label)
+        : _label(std::move(a_label)),
+          _message {std::format("Symbolic opcode in a_label: '{}'", _label)}
     {
     }
 
@@ -291,8 +293,8 @@ class SymbolicOpcodeInLabelError : public std::exception
 class LabelTooLongError : public std::exception
 {
   public:
-    explicit LabelTooLongError(std::string label)
-        : _label(std::move(label)),
+    explicit LabelTooLongError(std::string a_label)
+        : _label(std::move(a_label)),
           _message {std::format("Label too long: '{}' ({} characters). "
                                 "Maximum length is 10 characters.",
                                 _label, _label.size())}
