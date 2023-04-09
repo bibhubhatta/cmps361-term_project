@@ -143,6 +143,8 @@ void Assembler::pass_2()
                     current_numeric_instruction.get_string_representation(),
                     current_symbolic_instruction.get_original_instruction());
 
+                _check_memory_sufficiency(current_instruction_location);
+
                 _emulator.insert(
                     current_instruction_location,
                     current_numeric_instruction.get_numeric_representation());
