@@ -46,6 +46,20 @@ def get_camel_case(word):
     return camel_cased_word
 
 
+def substitute_br_with_bell(data):
+    br = r"________________________________________________________\\n\\n"
+    bell = "🔔"
+    data = re.sub(br, bell, data)
+    return data
+
+
+def substitute_bell_with_br(data):
+    bell = "🔔"
+    br = r"________________________________________________________\\n\\n"
+    data = re.sub(bell, br, data)
+    return data
+
+
 def main():
     cpp_files = []
     for path in paths:
@@ -57,8 +71,10 @@ def main():
         with open(file, "r") as f:
             data = f.read()
 
+        data = substitute_br_with_bell(data)
         data = prefix_class_members(data)
         data = convert_to_camel_case(data)
+        data = substitute_bell_with_br(data)
 
         with open(file, "w") as f:
             # Write the file
