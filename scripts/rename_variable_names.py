@@ -66,4 +66,7 @@ def main():
 
 
 if __name__ == "__main__":
+    # Restore files to original state before running the script
+    command = f"cd {project_path}; git stage {this_file_path} ; git restore ."
+    os.system("powershell.exe " + command)
     main()
