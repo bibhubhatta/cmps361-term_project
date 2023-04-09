@@ -10,7 +10,7 @@
  * @brief Checks that there is exactly one run time parameter.
  * @param argc
  */
-void check_argument_count(int argc)
+void checkArgumentCount(int argc)
 {
     if (argc != 2)
     {
@@ -23,10 +23,10 @@ void check_argument_count(int argc)
  * @brief Displays the symbol table.
  * @param assem instance of the Assembler class.
  */
-void display_symbol_table(const Assembler& assem)
+void displaySymbolTable(const Assembler& assem)
 {
     std::cout << "Symbol Table:\n\n";
-    assem.display_symbol_table();
+    assem.displaySymbolTable();
     std::cout << "________________________________________________________\n\n";
 }
 
@@ -34,17 +34,17 @@ void display_symbol_table(const Assembler& assem)
  * @brief Displays the translation of the Assembler Language Program.
  * @param assem the assembler.
  */
-void display_translation(Assembler& assem)
+void displayTranslation(Assembler& assem)
 {
     std::cout << "Translation of the Assembler Language Program:\n\n";
-    assem.pass_2();
+    assem.pass2();
     std::cout << "________________________________________________________\n\n";
 }
 
 /**
  * @brief Prompts user to press enter to continue.
  */
-void press_enter_to_continue()
+void pressEnterToContinue()
 {
     std::cout << "Press enter to continue...";
     std::cin.get();
@@ -61,29 +61,29 @@ int main(int argc, char* argv[])
 {
     try
     {
-        check_argument_count(argc);
+        checkArgumentCount(argc);
 
-        std::string source_file_path = argv[1];
+        std::string sourceFilePath = argv[1];
 
-        Errors::init_error_reporting();
+        Errors::initErrorReporting();
 
-        Assembler assem(source_file_path);
+        Assembler assem(sourceFilePath);
 
-        assem.pass_1();
+        assem.pass1();
 
-        display_symbol_table(assem);
-        press_enter_to_continue();
+        displaySymbolTable(assem);
+        pressEnterToContinue();
 
-        display_translation(assem);
+        displayTranslation(assem);
         // Display the errors that were encountered during the translation.
-        Errors::display_errors();
+        Errors::displayErrors();
 
-        press_enter_to_continue();
+        pressEnterToContinue();
 
         // Run the emulator on the translation of the assembler language program
         // that was generated in Pass II.
         std::cout << "\nResults from emulating program:\n\n";
-        assem.run_program_in_emulator();
+        assem.runProgramInEmulator();
         std::cout << "\nEnd of emulation\n\n";
     }
     catch (const std::exception& e)

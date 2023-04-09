@@ -33,19 +33,19 @@ class SymbolTable
      * @param a_symbol The a_symbol to add.
      * @param a_location The a_location of the a_symbol.
      */
-    void add_symbol(const std::string& a_symbol, int a_location);
+    void addSymbol(const std::string& a_symbol, int a_location);
 
     /**
      * @brief Displays the symbol table.
      */
-    void display_symbol_table() const;
+    void displaySymbolTable() const;
 
     /**
      * @brief Checks if a a_symbol is in the a_symbol table.
      * @param a_symbol The a_symbol to check.
      * @return True if the a_symbol is in the a_symbol table, false otherwise.
      */
-    [[nodiscard]] bool lookup_symbol(const std::string& a_symbol,
+    [[nodiscard]] bool lookupSymbol(const std::string& a_symbol,
                                      int&               a_location);
 
     /**
@@ -53,16 +53,16 @@ class SymbolTable
      * @param a_symbol The a_symbol to get the location of.
      * @return The location of the a_symbol.
      */
-    [[nodiscard]] int get_location(const std::string& a_symbol) const;
+    [[nodiscard]] int getLocation(const std::string& a_symbol) const;
 
   private:
     // Maps symbols to location
-    std::map<std::string, int, std::less<>> _symbol_table;
+    std::map<std::string, int, std::less<>> m_symbolTable;
 
     /**
      * @brief Checks if a a_symbol is in the a_symbol table.
      * @param a_symbol The a_symbol to check.
      * @return True if the a_symbol is in the a_symbol table, false otherwise.
      */
-    [[nodiscard]] bool _in_table(const std::string& a_symbol) const;
+    [[nodiscard]] bool m_inTable(const std::string& a_symbol) const;
 };

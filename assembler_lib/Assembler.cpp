@@ -9,163 +9,163 @@
 #include "InstructionDefinitions.h"
 #include "NumericInstruction.h"
 
-Assembler::Assembler(const std::string& a_source_file_path)
-    : _instructions_file(a_source_file_path)
+Assembler::Assembler(const std::string& a_sourceFilePath)
+    : m_instructionsFile(a_sourceFilePath)
 {
 }
 
-void Assembler::pass_1()
+void Assembler::pass1()
 {
-    int current_instruction_location = 0;
+    int currentInstructionLocation = 0;
 
-    while (!_instructions_file.end_of_file())
+    while (!m_instructionsFile.endOfFile())
     {
         try
         {
-            std::string         line {_instructions_file.get_next_line()};
-            SymbolicInstruction current_instruction(line);
+            std::string         line {m_instructionsFile.getNextLine()};
+            SymbolicInstruction currentInstruction(line);
 
-            switch (current_instruction.get_type())
+            switch (currentInstruction.getType())
             {
             case InstructionType::End:
-                _check_memory_sufficiency(current_instruction_location);
-                _check_if_end_is_valid();
+                m_checkMemorySufficiency(currentInstructionLocation);
+                m_checkIfEndIsValid();
                 return;
             case InstructionType::Comment:
                 continue;
 
             default:
-                if (current_instruction.contains_label())
+                if (currentInstruction.containsLabel())
                 {
-                    _symbol_table.add_symbol(current_instruction.get_label(),
-                                             current_instruction_location);
+                    m_symbolTable.addSymbol(currentInstruction.getLabel(),
+                                             currentInstructionLocation);
 
-                    _check_label_length(current_instruction);
+                    m_checkLabelLength(currentInstruction);
                 }
-                current_instruction_location = get_location_of_next_instruction(
-                    current_instruction, current_instruction_location);
+                currentInstructionLocation = getLocationOfNextInstruction(
+                    currentInstruction, currentInstructionLocation);
             }
         }
 
         catch (std::exception& e)
         {
-            _record_error(e, "pass 1");
+            m_recordError(e, "pass 1");
         }
     }
 
     try
     {
-        _check_memory_sufficiency(current_instruction_location);
+        m_checkMemorySufficiency(currentInstructionLocation);
         throw MissingEndStatementError();
     }
     catch (std::exception& e)
     {
-        _record_error(e, "pass 1");
+        m_recordError(e, "pass 1");
     }
 }
 
-void Assembler::_check_label_length(const SymbolicInstruction& a_instruction)
+void Assembler::m_checkLabelLength(const SymbolicInstruction& a_instruction)
 {
-    if (a_instruction.get_label().length() > 10)
+    if (a_instruction.getLabel().length() > 10)
     {
-        throw LabelTooLongError(a_instruction.get_label());
+        throw LabelTooLongError(a_instruction.getLabel());
     }
 }
 
-void Assembler::_record_error(const std::exception& a_e,
+void Assembler::m_recordError(const std::exception& a_e,
                               const std::string&    a_where) const
 {
-    std::string error_description {
+    std::string errorDescription {
         std::format("Error {} occurred at '{}' in line {} during {}",
                     a_e.what(),
-                    _instructions_file.get_current_line(),
-                    _instructions_file.get_current_line_number(), a_where)};
-    Errors::record_error(error_description);
+                    m_instructionsFile.getCurrentLine(),
+                    m_instructionsFile.getCurrentLineNumber(), a_where)};
+    Errors::recordError(errorDescription);
 }
 
-void Assembler::_check_if_end_is_valid()
+void Assembler::m_checkIfEndIsValid()
 {
-    std::string statements_after_end;
-    while (!_instructions_file.end_of_file())
+    std::string statementsAfterEnd;
+    while (!m_instructionsFile.endOfFile())
     {
-        statements_after_end += _instructions_file.get_next_line();
+        statementsAfterEnd += m_instructionsFile.getNextLine();
     }
 
-    trim(statements_after_end);
+    trim(statementsAfterEnd);
 
-    if (!statements_after_end.empty())
+    if (!statementsAfterEnd.empty())
     {
-        throw StatementAfterEndError(statements_after_end);
+        throw StatementAfterEndError(statementsAfterEnd);
     }
 }
 
-void Assembler::_check_memory_sufficiency(int a_last_instruction_location) const
+void Assembler::m_checkMemorySufficiency(int a_lastInstructionLocation) const
 {
-    if (a_last_instruction_location >= Emulator::MEMORY_SIZE)
+    if (a_lastInstructionLocation >= Emulator::MEMORY_SIZE)
     {
-        throw InsufficientMemoryError(a_last_instruction_location + 1,
+        throw InsufficientMemoryError(a_lastInstructionLocation + 1,
                                       Emulator::MEMORY_SIZE);
     }
 }
 
-void Assembler::pass_2()
+void Assembler::pass2()
 {
-    _instructions_file.rewind();
+    m_instructionsFile.rewind();
 
     std::cout << std::format("{:<10}{:<15}{:<30}\n", // Set format
                              "Location", "Contents", "Original Statement");
 
-    int current_instruction_location = 0;
+    int currentInstructionLocation = 0;
 
-    while (!_instructions_file.end_of_file())
+    while (!m_instructionsFile.endOfFile())
     {
         try
         {
-            std::string         line {_instructions_file.get_next_line()};
-            SymbolicInstruction current_symbolic_instruction(line);
+            std::string         line {m_instructionsFile.getNextLine()};
+            SymbolicInstruction currentSymbolicInstruction(line);
 
-            switch (current_symbolic_instruction.get_type())
+            switch (currentSymbolicInstruction.getType())
             {
             case InstructionType::End:
                 std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
                     "",                     // No location
                     "",                     // No contents
-                    current_symbolic_instruction.get_original_instruction());
+                    currentSymbolicInstruction.getOriginalInstruction());
                 return;
             case InstructionType::Comment:
                 std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
                     "",                     // No location
                     "",                     // No contents
-                    current_symbolic_instruction.get_original_instruction());
+                    currentSymbolicInstruction.getOriginalInstruction());
                 continue;
 
             default:
-                NumericInstruction current_numeric_instruction(
-                    current_symbolic_instruction, _symbol_table);
+                NumericInstruction currentNumericInstruction(
+                    currentSymbolicInstruction, m_symbolTable);
 
                 std::cout << std::format(
                     "{:<10}{:<15}{:<30}\n", // Set format
-                    current_instruction_location,
-                    current_numeric_instruction.get_string_representation(),
-                    current_symbolic_instruction.get_original_instruction());
+                    currentInstructionLocation,
+                    currentNumericInstruction.getStringRepresentation(),
+                    currentSymbolicInstruction.getOriginalInstruction());
 
-                _check_memory_sufficiency(current_instruction_location);
+                m_checkMemorySufficiency(currentInstructionLocation);
 
-                _emulator.insert(
-                    current_instruction_location,
-                    current_numeric_instruction.get_numeric_representation());
+                m_emulator.insert(
+                    currentInstructionLocation,
+                    currentNumericInstruction.getNumericRepresentation());
             }
 
-            current_instruction_location = get_location_of_next_instruction(
-                current_symbolic_instruction, current_instruction_location);
+            currentInstructionLocation = getLocationOfNextInstruction(
+                currentSymbolicInstruction, currentInstructionLocation);
         }
         catch (std::exception& e)
         {
-            _record_error(e, "pass 2");
+            m_recordError(e, "pass 2");
         }
     }
 }
 
-void Assembler::run_program_in_emulator() { _emulator.run_program(); }
+void Assembler::runProgramInEmulator() { m_emulator.runProgram(); }

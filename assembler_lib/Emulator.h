@@ -33,8 +33,8 @@ class Emulator
     /**
      * @brief Runs the program recorded in memory.
      */
-    void run_program();
+    void runProgram();
 
   private:
-    std::array<long long, MEMORY_SIZE> _memory {0};
+    std::array<long long, MEMORY_SIZE> m_memory {0};
 };

@@ -3,40 +3,40 @@
 #include "NumericInstruction.h"
 
 NumericInstruction::NumericInstruction(
-    const SymbolicInstruction& a_symbolic_instruction,
-    const SymbolTable&         a_symbol_table)
+    const SymbolicInstruction& a_symbolicInstruction,
+    const SymbolTable&         a_symbolTable)
 {
 
-    std::string symbolic_opcode = a_symbolic_instruction.get_opcode();
+    std::string symbolicOpcode = a_symbolicInstruction.getOpcode();
 
-    _opcode = SymbolicOpcode_NumericOpcode.at(symbolic_opcode);
+    m_opcode = SymbolicOpcode_NumericOpcode.at(symbolicOpcode);
 
-    if (_has_no_numeric_equivalent())
+    if (m_hasNoNumericEquivalent())
     {
         return;
     }
 
-    if (_opcode == NumericOpcode::DC)
+    if (m_opcode == NumericOpcode::DC)
     {
-        _operand2 = std::stoi(a_symbolic_instruction.get_operand_1());
+        m_operand2 = std::stoi(a_symbolicInstruction.getOperand1());
         return;
     }
 
-    switch (NumericOpcode_OperandCount.at(_opcode))
+    switch (NumericOpcode_OperandCount.at(m_opcode))
     {
     case 0:
         break;
 
     case 1:
-        _operand1 =
-            a_symbol_table.get_location(a_symbolic_instruction.get_operand_1());
+        m_operand1 =
+            a_symbolTable.getLocation(a_symbolicInstruction.getOperand1());
         break;
 
     case 2:
-        _operand1 =
-            a_symbol_table.get_location(a_symbolic_instruction.get_operand_1());
-        _operand2 =
-            a_symbol_table.get_location(a_symbolic_instruction.get_operand_2());
+        m_operand1 =
+            a_symbolTable.getLocation(a_symbolicInstruction.getOperand1());
+        m_operand2 =
+            a_symbolTable.getLocation(a_symbolicInstruction.getOperand2());
         break;
 
     default:
@@ -44,35 +44,35 @@ NumericInstruction::NumericInstruction(
     }
 }
 
-NumericOpcode NumericInstruction::get_opcode() const { return _opcode; }
+NumericOpcode NumericInstruction::getOpcode() const { return m_opcode; }
 
-int NumericInstruction::get_operand_1() const { return _operand1; }
+int NumericInstruction::getOperand1() const { return m_operand1; }
 
-int NumericInstruction::get_operand_2() const { return _operand2; }
+int NumericInstruction::getOperand2() const { return m_operand2; }
 
-std::string NumericInstruction::get_string_representation() const
+std::string NumericInstruction::getStringRepresentation() const
 {
-    if (_has_no_numeric_equivalent())
+    if (m_hasNoNumericEquivalent())
     {
         return "";
     }
 
-    std::string opcode {std::format("{:02}", static_cast<int>(_opcode))};
-    std::string operand1 {std::format("{:05}", _operand1)};
-    std::string operand2 {std::format("{:05}", _operand2)};
+    std::string opcode {std::format("{:02}", static_cast<int>(m_opcode))};
+    std::string operand1 {std::format("{:05}", m_operand1)};
+    std::string operand2 {std::format("{:05}", m_operand2)};
 
     return opcode + operand1 + operand2;
 }
 
-bool NumericInstruction::_has_no_numeric_equivalent() const
+bool NumericInstruction::m_hasNoNumericEquivalent() const
 {
-    return static_cast<int>(_opcode) <= -1;
+    return static_cast<int>(m_opcode) <= -1;
 }
 
-long long NumericInstruction::get_numeric_representation() const
+long long NumericInstruction::getNumericRepresentation() const
 {
-    if (_has_no_numeric_equivalent())
+    if (m_hasNoNumericEquivalent())
         return 0;
 
-    return std::stoll(get_string_representation());
+    return std::stoll(getStringRepresentation());
 }
