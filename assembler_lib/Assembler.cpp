@@ -42,7 +42,7 @@ void Assembler::pass1()
 
                     m_checkLabelLength(currentInstruction);
                 }
-                currentInstructionLocation = getLocationOfNextInstruction(
+                currentInstructionLocation = GetLocationOfNextInstruction(
                     currentInstruction, currentInstructionLocation);
             }
         }
@@ -91,7 +91,7 @@ void Assembler::m_checkIfEndIsValid()
         statementsAfterEnd += m_instructionsFile.getNextLine();
     }
 
-    trim(statementsAfterEnd);
+    Trim(statementsAfterEnd);
 
     if (!statementsAfterEnd.empty())
     {
@@ -158,7 +158,7 @@ void Assembler::pass2()
                     currentNumericInstruction.getNumericRepresentation());
             }
 
-            currentInstructionLocation = getLocationOfNextInstruction(
+            currentInstructionLocation = GetLocationOfNextInstruction(
                 currentSymbolicInstruction, currentInstructionLocation);
         }
         catch (std::exception& e)

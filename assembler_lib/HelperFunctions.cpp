@@ -5,7 +5,7 @@
 #include "Exceptions.h"
 #include "HelperFunctions.h"
 
-int getLocationOfNextInstruction(
+int GetLocationOfNextInstruction(
     const SymbolicInstruction& a_currentInstruction, int a_currentLocation)
 {
     int nextLocation {a_currentLocation + 1};
@@ -25,7 +25,7 @@ int getLocationOfNextInstruction(
     return nextLocation;
 }
 
-bool isCommentOrEmpty(const std::string& a_line)
+bool IsCommentOrEmpty(const std::string& a_line)
 {
     if (a_line.empty()) // Empty a_line
         return true;
@@ -36,13 +36,13 @@ bool isCommentOrEmpty(const std::string& a_line)
     return false;
 }
 
-bool lineContainsLabel(const std::string& a_line)
+bool LineContainsLabel(const std::string& a_line)
 {
-    std::string uncommentedLine = getUncommentedLine(a_line);
+    std::string uncommentedLine = GetUncommentedLine(a_line);
     return uncommentedLine[0] != ' ' && uncommentedLine[0] != '\t';
 }
 
-std::string getUncommentedLine(const std::string& a_line)
+std::string GetUncommentedLine(const std::string& a_line)
 {
     if (auto commentPosition {a_line.find(';')};
         commentPosition != std::string::npos)
@@ -52,7 +52,7 @@ std::string getUncommentedLine(const std::string& a_line)
     return a_line;
 }
 
-std::string getUpperCase(const std::string& a_str)
+std::string GetUpperCase(const std::string& a_str)
 {
     std::string upper;
     for (auto c : a_str)
@@ -61,22 +61,22 @@ std::string getUpperCase(const std::string& a_str)
     return upper;
 }
 
-std::string replaceCommas(const std::string& a_str)
+std::string ReplaceCommas(const std::string& a_str)
 {
     std::string replaced {a_str};
     std::ranges::replace(replaced.begin(), replaced.end(), ',', ' ');
     return replaced;
 }
 
-std::string removeCommentsAndCommas(const std::string& a_line)
+std::string RemoveCommentsAndCommas(const std::string& a_line)
 {
-    std::string uncommentedLine {getUncommentedLine(a_line)};
-    return replaceCommas(uncommentedLine);
+    std::string uncommentedLine {GetUncommentedLine(a_line)};
+    return ReplaceCommas(uncommentedLine);
 }
 
-int getInstructionOperandCount(const std::string& a_opcode)
+int GetInstructionOperandCount(const std::string& a_opcode)
 {
-    std::string upperOpcode {getUpperCase(a_opcode)};
+    std::string upperOpcode {GetUpperCase(a_opcode)};
 
     using enum InstructionType;
 
@@ -92,7 +92,7 @@ int getInstructionOperandCount(const std::string& a_opcode)
     }
 }
 
-std::string getOperandTypeStr(OperandType a_operandType)
+std::string GetOperandTypeStr(OperandType a_operandType)
 {
     using enum OperandType;
 
@@ -109,7 +109,7 @@ std::string getOperandTypeStr(OperandType a_operandType)
     return "Unknown";
 }
 
-OperandType getOperandType(const std::string& a_operand)
+OperandType GetOperandType(const std::string& a_operand)
 {
     using enum OperandType;
     if (a_operand.empty())
@@ -121,7 +121,7 @@ OperandType getOperandType(const std::string& a_operand)
     return Symbolic;
 }
 
-void createSourceFile(const std::string& a_source,
+void CreateSourceFile(const std::string& a_source,
                         const std::string& a_sourceFilePath)
 {
     std::ofstream sourceFile {a_sourceFilePath};

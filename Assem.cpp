@@ -10,7 +10,7 @@
  * @brief Checks that there is exactly one run time parameter.
  * @param argc
  */
-void checkArgumentCount(int argc)
+void CheckArgumentCount(int argc)
 {
     if (argc != 2)
     {
@@ -23,7 +23,7 @@ void checkArgumentCount(int argc)
  * @brief Displays the symbol table.
  * @param assem instance of the Assembler class.
  */
-void displaySymbolTable(const Assembler& assem)
+void DisplaySymbolTable(const Assembler& assem)
 {
     std::cout << "Symbol Table:\n\n";
     assem.displaySymbolTable();
@@ -34,7 +34,7 @@ void displaySymbolTable(const Assembler& assem)
  * @brief Displays the translation of the Assembler Language Program.
  * @param assem the assembler.
  */
-void displayTranslation(Assembler& assem)
+void DisplayTranslation(Assembler& assem)
 {
     std::cout << "Translation of the Assembler Language Program:\n\n";
     assem.pass2();
@@ -44,7 +44,7 @@ void displayTranslation(Assembler& assem)
 /**
  * @brief Prompts user to press enter to continue.
  */
-void pressEnterToContinue()
+void PressEnterToContinue()
 {
     std::cout << "Press enter to continue...";
     std::cin.get();
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 {
     try
     {
-        checkArgumentCount(argc);
+        CheckArgumentCount(argc);
 
         std::string sourceFilePath = argv[1];
 
@@ -71,14 +71,14 @@ int main(int argc, char* argv[])
 
         assem.pass1();
 
-        displaySymbolTable(assem);
-        pressEnterToContinue();
+        DisplaySymbolTable(assem);
+        PressEnterToContinue();
 
-        displayTranslation(assem);
+        DisplayTranslation(assem);
         // Display the errors that were encountered during the translation.
         Errors::displayErrors();
 
-        pressEnterToContinue();
+        PressEnterToContinue();
 
         // Run the emulator on the translation of the assembler language program
         // that was generated in Pass II.

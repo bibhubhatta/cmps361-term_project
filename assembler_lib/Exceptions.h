@@ -107,8 +107,8 @@ class InvalidOperandTypeError : public std::exception
         : m_operand(std::move(a_operand)), m_expected(a_expected), m_actual(a_actual),
           m_message {std::format("Invalid a_operand type: '{}' a_expected {} but "
                                 "found {}",
-                                m_operand, getOperandTypeStr(m_expected),
-                                getOperandTypeStr(m_actual))}
+                                m_operand, GetOperandTypeStr(m_expected),
+                          GetOperandTypeStr(m_actual))}
     {
     }
 
