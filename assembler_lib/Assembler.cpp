@@ -9,8 +9,8 @@
 #include "InstructionDefinitions.h"
 #include "NumericInstruction.h"
 
-Assembler::Assembler(const std::string& source_file_path)
-    : _instructions_file(source_file_path)
+Assembler::Assembler(const std::string& a_source_file_path)
+    : _instructions_file(a_source_file_path)
 {
 }
 
@@ -64,21 +64,22 @@ void Assembler::pass_1()
     }
 }
 
-void Assembler::_check_label_length(const SymbolicInstruction& instruction)
+void Assembler::_check_label_length(const SymbolicInstruction& a_instruction)
 {
-    if (instruction.get_label().length() > 10)
+    if (a_instruction.get_label().length() > 10)
     {
-        throw LabelTooLongError(instruction.get_label());
+        throw LabelTooLongError(a_instruction.get_label());
     }
 }
 
-void Assembler::_record_error(const std::exception& e,
-                              const std::string&    where) const
+void Assembler::_record_error(const std::exception& a_e,
+                              const std::string&    a_where) const
 {
     std::string error_description {
-        std::format("Error {} occurred at '{}' in line {} during {}", e.what(),
+        std::format("Error {} occurred at '{}' in line {} during {}",
+                    a_e.what(),
                     _instructions_file.get_current_line(),
-                    _instructions_file.get_current_line_number(), where)};
+                    _instructions_file.get_current_line_number(), a_where)};
     Errors::record_error(error_description);
 }
 
@@ -98,11 +99,11 @@ void Assembler::_check_if_end_is_valid()
     }
 }
 
-void Assembler::_check_memory_sufficiency(int last_instruction_location) const
+void Assembler::_check_memory_sufficiency(int a_last_instruction_location) const
 {
-    if (last_instruction_location >= Emulator::MEMORY_SIZE)
+    if (a_last_instruction_location >= Emulator::MEMORY_SIZE)
     {
-        throw InsufficientMemoryError(last_instruction_location + 1,
+        throw InsufficientMemoryError(a_last_instruction_location + 1,
                                       Emulator::MEMORY_SIZE);
     }
 }

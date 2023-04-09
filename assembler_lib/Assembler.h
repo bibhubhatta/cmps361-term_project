@@ -22,9 +22,9 @@ class Assembler
   public:
     /**
      * @brief Constructs an assembler object.
-     * @param source_file_path The path to the source file.
+     * @param a_source_file_path The path to the source file.
      */
-    explicit Assembler(const std::string& source_file_path);
+    explicit Assembler(const std::string& a_source_file_path);
     ~Assembler() = default;
 
     /**
@@ -81,9 +81,9 @@ class Assembler
 
     /**
      * @brief Checks if the memory is sufficient to hold the program.
-     * @param last_instruction_location The location of the last instruction.
+     * @param a_last_instruction_location The location of the last instruction.
      */
-    void _check_memory_sufficiency(int last_instruction_location) const;
+    void _check_memory_sufficiency(int a_last_instruction_location) const;
 
     /**
      * @brief Checks if the end statement is valid and throws error if not.
@@ -95,16 +95,16 @@ class Assembler
 
     /**
      * @brief Records the error message in the error log.
-     * @param e The exception that was thrown.
+     * @param a_e The exception that was thrown.
      */
-    void _record_error(const std::exception& e, const std::string& where) const;
+    void _record_error(const std::exception& a_e,
+                       const std::string&    a_where) const;
 
     /**
      * @brief Checks if the label is too long.
      * @details If the label is too long, a LabelTooLongError is thrown.
-     * @param instruction The instruction that contains the label.
+     * @param a_instruction The a_instruction that contains the label.
      * @throws LabelTooLongError
      */
-    static void
-    _check_label_length(const SymbolicInstruction& instruction) ;
+    static void _check_label_length(const SymbolicInstruction& a_instruction);
 };
