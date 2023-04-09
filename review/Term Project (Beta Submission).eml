@@ -1,0 +1,447 @@
+Delivered-To: bbhatta@ramapo.edu
+Received: by 2002:a59:c18a:0:b0:3b3:547d:6483 with SMTP id j10csp1312473vqn;
+        Sat, 8 Apr 2023 19:49:13 -0700 (PDT)
+X-Received: by 2002:ad4:5745:0:b0:5b2:1799:a42e with SMTP id q5-20020ad45745000000b005b21799a42emr13535466qvx.14.1681008553700;
+        Sat, 08 Apr 2023 19:49:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1681008553; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TvSwgP2bN24jU/Kx4TyypNp8Lu3HEPm5cCjmdN4/l/PoSch58dHaNdjQ4z4/bj2lz9
+         svauhvoEfpj5zBIN2HpZmEe7OqIxsoT+ANLU/1JHxZV2tBtDddarxog1Rjq2WQDG+VoD
+         utTcz8sr6zH1BpterIwmLFAZWWKJ9L2EWnk+tk8M+CLrOzMJxivvV1r3kvO5JaVtvD3i
+         /CkDRMh1aUDA8NMCNYRMl6DwZKpch5ko3KODE2Sh777xXZY6swGyuY6wKDcqEySPYw1y
+         sasnVkSajuKH/7dJZbLf6A0GWrStqj2zCl06Kg0LPdFu5aI9HLrOrN8UJSpudR9Ld1Wm
+         g9HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:dkim-signature;
+        bh=y7eSDxYhu0KXh2tVEAUXwoYdamMROrM1zwzprg8OaRc=;
+        b=j1oSplsTFkj1PZpwo9vehm3G7JSzT8f0YAWY7kM97MIm2dJ+KbilvQDxXhMbC7jTg+
+         wTcjoNOnxrOt0kYhQEANnQ5YGeOC8Br0hZtv+iVjO8LnNO8T2fHsnC2a5+62QtCg3Ahz
+         NXgcTx9bhlka0O6oC0jEnqeg8hWxYFbGTG2O29i9WPEiqSn4swzRtDXQAdQ3Es9cSj8O
+         +zMtLqZ3n1h+HQ/Aj5pkdsoMdou6+wXFBDWSey0vYuqkl2Q8kphKEv89yXsaSVx4MmE6
+         +5Qa7XnM6DXf8BPC2lQw4OInZGaDSVbeXaA5UDRJneA8QiRiK3mZ767nQUoZZHTOPgor
+         IBMQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ramapo-edu.20210112.gappssmtp.com header.s=20210112 header.b=MASaGAJI;
+       spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
+Return-Path: <vmiller@ramapo.edu>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id bd5-20020ad45685000000b005e02663fefcsor2920024qvb.99.2023.04.08.19.49.13
+        for <bbhatta@ramapo.edu>
+        (Google Transport Security);
+        Sat, 08 Apr 2023 19:49:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ramapo-edu.20210112.gappssmtp.com header.s=20210112 header.b=MASaGAJI;
+       spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ramapo-edu.20210112.gappssmtp.com; s=20210112; t=1681008553;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y7eSDxYhu0KXh2tVEAUXwoYdamMROrM1zwzprg8OaRc=;
+        b=MASaGAJIQZVNQgWFN1wG1qh5oA/v6yUoOcF1FEpzcNQu1z1bcL0kP+7Y30cHl5PO6D
+         w8JwBGCc0YrwllvdExqIM7AcKj0gD5U/ZuL607Oyb5yCvdexj4qUwFpf5Xd4Hqc29fH2
+         eERSjnInYTvUAW2eOZvnkSqS3n7dspqeRWBxQo3EHhevMRUd2Wn3SFeBqSaGNsWoanN2
+         VpU9BDerRpLzxxl4bxBaz1pKmAXnkvMlnuYVwW5LazrXDkL/Zds1LRnAjjZ11QOLJfD+
+         wAkZSOSHVmaBBB4oIFeXzTLUut0Pm+aXBr9TWtXnX2P4Wcc4YCVio8JV7lLSHHX1OAch
+         JU7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1681008553;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y7eSDxYhu0KXh2tVEAUXwoYdamMROrM1zwzprg8OaRc=;
+        b=UDilwEW005Ml7MxLh29gQ9hlWGLEktZFaFReHxk1AajAzwYJDxcCUC36dG/G8E+fsM
+         qmenAbc7lUbYz6pzQFg/zcKM0iQaQXTzb4Ph/RdDhdKy0f+WTE/AlzcqF65xj0uu2Oai
+         MuUbjfNMXJxo+NACDAQhfYWYbM9SWiDkCJqCo/CNgh18bMU4HLwNqpL+AqBBEn3zQNQ1
+         eXRrbHSlueHk/7xd8L3kZXVCWhgg40yi1ZZtmZKJO4unXr4twPsLwCighD3HSU4YHRkp
+         KheSwB70D8cnR6ACxti+70+Xlbk0ZsPICnLs/y8SShJ4xYZ3GPT0U+Cck9R/j3iMvfuH
+         4OLQ==
+X-Gm-Message-State: AAQBX9fddDTtiDsZSUG1hQBoJlV9uewOU8e+HXJhcguf0/mEm3h7WxDC
+	yBfTCq8wjDgDlKNChsN/gBuYR2bQhzHwO5iwmSEewsvW7BPPURyjLKMWWQAQd9NEkYkZcm0F2qN
+	MaMxWfiY/BhA7UzCGlyIoUEkpr4OiZc/jqTaM1kjRXTRXV6eLVIzr5qIK1uVnHDDPIw+FWjMX
+X-Google-Smtp-Source: AKy350bqqgj/w5WZGqFSJqYRdf+nsuNocrEOKS4T+/FhkvECAtHh9f9WziWRz1bRLeIparICNKuCHw==
+X-Received: by 2002:a05:6214:2401:b0:5a6:24f6:724d with SMTP id fv1-20020a056214240100b005a624f6724dmr12167778qvb.13.1681008552723;
+        Sat, 08 Apr 2023 19:49:12 -0700 (PDT)
+Return-Path: <vmiller@ramapo.edu>
+Received: from BennyDog (ool-44c12ac0.dyn.optonline.net. [68.193.42.192])
+        by smtp.gmail.com with ESMTPSA id jy8-20020a0562142b4800b005ea7e861d3bsm353185qvb.145.2023.04.08.19.49.11
+        for <bbhatta@ramapo.edu>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 08 Apr 2023 19:49:12 -0700 (PDT)
+From: <vmiller@ramapo.edu>
+To: "'Bhatta, Bibhu'" <bbhatta@ramapo.edu>
+References: <CADxxeLc7-rd9GPgUE8SPMW7=aFDYcLyd=gNOmhc2nEvxq20mOw@mail.gmail.com>
+In-Reply-To: <CADxxeLc7-rd9GPgUE8SPMW7=aFDYcLyd=gNOmhc2nEvxq20mOw@mail.gmail.com>
+Subject: RE: Term Project (Beta Submission)
+Date: Sat, 8 Apr 2023 22:49:07 -0400
+Message-ID: <001001d96a8d$daf6ca40$90e45ec0$@ramapo.edu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0011_01D96A6C.53E614A0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQF7gJhyB3ZeXrml+v/X/twAmIEteK/eFrTw
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0011_01D96A6C.53E614A0
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Bibhu,
+
+=20
+
+I would prefer that you stay with the coding standards.  This is =
+something you will have to do if you enter a well-run company.  I did =
+not require author and date for this project.  Yes, there was a 10 =
+character limit on labels for the VC 1620.
+
+=20
+
+I will respond to the remainder of your questions in your original =
+email.
+
+=20
+
+Victor J. Miller
+
+Convener of Computer Science
+
+=20
+
+ <mailto:vmiller@ramapo.edu> vmiller@ramapo.edu
+
+ <https://pages.ramapo.edu/~vmiller/> https://pages.ramapo.edu/~vmiller/
+
+=20
+
+From: Bhatta, Bibhu <bbhatta@ramapo.edu>=20
+Sent: Saturday, April 8, 2023 8:38 PM
+To: Victor Miller <vmiller@ramapo.edu>
+Subject: Term Project (Beta Submission)
+
+=20
+
+Hello Prof. Miller,
+
+=20
+
+I am attaching my Term Project's source code to this email.
+
+=20
+
+I have purposefully violated some of the coding standards for the =
+following reasons:
+
+*	Function names should start with a capital letter - Violated because =
+all functions in the code start with a verb, which makes it easily =
+distinguishable from a variable.
+*	Function parameters should be prefixed with 'a_' - Violated because =
+they reduce code readability. The functions in the source code are =
+designed to be short and simple, and therefore the parameters are easily =
+distinguishable from the variables. Furthermore, Visual Studio, by =
+default, renders the variables names inside a function in blue and the =
+arguments in grey, so it is not necessary to prefix it with 'a_'
+*	Class members should be prefixed with 'm_' - Violated because they are =
+prefixed with only an '_' to increase readability, and Visual Studio =
+renders the member variables and functions in white (function members =
+are in blue and function parameters are grey) anyway.
+*	Your starter code used camelCase for variables and function names; I =
+have instead used snake_case. I feel it improves readability, but I =
+don't want to start a flame war over this.
+*	The author name and date are removed from the class, function, and =
+file descriptions because it makes more sense to use git blame.
+
+If you feel that the code needs to strictly follow the guidelines, I =
+will refactor the files and send them to you again. If you think the =
+reasons are not justified, please let me know.
+
+It is more an issue of staying with the coding standards provided by =
+your company.
+
+=20
+
+I think I read somewhere on your website, or you probably mentioned in =
+the class, that labels cannot exceed a certain number of characters, but =
+I forgot the exact detail, so I am skipping any checks because it should =
+not be so severe (large labels could potentially screw up the output =
+when displaying the symbol table and translation, but it shouldn't be a =
+big deal).
+
+As previously mentioned, there was a limit of 10 characters for labels.  =
+This is an arbitrary rule, but it is a requirement.
+
+=20
+
+Also, I am not sure if I need to check if the assembly source file =
+contains an "ORG" statement. If the origin is not explicitly provided, =
+execution starts at 0.
+
+It theory, an assembly languages program does not need an org statement. =
+ So, not need to check for one.  In reality, it should have one, because =
+execution begins with the memory location 100.
+
+=20
+
+Please let me know if you are not satisfied with any of the liberties I =
+have taken. Also, if there is anything I have missed, I would be glad to =
+fix it!
+
+=20
+
+Thank you very much for your support!
+
+Sorry for the extra work, but I want the class to get more of a feeling =
+for the work environment in many companies.
+
+=20
+
+Sincerely,
+
+Bibhu
+
+=20
+
+PS: Please note that the minimum required version for the compiler is =
+/std:c++20 with std::format (it should be okay with VS 2022 platform =
+toolset on Windows, but might not work with GNU compilers).
+
+=20
+
+
+------=_NextPart_000_0011_01D96A6C.53E614A0
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:55980780;
+	mso-list-template-ids:1873962240;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>Hi Bibhu,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I would =
+prefer that you stay with the coding standards.=C2=A0 This is something =
+you will have to do if you enter a well-run company.=C2=A0 I did not =
+require author and date for this project.=C2=A0 Yes, there was a 10 =
+character limit on labels for the VC 1620.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I will =
+respond to the remainder of your questions in your original =
+email.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Victor J. Miller<o:p></o:p></p><p =
+class=3DMsoNormal>Convener of Computer Science<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><a =
+href=3D"mailto:vmiller@ramapo.edu"><span =
+style=3D'color:#0563C1'>vmiller@ramapo.edu</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><a href=3D"https://pages.ramapo.edu/~vmiller/"><span =
+style=3D'color:#0563C1'>https://pages.ramapo.edu/~vmiller/</span></a><o:p=
+></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b>From:</b> Bhatta, Bibhu =
+&lt;bbhatta@ramapo.edu&gt; <br><b>Sent:</b> Saturday, April 8, 2023 8:38 =
+PM<br><b>To:</b> Victor Miller =
+&lt;vmiller@ramapo.edu&gt;<br><b>Subject:</b> Term Project (Beta =
+Submission)<o:p></o:p></p></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Hello =
+Prof. Miller,<o:p></o:p></p><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
+am attaching my Term Project's source code to this =
+email.<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
+have purposefully violated some of the coding standards for the =
+following reasons:<o:p></o:p></p></div><div><ul type=3Ddisc><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo1'>Function names should start with a capital letter - =
+Violated because all functions in the code start with a verb, which =
+makes it easily distinguishable from a variable.<o:p></o:p></li><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo1'>Function parameters should be prefixed with 'a_' - Violated =
+because they reduce code readability. The functions in the source code =
+are designed to be short and simple, and&nbsp;therefore the parameters =
+are easily distinguishable from the variables. Furthermore, Visual =
+Studio, by default, renders the variables names inside a function in =
+blue and the arguments in grey, so it is not necessary to prefix it with =
+'a_'<o:p></o:p></li><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo1'>Class members should be prefixed with 'm_' - Violated =
+because they are prefixed with only an '_' to increase readability, and =
+Visual Studio renders the member variables and functions in white =
+(function members are in blue and function parameters are grey) =
+anyway.<o:p></o:p></li><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo1'>Your starter code used camelCase for variables and function =
+names; I have instead used snake_case. I feel it improves readability, =
+but I don't want to start a flame war over this.<o:p></o:p></li><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo1'>The author name and date are removed from the class, =
+function, and file descriptions because it makes more sense to use git =
+blame.<o:p></o:p></li></ul><div><p class=3DMsoNormal>If you feel that =
+the code needs to strictly follow the guidelines, I will refactor the =
+files and send them to you again. If you think the reasons are not =
+justified, please let me know.<o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'color:red'>It is more an issue of staying with the coding =
+standards provided by your company.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
+think I read somewhere on your website, or you probably mentioned in the =
+class, that labels cannot exceed a certain number of characters, but I =
+forgot the exact detail, so I am skipping any checks because it should =
+not be so severe (large labels could potentially screw up the output =
+when displaying the symbol table and translation, but it shouldn't be a =
+big deal).<o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'color:red'>As previously mentioned, there was a limit of 10 =
+characters for labels.=C2=A0 This is an arbitrary rule, but it is a =
+requirement.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Also, I am not sure if I need to check if the assembly =
+source file contains an &quot;ORG&quot; statement. If the origin is not =
+explicitly provided, execution starts at 0.<o:p></o:p></p><p =
+class=3DMsoNormal><span style=3D'color:red'>It theory, an assembly =
+languages program does not need an org statement.=C2=A0 So, not need to =
+check for one.=C2=A0 In reality, it should have one, because execution =
+begins with the memory location 100.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Please let me know if you are not satisfied with any =
+of the liberties I have taken. Also, if there is anything I have missed, =
+I would be glad to fix it!<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Thank you very much for your support!<o:p></o:p></p><p =
+class=3DMsoNormal><span style=3D'color:red'>Sorry for the extra work, =
+but I want the class to get more of a feeling for the work environment =
+in many companies.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Sincerely,<o:p></o:p></p></div><div><p =
+class=3DMsoNormal>Bibhu<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>PS: Please note that the minimum required version for =
+the compiler is /std:c++20 with std::format (it should be okay with VS =
+2022 platform toolset on Windows, but might not work with GNU =
+compilers).<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div></div></div></body></h=
+tml>
+------=_NextPart_000_0011_01D96A6C.53E614A0--
+
