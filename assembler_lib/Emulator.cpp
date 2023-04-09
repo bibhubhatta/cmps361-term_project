@@ -12,7 +12,7 @@ void Emulator::run_program()
 {
     int current_instruction_location = 100;
 
-    while (true)
+    while (current_instruction_location < MEMORY_SIZE)
     {
         long long int current_instruction =
             _memory[current_instruction_location];
