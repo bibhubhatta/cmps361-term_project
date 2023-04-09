@@ -16,13 +16,13 @@ def prefix_class_members(data):
 
 
 def convert_to_camel_case(data):
-    # Replace all variable names that are not camel case with camel case
+    ignored = ["find_if", "c_str", "out_of_range", "push_back", "pop_back", "is_open", "static_cast"]
 
     # Iterate over each word in the file
     for word in re.findall(r'\b[a-zA-Z0-9_]*\b', data):
-        if "_" in word:
+        if "_" in word and word not in ignored and not word[0].isupper():
             camel_cased_word = get_camel_case(word)
-            data = data.replace(word, camel_cased_word)
+            data = re.sub(r'\b' + word + r'\b', camel_cased_word, data)
 
     return data
 
