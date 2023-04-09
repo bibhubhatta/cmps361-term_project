@@ -14,6 +14,32 @@ def prefix_class_members(data):
     return data
 
 
+def convert_to_camel_case(data):
+    # Replace all variable names that are not camel case with camel case
+
+    # Iterate over each word in the file
+    for word in re.findall(r'\b[a-zA-Z0-9_]*\b', data):
+        if "_" in word:
+            parts = word.split("_")
+
+            first_part = parts.pop(0)
+            if first_part == "m":  # If the variable is class member
+                camel_cased_word = "m_"
+            elif first_part == "a":  # If the variable is a function argument
+                camel_cased_word = "a_"
+            else:
+                camel_cased_word = first_part
+
+            for part in parts:
+                # Capitalize the first letter
+                camel_cased_word += part.capitalize()
+
+            # Replace the word with the camel cased word
+            data = data.replace(word, camel_cased_word)
+
+    return data
+
+
 def main():
     cpp_files = [file for file in os.listdir(path) if is_cpp_file(file)]
     for file in cpp_files:
@@ -21,6 +47,7 @@ def main():
             data = f.read()
 
         data = prefix_class_members(data)
+        data = convert_to_camel_case(data)
 
         with open(path + file, "w") as f:
             # Write the file
