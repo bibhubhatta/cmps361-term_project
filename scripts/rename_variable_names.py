@@ -1,8 +1,11 @@
 import os
 import re
 
-paths = [os.path.dirname(os.path.realpath(__file__)) + "\\" + "..\\" + "assembler_lib\\",
-         os.path.dirname(os.path.realpath(__file__)) + "\\" + "..\\"]
+this_file_path = os.path.realpath(__file__)
+project_path = f"{os.path.dirname(this_file_path)}\\..\\"
+
+paths = [project_path,
+         project_path + "assembler_lib\\"]
 
 
 def is_cpp_file(file_name):
