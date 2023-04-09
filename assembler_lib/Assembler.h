@@ -98,4 +98,13 @@ class Assembler
      * @param e The exception that was thrown.
      */
     void _record_error(const std::exception& e, const std::string& where) const;
+
+    /**
+     * @brief Checks if the label is too long.
+     * @details If the label is too long, a LabelTooLongError is thrown.
+     * @param instruction The instruction that contains the label.
+     * @throws LabelTooLongError
+     */
+    static void
+    _check_label_length(const SymbolicInstruction& instruction) ;
 };

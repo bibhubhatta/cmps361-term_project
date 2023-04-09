@@ -284,3 +284,28 @@ class SymbolicOpcodeInLabelError : public std::exception
 
     std::string _message;
 };
+
+/**
+ * @brief Exception thrown when a label is too long.
+ */
+class LabelTooLongError : public std::exception
+{
+  public:
+    explicit LabelTooLongError(std::string label)
+        : _label(std::move(label)),
+          _message {std::format("Label too long: '{}' ({} characters). "
+                                "Maximum length is 10 characters.",
+                                _label, _label.size())}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return _message.c_str();
+    }
+
+  private:
+    std::string _label;
+
+    std::string _message;
+};

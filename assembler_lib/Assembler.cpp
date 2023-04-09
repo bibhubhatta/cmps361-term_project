@@ -39,6 +39,8 @@ void Assembler::pass_1()
                 {
                     _symbol_table.add_symbol(current_instruction.get_label(),
                                              current_instruction_location);
+
+                    _check_label_length(current_instruction);
                 }
                 current_instruction_location = get_location_of_next_instruction(
                     current_instruction, current_instruction_location);
@@ -59,6 +61,14 @@ void Assembler::pass_1()
     catch (std::exception& e)
     {
         _record_error(e, "pass 1");
+    }
+}
+
+void Assembler::_check_label_length(const SymbolicInstruction& instruction)
+{
+    if (instruction.get_label().length() > 10)
+    {
+        throw LabelTooLongError(instruction.get_label());
     }
 }
 
