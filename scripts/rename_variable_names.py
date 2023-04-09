@@ -1,7 +1,8 @@
 import os
 import re
 
-path = os.path.dirname(os.path.realpath(__file__)) + "\\" + "..\\" + "assembler_lib\\"
+paths = [os.path.dirname(os.path.realpath(__file__)) + "\\" + "..\\" + "assembler_lib\\",
+         os.path.dirname(os.path.realpath(__file__)) + "\\" + "..\\"]
 
 
 def is_cpp_file(file_name):
@@ -41,15 +42,20 @@ def convert_to_camel_case(data):
 
 
 def main():
-    cpp_files = [file for file in os.listdir(path) if is_cpp_file(file)]
+    cpp_files = []
+    for path in paths:
+        for file in os.listdir(path):
+            if is_cpp_file(file):
+                cpp_files.append(path + file)
+
     for file in cpp_files:
-        with open(path + file, "r") as f:
+        with open(file, "r") as f:
             data = f.read()
 
         data = prefix_class_members(data)
         data = convert_to_camel_case(data)
 
-        with open(path + file, "w") as f:
+        with open(file, "w") as f:
             # Write the file
             f.write(data)
 
