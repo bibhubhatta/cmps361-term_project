@@ -15,7 +15,10 @@ enum class InstructionType
     MachineLanguage,
     AssemblerInstruction,
     Comment,
-    End
+    // End and Org are technically assembler instructions, but they are
+    // handled differently, so they have their own type
+    End,
+    Org,
 };
 
 // Maps symbolic opcode to type
@@ -24,7 +27,7 @@ const std::map<std::string, InstructionType, std::less<>> SymbolicOpcode_Type {
     // Assembler Instructions
     {"DC", InstructionType::AssemblerInstruction},
     {"DS", InstructionType::AssemblerInstruction},
-    {"ORG", InstructionType::AssemblerInstruction},
+    {"ORG", InstructionType::Org},
     {"END", InstructionType::End},
 
     // Machine Language Instructions

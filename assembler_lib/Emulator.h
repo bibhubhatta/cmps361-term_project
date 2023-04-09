@@ -24,6 +24,12 @@ class Emulator
     ~Emulator() = default;
 
     /**
+     * @brief Sets the origin of the instructions in the memory.
+     * @param instruction_origin The origin of the instructions.
+     */
+    void set_instruction_origin(int instruction_origin);
+
+    /**
      * @brief Records instructions and data into simulated memory.
      * @param location The location in memory to record the contents.
      * @param contents The contents to record in memory.
@@ -37,4 +43,6 @@ class Emulator
 
   private:
     std::array<long long, MEMORY_SIZE> _memory {0};
+
+    int _instruction_origin {0};
 };
