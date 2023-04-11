@@ -22,9 +22,9 @@ class Assembler
   public:
     /**
      * @brief Constructs an assembler object.
-     * @param a_source_file_path The path to the source file.
+     * @param a_SourceFilePath The path to the source file.
      */
-    explicit Assembler(const std::string& a_source_file_path);
+    explicit Assembler(const std::string& a_SourceFilePath);
     ~Assembler() = default;
 
     /**
@@ -43,7 +43,7 @@ class Assembler
      * @throws InvalidConstantSizeError
      * @throws SymbolicOpcodeInLabelError
      */
-    void pass_1();
+    void Pass1();
 
     /**
      * @brief Translates the symbolic instructions to numeric instructions.
@@ -62,28 +62,28 @@ class Assembler
      * @throws SymbolicOpcodeInLabelError
      * @throws UndefinedLabelError
      */
-    void pass_2();
+    void Pass2();
 
     /**
      * @brief Displays the symbol table.
      */
-    void display_symbol_table() const { _symbol_table.display_symbol_table(); }
+    void DisplaySymbolTable() const { m_SymbolTable.DisplaySymbolTable(); }
 
     /**
      * @brief Runs the program in the emulator.
      */
-    void run_program_in_emulator();
+    void RunProgramInEmulator();
 
   private:
-    FileAccess  _instructions_file;
-    SymbolTable _symbol_table;
-    Emulator    _emulator;
+    FileAccess  m_InstructionsFile;
+    SymbolTable m_SymbolTable;
+    Emulator    m_Emulator;
 
     /**
      * @brief Checks if the memory is sufficient to hold the program.
-     * @param a_last_instruction_location The location of the last instruction.
+     * @param a_LastInstructionLocation The location of the last instruction.
      */
-    void _check_memory_sufficiency(int a_last_instruction_location) const;
+    void m_CheckMemorySufficiency(int a_LastInstructionLocation) const;
 
     /**
      * @brief Checks if the end statement is valid and throws error if not.
@@ -91,20 +91,20 @@ class Assembler
      * program and there are no statements after it. If the end statement is
      * invalid, a StatementAfterEndError is thrown.
      */
-    void _check_if_end_is_valid();
+    void m_CheckIfEndIsValid();
 
     /**
      * @brief Records the error message in the error log.
-     * @param a_e The exception that was thrown.
+     * @param a_E The exception that was thrown.
      */
-    void _record_error(const std::exception& a_e,
-                       const std::string&    a_where) const;
+    void m_RecordError(const std::exception& a_E,
+                       const std::string&    a_Where) const;
 
     /**
      * @brief Checks if the label is too long.
      * @details If the label is too long, a LabelTooLongError is thrown.
-     * @param a_instruction The a_instruction that contains the label.
+     * @param a_Instruction The a_Instruction that contains the label.
      * @throws LabelTooLongError
      */
-    static void _check_label_length(const SymbolicInstruction& a_instruction);
+    static void m_CheckLabelLength(const SymbolicInstruction& a_Instruction);
 };

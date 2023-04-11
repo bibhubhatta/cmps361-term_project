@@ -16,19 +16,19 @@ class Errors
     /**
      * @brief Initializes error reports.
      */
-    static void init_error_reporting();
+    static void InitErrorReporting();
 
     /**
-     * @brief Records an error a_message.
-     * @param a_message The error a_message.
+     * @brief Records an error a_Message.
+     * @param a_Message The error a_Message.
      */
-    static void record_error(const std::string& a_message);
+    static void RecordError(const std::string& a_Message);
 
     /**
      * @brief Displays the collected error message.
      */
-    static void display_errors();
+    static void DisplayErrors();
 
   private:
-    static std::vector<std::string> _error_messages;
+    static std::vector<std::string> m_ErrorMessages;
 };

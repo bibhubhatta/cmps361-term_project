@@ -29,40 +29,40 @@ class SymbolTable
     const int MULTIPLEY_DEFINED_SYMBOL = -999;
 
     /**
-     * @brief Adds a a_symbol to the a_symbol table.
-     * @param a_symbol The a_symbol to add.
-     * @param a_location The a_location of the a_symbol.
+     * @brief Adds a a_Symbol to the a_Symbol table.
+     * @param a_Symbol The a_Symbol to add.
+     * @param a_Location The a_Location of the a_Symbol.
      */
-    void add_symbol(const std::string& a_symbol, int a_location);
+    void AddSymbol(const std::string& a_Symbol, int a_Location);
 
     /**
      * @brief Displays the symbol table.
      */
-    void display_symbol_table() const;
+    void DisplaySymbolTable() const;
 
     /**
-     * @brief Checks if a a_symbol is in the a_symbol table.
-     * @param a_symbol The a_symbol to check.
-     * @return True if the a_symbol is in the a_symbol table, false otherwise.
+     * @brief Checks if a a_Symbol is in the a_Symbol table.
+     * @param a_Symbol The a_Symbol to check.
+     * @return True if the a_Symbol is in the a_Symbol table, false otherwise.
      */
-    [[nodiscard]] bool lookup_symbol(const std::string& a_symbol,
-                                     int&               a_location);
+    [[nodiscard]] bool LookupSymbol(const std::string& a_Symbol,
+                                     int&               a_Location);
 
     /**
-     * @brief Gets the location of a a_symbol.
-     * @param a_symbol The a_symbol to get the location of.
-     * @return The location of the a_symbol.
+     * @brief Gets the location of a a_Symbol.
+     * @param a_Symbol The a_Symbol to get the location of.
+     * @return The location of the a_Symbol.
      */
-    [[nodiscard]] int get_location(const std::string& a_symbol) const;
+    [[nodiscard]] int GetLocation(const std::string& a_Symbol) const;
 
   private:
     // Maps symbols to location
-    std::map<std::string, int, std::less<>> _symbol_table;
+    std::map<std::string, int, std::less<>> m_SymbolTable;
 
     /**
-     * @brief Checks if a a_symbol is in the a_symbol table.
-     * @param a_symbol The a_symbol to check.
-     * @return True if the a_symbol is in the a_symbol table, false otherwise.
+     * @brief Checks if a a_Symbol is in the a_Symbol table.
+     * @param a_Symbol The a_Symbol to check.
+     * @return True if the a_Symbol is in the a_Symbol table, false otherwise.
      */
-    [[nodiscard]] bool _in_table(const std::string& a_symbol) const;
+    [[nodiscard]] bool m_InTable(const std::string& a_Symbol) const;
 };

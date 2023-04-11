@@ -25,16 +25,16 @@ class Emulator
 
     /**
      * @brief Records instructions and data into simulated memory.
-     * @param a_location The a_location in memory to record the a_contents.
-     * @param a_contents The a_contents to record in memory.
+     * @param a_Location The a_Location in memory to record the a_Contents.
+     * @param a_Contents The a_Contents to record in memory.
      */
-    void insert(int a_location, long long a_contents);
+    void insert(int a_Location, long long a_Contents);
 
     /**
      * @brief Runs the program recorded in memory.
      */
-    void run_program();
+    void RunProgram();
 
   private:
-    std::array<long long, MEMORY_SIZE> _memory {0};
+    std::array<long long, MEMORY_SIZE> m_Memory {0};
 };

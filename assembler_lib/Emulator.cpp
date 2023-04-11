@@ -3,27 +3,27 @@
 #include "Emulator.h"
 #include "InstructionDefinitions.h"
 
-void Emulator::insert(int a_location, long long int a_contents)
+void Emulator::insert(int a_Location, long long int a_Contents)
 {
-    _memory[a_location] = a_contents;
+    m_Memory[a_Location] = a_Contents;
 }
 
-void Emulator::run_program()
+void Emulator::RunProgram()
 {
-    int current_instruction_location = 100;
+    int CurrentInstructionLocation = 100;
 
-    while (current_instruction_location < MEMORY_SIZE)
+    while (CurrentInstructionLocation < MEMORY_SIZE)
     {
-        long long int current_instruction =
-            _memory[current_instruction_location];
+        long long int CurrentInstruction =
+            m_Memory[CurrentInstructionLocation];
 
-        int operand2 {static_cast<int>(current_instruction % 1'00000)};
-        current_instruction /= 1'00000;
+        int operand2 {static_cast<int>(CurrentInstruction % 1'00000)};
+        CurrentInstruction /= 1'00000;
 
-        int operand1 {static_cast<int>(current_instruction % 1'00000)};
-        current_instruction /= 1'00000;
+        int operand1 {static_cast<int>(CurrentInstruction % 1'00000)};
+        CurrentInstruction /= 1'00000;
 
-        auto opcode = static_cast<NumericOpcode>(current_instruction);
+        auto opcode = static_cast<NumericOpcode>(CurrentInstruction);
 
         using enum NumericOpcode;
 
@@ -33,48 +33,48 @@ void Emulator::run_program()
         case DS:
             break;
         case ADD:
-            _memory[operand1] += _memory[operand2];
+            m_Memory[operand1] += m_Memory[operand2];
             break;
         case SUB:
-            _memory[operand1] -= _memory[operand2];
+            m_Memory[operand1] -= m_Memory[operand2];
             break;
         case MULT:
-            _memory[operand1] *= _memory[operand2];
+            m_Memory[operand1] *= m_Memory[operand2];
             break;
         case DIV:
-            _memory[operand1] /= _memory[operand2];
+            m_Memory[operand1] /= m_Memory[operand2];
             break;
         case COPY:
-            _memory[operand1] = _memory[operand2];
+            m_Memory[operand1] = m_Memory[operand2];
             break;
         case READ:
             std::cout << "? ";
-            std::cin >> _memory[operand1];
+            std::cin >> m_Memory[operand1];
             break;
         case WRITE:
-            std::cout << _memory[operand1] << std::endl;
+            std::cout << m_Memory[operand1] << std::endl;
             break;
         case B:
-            current_instruction_location = operand1;
+            CurrentInstructionLocation = operand1;
             continue;
         case BM:
-            if (_memory[operand2] < 0)
+            if (m_Memory[operand2] < 0)
             {
-                current_instruction_location = operand1;
+                CurrentInstructionLocation = operand1;
                 continue;
             }
             break;
         case BZ:
-            if (_memory[operand2] == 0)
+            if (m_Memory[operand2] == 0)
             {
-                current_instruction_location = operand1;
+                CurrentInstructionLocation = operand1;
                 continue;
             }
             break;
         case BP:
-            if (_memory[operand2] > 0)
+            if (m_Memory[operand2] > 0)
             {
-                current_instruction_location = operand1;
+                CurrentInstructionLocation = operand1;
                 continue;
             }
             break;
@@ -82,6 +82,6 @@ void Emulator::run_program()
             return;
         }
 
-        current_instruction_location++;
+        CurrentInstructionLocation++;
     }
 }

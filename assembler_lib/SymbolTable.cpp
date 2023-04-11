@@ -9,32 +9,32 @@
 #include "Exceptions.h"
 #include "SymbolTable.h"
 
-void SymbolTable::add_symbol(const std::string& a_symbol, int a_location)
+void SymbolTable::AddSymbol(const std::string& a_Symbol, int a_Location)
 {
-    if (_in_table(a_symbol))
+    if (m_InTable(a_Symbol))
     {
-        int previous_location {_symbol_table.at(a_symbol)};
+        int PreviousLocation {m_SymbolTable.at(a_Symbol)};
 
-        _symbol_table[a_symbol] = MULTIPLEY_DEFINED_SYMBOL;
+        m_SymbolTable[a_Symbol] = MULTIPLEY_DEFINED_SYMBOL;
 
-        // If the a_symbol is defined more than twice, the exception won't specify
-        // the a_location of the second definition because a_location is set to
+        // If the a_Symbol is defined more than twice, the exception won't specify
+        // the a_Location of the second definition because a_Location is set to
         // MULTIPLEY_DEFINED_SYMBOL.
 
-        throw MultiplyDefinedLabelError(a_symbol, previous_location,
-                                        a_location);
+        throw MultiplyDefinedLabelError(a_Symbol, PreviousLocation,
+                                        a_Location);
     }
 
-    _symbol_table[a_symbol] = a_location;
+    m_SymbolTable[a_Symbol] = a_Location;
 }
 
-void SymbolTable::display_symbol_table() const
+void SymbolTable::DisplaySymbolTable() const
 {
     std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
                              "Symbol #", "Symbol", "Location");
 
     int counter {0};
-    for (const auto& [symbol, location] : _symbol_table)
+    for (const auto& [symbol, location] : m_SymbolTable)
     {
         std::cout << std::format("{:<10}{:<10}{:<10}\n", // Set format
                                  counter, symbol, location);
@@ -42,29 +42,29 @@ void SymbolTable::display_symbol_table() const
     }
 }
 
-bool SymbolTable::_in_table(const std::string& a_symbol) const
+bool SymbolTable::m_InTable(const std::string& a_Symbol) const
 {
-    auto symbol_pointer {_symbol_table.find(a_symbol)};
-    return symbol_pointer != _symbol_table.end();
+    auto SymbolPointer {m_SymbolTable.find(a_Symbol)};
+    return SymbolPointer != m_SymbolTable.end();
 }
 
-bool SymbolTable::lookup_symbol(const std::string& a_symbol, int& a_location)
+bool SymbolTable::LookupSymbol(const std::string& a_Symbol, int& a_Location)
 {
-    if (!_in_table(a_symbol))
+    if (!m_InTable(a_Symbol))
     {
         return false;
     }
 
-    a_location = _symbol_table.at(a_symbol);
+    a_Location = m_SymbolTable.at(a_Symbol);
     return true;
 }
 
-int SymbolTable::get_location(const std::string& a_symbol) const
+int SymbolTable::GetLocation(const std::string& a_Symbol) const
 {
-    if (!_in_table(a_symbol))
+    if (!m_InTable(a_Symbol))
     {
-        throw UndefinedLabelError(a_symbol);
+        throw UndefinedLabelError(a_Symbol);
     }
 
-    return _symbol_table.at(a_symbol);
+    return m_SymbolTable.at(a_Symbol);
 }
