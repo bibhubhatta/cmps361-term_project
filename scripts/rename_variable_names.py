@@ -32,14 +32,18 @@ def convert_to_camel_case(data):
 
 def get_camel_case(word):
     parts = word.split("_")
+
+    if len(parts) == 0:
+        return word
+
     first_part = parts.pop(0)
     if first_part == "m":  # If the variable is class member
-        camel_cased_word = "m_" + parts.pop(0)
+        camel_cased_word = "m_" + parts.pop(0).capitalize()
     elif first_part == "a":  # If the variable is a function argument
-        camel_cased_word = "a_" + parts.pop(0)
+        camel_cased_word = "a_" + parts.pop(0).capitalize()
     else:
-        camel_cased_word = first_part
-    
+        camel_cased_word = first_part.capitalize()
+
     for part in parts:
         # Capitalize the first letter
         camel_cased_word += part.capitalize()
