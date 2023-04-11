@@ -26,7 +26,7 @@ void CheckArgumentCount(int argc)
 void DisplaySymbolTable(const Assembler& assem)
 {
     std::cout << "Symbol Table:\n\n";
-    assem.displaySymbolTable();
+    assem.DisplaySymbolTable();
     std::cout << "________________________________________________________\n\n";
 }
 
@@ -37,7 +37,7 @@ void DisplaySymbolTable(const Assembler& assem)
 void DisplayTranslation(Assembler& assem)
 {
     std::cout << "Translation of the Assembler Language Program:\n\n";
-    assem.pass2();
+    assem.Pass2();
     std::cout << "________________________________________________________\n\n";
 }
 
@@ -63,27 +63,27 @@ int main(int argc, char* argv[])
     {
         CheckArgumentCount(argc);
 
-        std::string sourceFilePath = argv[1];
+        std::string SourceFilePath = argv[1];
 
-        Errors::initErrorReporting();
+        Errors::InitErrorReporting();
 
-        Assembler assem(sourceFilePath);
+        Assembler assem(SourceFilePath);
 
-        assem.pass1();
+        assem.Pass1();
 
         DisplaySymbolTable(assem);
         PressEnterToContinue();
 
         DisplayTranslation(assem);
         // Display the errors that were encountered during the translation.
-        Errors::displayErrors();
+        Errors::DisplayErrors();
 
         PressEnterToContinue();
 
         // Run the emulator on the translation of the assembler language program
         // that was generated in Pass II.
         std::cout << "\nResults from emulating program:\n\n";
-        assem.runProgramInEmulator();
+        assem.RunProgramInEmulator();
         std::cout << "\nEnd of emulation\n\n";
     }
     catch (const std::exception& e)

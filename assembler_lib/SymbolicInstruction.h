@@ -22,7 +22,7 @@ class SymbolicInstruction
   public:
     /**
      * @brief Constructs a symbolic instruction object.
-     * @param a_line The a_line to construct the symbolic instruction from.
+     * @param a_Line The a_Line to construct the symbolic instruction from.
      * @throws InvalidOpcodeError
      * @throws MultiplyDefinedLabelError
      * @throws UnmatchedOperandCountError
@@ -34,7 +34,7 @@ class SymbolicInstruction
      * @throws InvalidConstantSizeError
      * @throws SymbolicOpcodeInLabelError
      */
-    explicit SymbolicInstruction(const std::string& a_line);
+    explicit SymbolicInstruction(const std::string& a_Line);
 
     /**
      * @brief Default destructor.
@@ -45,80 +45,80 @@ class SymbolicInstruction
      * @brief Checks if the instruction contains a label.
      * @return True if the instruction contains a label, false otherwise.
      */
-    [[nodiscard]] bool containsLabel() const;
+    [[nodiscard]] bool ContainsLabel() const;
 
     /**
      * @brief Gets the type of the instruction.
      * @return The type of the instruction.
      */
-    [[nodiscard]] InstructionType getType() const;
+    [[nodiscard]] InstructionType GetType() const;
 
     /**
      * @brief Gets the opcode of the instruction.
      * @return The opcode of the instruction in upper case.
      */
-    [[nodiscard]] std::string getOpcode() const;
+    [[nodiscard]] std::string GetOpcode() const;
 
     /**
      * @brief Gets the first operand of the instruction.
      * @return The first operand of the instruction.
      */
-    [[nodiscard]] std::string getOperand1() const;
+    [[nodiscard]] std::string GetOperand1() const;
 
     /**
      * @brief Gets the second operand of the instruction.
      * @return The second operand of the instruction.
      */
-    [[nodiscard]] std::string getOperand2() const;
+    [[nodiscard]] std::string GetOperand2() const;
 
     /**
      * @brief Gets the label of the instruction.
      * @return The label of the instruction.
      */
-    [[nodiscard]] std::string getLabel() const;
+    [[nodiscard]] std::string GetLabel() const;
 
     /**
      * @brief Gets the original instruction.
      * @return The original instruction.
      */
-    [[nodiscard]] std::string getOriginalInstruction() const;
+    [[nodiscard]] std::string GetOriginalInstruction() const;
 
   private:
-    std::string m_originalInstruction;
+    std::string m_OriginalInstruction;
 
-    std::string m_label;
-    std::string m_opcode;
-    std::string m_operand1;
-    std::string m_operand2;
+    std::string m_Label;
+    std::string m_Opcode;
+    std::string m_Operand1;
+    std::string m_Operand2;
 
     /**
      * @brief Checks if the operand count matches the operand count for
      * the instruction. If not, throws UnmatchedOperandCountError.
      * @throws UnmatchedOperandCountError
      */
-    void m_checkOperandCount() const;
+    void m_CheckOperandCount() const;
 
     /**
      * @brief Checks if the operand type matches the operand type for
      * the instruction. If not, throws UnmatchedOperandTypeError.
      * @throws UnmatchedOperandTypeError
      */
-    void m_checkOperandType() const;
+    void m_CheckOperandType() const;
 
     /**
-     * @brief Checks if there are any a_extra elements in the instruction. If so,
+     * @brief Checks if there are any a_Extra elements in the instruction. If so,
      * throws ExtraStatementElementsError.
-     * @param a_extra The a_extra elements in the instruction.
+     * @param a_Extra The a_Extra elements in the instruction.
      * @throws ExtraStatementElementsError
      */
-    void m_checkExtraElements(const std::string& a_extra) const;
+    void m_CheckExtraElements(const std::string& a_Extra) const;
 
     /**
      * @brief Checks if the current instruction is "DC." Then, checks if the
      * constant size is valid. If not, throws InvalidConstantSizeError.
      * @throws InvalidConstantSizeError
      */
-    void m_checkConstantSize() const;
+    void m_CheckConstantSize() const;
 
     /**
      * @brief Checks if the label is valid.
@@ -126,5 +126,5 @@ class SymbolicInstruction
      * SymbolicOpcodeInLabelError.
      * @throws SymbolicOpcodeInLabelError
      */
-    void m_checkLabel() const;
+    void m_CheckLabel() const;
 };

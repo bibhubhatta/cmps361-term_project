@@ -6,97 +6,97 @@
 #include "HelperFunctions.h"
 
 int GetLocationOfNextInstruction(
-    const SymbolicInstruction& a_currentInstruction, int a_currentLocation)
+    const SymbolicInstruction& a_CurrentInstruction, int a_CurrentLocation)
 {
-    int nextLocation {a_currentLocation + 1};
+    int NextLocation {a_CurrentLocation + 1};
 
-    std::string opcode {a_currentInstruction.getOpcode()};
+    std::string opcode {a_CurrentInstruction.GetOpcode()};
 
     if (opcode == "ORG")
     {
-        nextLocation = std::stoi(a_currentInstruction.getOperand1());
+        NextLocation = std::stoi(a_CurrentInstruction.GetOperand1());
     }
 
     if (opcode == "DS")
     {
-        nextLocation = a_currentLocation + std::stoi(a_currentInstruction.getOperand1());
+        NextLocation = a_CurrentLocation + std::stoi(a_CurrentInstruction.GetOperand1());
     }
 
-    return nextLocation;
+    return NextLocation;
 }
 
-bool IsCommentOrEmpty(const std::string& a_line)
+bool IsCommentOrEmpty(const std::string& a_Line)
 {
-    if (a_line.empty()) // Empty a_line
+    if (a_Line.empty()) // Empty a_Line
         return true;
 
-    if (a_line[0] == ';') // Comment
+    if (a_Line[0] == ';') // Comment
         return true;
 
     return false;
 }
 
-bool LineContainsLabel(const std::string& a_line)
+bool LineContainsLabel(const std::string& a_Line)
 {
-    std::string uncommentedLine = GetUncommentedLine(a_line);
-    return uncommentedLine[0] != ' ' && uncommentedLine[0] != '\t';
+    std::string UncommentedLine = GetUncommentedLine(a_Line);
+    return UncommentedLine[0] != ' ' && UncommentedLine[0] != '\t';
 }
 
-std::string GetUncommentedLine(const std::string& a_line)
+std::string GetUncommentedLine(const std::string& a_Line)
 {
-    if (auto commentPosition {a_line.find(';')};
-        commentPosition != std::string::npos)
+    if (auto CommentPosition {a_Line.find(';')};
+        CommentPosition != std::string::npos)
     {
-        return a_line.substr(0, commentPosition);
+        return a_Line.substr(0, CommentPosition);
     }
-    return a_line;
+    return a_Line;
 }
 
-std::string GetUpperCase(const std::string& a_str)
+std::string GetUpperCase(const std::string& a_Str)
 {
     std::string upper;
-    for (auto c : a_str)
+    for (auto c : a_Str)
         upper += std::toupper(c);
 
     return upper;
 }
 
-std::string ReplaceCommas(const std::string& a_str)
+std::string ReplaceCommas(const std::string& a_Str)
 {
-    std::string replaced {a_str};
+    std::string replaced {a_Str};
     std::ranges::replace(replaced.begin(), replaced.end(), ',', ' ');
     return replaced;
 }
 
-std::string RemoveCommentsAndCommas(const std::string& a_line)
+std::string RemoveCommentsAndCommas(const std::string& a_Line)
 {
-    std::string uncommentedLine {GetUncommentedLine(a_line)};
-    return ReplaceCommas(uncommentedLine);
+    std::string UncommentedLine {GetUncommentedLine(a_Line)};
+    return ReplaceCommas(UncommentedLine);
 }
 
-int GetInstructionOperandCount(const std::string& a_opcode)
+int GetInstructionOperandCount(const std::string& a_Opcode)
 {
-    std::string upperOpcode {GetUpperCase(a_opcode)};
+    std::string UpperOpcode {GetUpperCase(a_Opcode)};
 
     using enum InstructionType;
 
     try
     {
-        NumericOpcode opcodeEnum {
-            SymbolicOpcode_NumericOpcode.at(upperOpcode)};
-        return NumericOpcode_OperandCount.at(opcodeEnum);
+        NumericOpcode OpcodeEnum {
+            SymbolicOpcode_NumericOpcode.at(UpperOpcode)};
+        return NumericOpcode_OperandCount.at(OpcodeEnum);
     }
     catch (const std::out_of_range&)
     {
-        throw InvalidOpcodeError {a_opcode};
+        throw InvalidOpcodeError {a_Opcode};
     }
 }
 
-std::string GetOperandTypeStr(OperandType a_operandType)
+std::string GetOperandTypeStr(OperandType a_OperandType)
 {
     using enum OperandType;
 
-    switch (a_operandType)
+    switch (a_OperandType)
     {
     case Symbolic:
         return "Symbolic";
@@ -109,22 +109,22 @@ std::string GetOperandTypeStr(OperandType a_operandType)
     return "Unknown";
 }
 
-OperandType GetOperandType(const std::string& a_operand)
+OperandType GetOperandType(const std::string& a_Operand)
 {
     using enum OperandType;
-    if (a_operand.empty())
+    if (a_Operand.empty())
         return None;
 
-    if (std::isdigit(a_operand[0]))
+    if (std::isdigit(a_Operand[0]))
         return Numeric;
 
     return Symbolic;
 }
 
-void CreateSourceFile(const std::string& a_source,
-                        const std::string& a_sourceFilePath)
+void CreateSourceFile(const std::string& a_Source,
+                        const std::string& a_SourceFilePath)
 {
-    std::ofstream sourceFile {a_sourceFilePath};
-    sourceFile << a_source;
-    sourceFile.close();
+    std::ofstream SourceFile {a_SourceFilePath};
+    SourceFile << a_Source;
+    SourceFile.close();
 }

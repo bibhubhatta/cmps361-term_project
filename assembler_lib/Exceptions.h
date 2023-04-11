@@ -19,21 +19,21 @@
 class InvalidOpcodeError : public std::exception
 {
   public:
-    explicit InvalidOpcodeError(std::string a_opcode)
-        : m_opcode(std::move(a_opcode)),
-          m_message {std::format("Invalid a_opcode: '{}'", m_opcode)}
+    explicit InvalidOpcodeError(std::string a_Opcode)
+        : m_Opcode(std::move(a_Opcode)),
+          m_Message {std::format("Invalid a_Opcode: '{}'", m_Opcode)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_opcode;
+    std::string m_Opcode;
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -42,28 +42,28 @@ class InvalidOpcodeError : public std::exception
 class MultiplyDefinedLabelError : public std::exception
 {
   public:
-    explicit MultiplyDefinedLabelError(std::string a_label,
-                                       int         a_previousLocation,
-                                       int         a_newLocation)
-        : m_label(std::move(a_label)), m_previousLocation(a_previousLocation),
-          m_newLocation(a_newLocation),
-          m_message {std::format(
-              "Multiply defined a_label: '{}' at address {} and address {}",
-              m_label, m_previousLocation, m_newLocation)}
+    explicit MultiplyDefinedLabelError(std::string a_Label,
+                                       int         a_PreviousLocation,
+                                       int         a_NewLocation)
+        : m_Label(std::move(a_Label)), m_PreviousLocation(a_PreviousLocation),
+          m_NewLocation(a_NewLocation),
+          m_Message {std::format(
+              "Multiply defined a_Label: '{}' at address {} and address {}",
+              m_Label, m_PreviousLocation, m_NewLocation)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_label;
-    int         m_previousLocation {0};
-    int         m_newLocation {0};
+    std::string m_Label;
+    int         m_PreviousLocation {0};
+    int         m_NewLocation {0};
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -72,28 +72,28 @@ class MultiplyDefinedLabelError : public std::exception
 class UnmatchedOperandCountError : public std::exception
 {
   public:
-    explicit UnmatchedOperandCountError(std::string a_symbolicOpcode,
-                                        int         a_expectedCount,
-                                        int         a_actualCount)
-        : m_symbolicOpcode(std::move(a_symbolicOpcode)),
-          m_expectedCount(a_expectedCount), m_actualCount(a_actualCount),
-          m_message {
+    explicit UnmatchedOperandCountError(std::string a_SymbolicOpcode,
+                                        int         a_ExpectedCount,
+                                        int         a_ActualCount)
+        : m_SymbolicOpcode(std::move(a_SymbolicOpcode)),
+          m_ExpectedCount(a_ExpectedCount), m_ActualCount(a_ActualCount),
+          m_Message {
               std::format("Unmatched operand count in '{}' expected {} but "
                           "found {}",
-                          m_symbolicOpcode, m_expectedCount, m_actualCount)}
+                          m_SymbolicOpcode, m_ExpectedCount, m_ActualCount)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_symbolicOpcode;
-    int         m_expectedCount {0};
-    int         m_actualCount {0};
-    std::string m_message;
+    std::string m_SymbolicOpcode;
+    int         m_ExpectedCount {0};
+    int         m_ActualCount {0};
+    std::string m_Message;
 };
 
 /**
@@ -102,27 +102,27 @@ class UnmatchedOperandCountError : public std::exception
 class InvalidOperandTypeError : public std::exception
 {
   public:
-    explicit InvalidOperandTypeError(std::string a_operand, OperandType a_expected,
-                                     OperandType a_actual)
-        : m_operand(std::move(a_operand)), m_expected(a_expected), m_actual(a_actual),
-          m_message {std::format("Invalid a_operand type: '{}' a_expected {} but "
+    explicit InvalidOperandTypeError(std::string a_Operand, OperandType a_Expected,
+                                     OperandType a_Actual)
+        : m_Operand(std::move(a_Operand)), m_Expected(a_Expected), m_Actual(a_Actual),
+          m_Message {std::format("Invalid a_Operand type: '{}' a_Expected {} but "
                                 "found {}",
-                                m_operand, GetOperandTypeStr(m_expected),
-                          GetOperandTypeStr(m_actual))}
+                                m_Operand, GetOperandTypeStr(m_Expected),
+                                GetOperandTypeStr(m_Actual))}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_operand;
-    OperandType m_expected {OperandType::None};
-    OperandType m_actual {OperandType::None};
+    std::string m_Operand;
+    OperandType m_Expected {OperandType::None};
+    OperandType m_Actual {OperandType::None};
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -131,24 +131,24 @@ class InvalidOperandTypeError : public std::exception
 class ExtraStatementElementsError : public std::exception
 {
   public:
-    explicit ExtraStatementElementsError(std::string a_statement,
-                                         std::string a_extra)
-        : m_statement(std::move(a_statement)), m_extra(std::move(a_extra)),
-          m_message {
-              std::format("Extra  element '{}' in '{}'", m_extra, m_statement)}
+    explicit ExtraStatementElementsError(std::string a_Statement,
+                                         std::string a_Extra)
+        : m_Statement(std::move(a_Statement)), m_Extra(std::move(a_Extra)),
+          m_Message {
+              std::format("Extra  element '{}' in '{}'", m_Extra, m_Statement)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_statement;
-    std::string m_extra;
+    std::string m_Statement;
+    std::string m_Extra;
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -157,23 +157,23 @@ class ExtraStatementElementsError : public std::exception
 class InsufficientMemoryError : public std::exception
 {
   public:
-    explicit InsufficientMemoryError(int a_required, int a_available)
-        : m_required(a_required), m_available(a_available),
-          m_message {std::format("Insufficient memory a_required {} a_available {}",
-                                m_required, m_available)}
+    explicit InsufficientMemoryError(int a_Required, int a_Available)
+        : m_Required(a_Required), m_Available(a_Available),
+          m_Message {std::format("Insufficient memory a_Required {} a_Available {}",
+                                m_Required, m_Available)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    int m_required {0};
-    int m_available {0};
+    int m_Required {0};
+    int m_Available {0};
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -185,11 +185,11 @@ class MissingEndStatementError : public std::exception
     MissingEndStatementError() = default;
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_message {"Missing END statement"};
+    std::string m_Message {"Missing END statement"};
 };
 
 /**
@@ -198,21 +198,21 @@ class MissingEndStatementError : public std::exception
 class StatementAfterEndError : public std::exception
 {
   public:
-    explicit StatementAfterEndError(std::string a_statement)
-        : m_statement(std::move(a_statement)),
-          m_message {std::format("Statement after END: '{}'", m_statement)}
+    explicit StatementAfterEndError(std::string a_Statement)
+        : m_Statement(std::move(a_Statement)),
+          m_Message {std::format("Statement after END: '{}'", m_Statement)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_statement;
+    std::string m_Statement;
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -221,24 +221,24 @@ class StatementAfterEndError : public std::exception
 class InvalidConstantSizeError : public std::exception
 {
   public:
-    explicit InvalidConstantSizeError(std::string a_constant, int a_value)
-        : m_constant(std::move(a_constant)), m_value(a_value),
-          m_message {std::format("Invalid a_constant size: '{}' a_value {}. "
+    explicit InvalidConstantSizeError(std::string a_Constant, int a_Value)
+        : m_Constant(std::move(a_Constant)), m_Value(a_Value),
+          m_Message {std::format("Invalid a_Constant size: '{}' a_Value {}. "
                                 "Constant must be between 0 and 99,999",
-                                m_constant, m_value)}
+                                m_Constant, m_Value)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_constant;
-    int         m_value {0};
+    std::string m_Constant;
+    int         m_Value {0};
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -247,21 +247,21 @@ class InvalidConstantSizeError : public std::exception
 class UndefinedLabelError : public std::exception
 {
   public:
-    explicit UndefinedLabelError(std::string a_label)
-        : m_label(std::move(a_label)),
-          m_message {std::format("Undefined a_label: '{}'", m_label)}
+    explicit UndefinedLabelError(std::string a_Label)
+        : m_Label(std::move(a_Label)),
+          m_Message {std::format("Undefined a_Label: '{}'", m_Label)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_label;
+    std::string m_Label;
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -270,21 +270,21 @@ class UndefinedLabelError : public std::exception
 class SymbolicOpcodeInLabelError : public std::exception
 {
   public:
-    explicit SymbolicOpcodeInLabelError(std::string a_label)
-        : m_label(std::move(a_label)),
-          m_message {std::format("Symbolic opcode in a_label: '{}'", m_label)}
+    explicit SymbolicOpcodeInLabelError(std::string a_Label)
+        : m_Label(std::move(a_Label)),
+          m_Message {std::format("Symbolic opcode in a_Label: '{}'", m_Label)}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_label;
+    std::string m_Label;
 
-    std::string m_message;
+    std::string m_Message;
 };
 
 /**
@@ -293,21 +293,21 @@ class SymbolicOpcodeInLabelError : public std::exception
 class LabelTooLongError : public std::exception
 {
   public:
-    explicit LabelTooLongError(std::string a_label)
-        : m_label(std::move(a_label)),
-          m_message {std::format("Label too long: '{}' ({} characters). "
+    explicit LabelTooLongError(std::string a_Label)
+        : m_Label(std::move(a_Label)),
+          m_Message {std::format("Label too long: '{}' ({} characters). "
                                 "Maximum length is 10 characters.",
-                                m_label, m_label.size())}
+                                m_Label, m_Label.size())}
     {
     }
 
     [[nodiscard]] const char* what() const noexcept override
     {
-        return m_message.c_str();
+        return m_Message.c_str();
     }
 
   private:
-    std::string m_label;
+    std::string m_Label;
 
-    std::string m_message;
+    std::string m_Message;
 };

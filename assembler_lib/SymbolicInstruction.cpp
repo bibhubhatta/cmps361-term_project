@@ -6,35 +6,35 @@
 #include "InstructionDefinitions.h"
 #include "SymbolicInstruction.h"
 
-SymbolicInstruction::SymbolicInstruction(const std::string& a_line)
-    : m_originalInstruction(a_line)
+SymbolicInstruction::SymbolicInstruction(const std::string& a_Line)
+    : m_OriginalInstruction(a_Line)
 {
-    if (IsCommentOrEmpty(a_line))
+    if (IsCommentOrEmpty(a_Line))
         return;
 
-    std::string processedLine {RemoveCommentsAndCommas(a_line)};
+    std::string ProcessedLine {RemoveCommentsAndCommas(a_Line)};
 
-    std::istringstream iss {processedLine};
+    std::istringstream iss {ProcessedLine};
 
     std::string extra; // Used to check if there is anything after instruction
 
-    if (LineContainsLabel(processedLine))
-        iss >> m_label;
+    if (LineContainsLabel(ProcessedLine))
+        iss >> m_Label;
 
-    iss >> m_opcode >> m_operand1 >> m_operand2 >> extra;
+    iss >> m_Opcode >> m_Operand1 >> m_Operand2 >> extra;
 
-    m_checkLabel();
-    m_checkOperandCount();
-    m_checkOperandType();
-    m_checkExtraElements(extra);
-    m_checkConstantSize();
+    m_CheckLabel();
+    m_CheckOperandCount();
+    m_CheckOperandType();
+    m_CheckExtraElements(extra);
+    m_CheckConstantSize();
 }
 
-void SymbolicInstruction::m_checkExtraElements(const std::string& a_extra) const
+void SymbolicInstruction::m_CheckExtraElements(const std::string& a_Extra) const
 {
-    if (!a_extra.empty())
+    if (!a_Extra.empty())
     {
-        throw ExtraStatementElementsError(m_originalInstruction, a_extra);
+        throw ExtraStatementElementsError(m_OriginalInstruction, a_Extra);
     }
 }
 
@@ -42,111 +42,114 @@ void SymbolicInstruction::m_checkExtraElements(const std::string& a_extra) const
  * @brief Checks if the number of operands matches the number of operands for
  * the instruction. If not, throws UnmatchedOperandCountError.
  */
-void SymbolicInstruction::m_checkOperandCount() const
+void SymbolicInstruction::m_CheckOperandCount() const
 {
-    int operandCount {GetInstructionOperandCount(getOpcode())};
+    int OperandCount {GetInstructionOperandCount(GetOpcode())};
 
-    if (operandCount == 0 && !m_operand1.empty())
+    if (OperandCount == 0 && !m_Operand1.empty())
     {
-        throw UnmatchedOperandCountError(m_originalInstruction, 0, 1);
+        throw UnmatchedOperandCountError(m_OriginalInstruction, 0, 1);
     }
 
-    if (operandCount == 0 && !m_operand2.empty())
+    if (OperandCount == 0 && !m_Operand2.empty())
     {
-        throw UnmatchedOperandCountError(m_originalInstruction, 0, 2);
+        throw UnmatchedOperandCountError(m_OriginalInstruction, 0, 2);
     }
 
-    if (operandCount == 1 && m_operand1.empty())
+    if (OperandCount == 1 && m_Operand1.empty())
     {
-        throw UnmatchedOperandCountError(m_originalInstruction, 1, 0);
+        throw UnmatchedOperandCountError(m_OriginalInstruction, 1, 0);
     }
 
-    if (operandCount == 1 && !m_operand2.empty())
+    if (OperandCount == 1 && !m_Operand2.empty())
     {
-        throw UnmatchedOperandCountError(m_originalInstruction, 1, 2);
+        throw UnmatchedOperandCountError(m_OriginalInstruction, 1, 2);
     }
 
-    if (operandCount == 2 && (m_operand1.empty() || m_operand2.empty()))
+    if (OperandCount == 2 && (m_Operand1.empty() || m_Operand2.empty()))
     {
-        if (m_operand1.empty())
-            throw UnmatchedOperandCountError(m_originalInstruction, 2, 1);
+        if (m_Operand1.empty())
+            throw UnmatchedOperandCountError(m_OriginalInstruction, 2, 1);
         else
         {
-            throw UnmatchedOperandCountError(m_originalInstruction, 2, 0);
+            throw UnmatchedOperandCountError(m_OriginalInstruction, 2, 0);
         }
     }
 }
 
-bool SymbolicInstruction::containsLabel() const { return !m_label.empty(); }
+bool SymbolicInstruction::ContainsLabel() const { return !m_Label.empty(); }
 
-InstructionType SymbolicInstruction::getType() const
+InstructionType SymbolicInstruction::GetType() const
 {
     using enum InstructionType;
 
-    if (IsCommentOrEmpty(m_originalInstruction))
+    if (IsCommentOrEmpty(m_OriginalInstruction))
         return Comment;
 
     try
     {
-        std::string opcode {getOpcode()};
+        std::string opcode {GetOpcode()};
         return SymbolicOpcode_Type.at(opcode);
     }
     catch (const std::out_of_range&)
     {
-        std::cerr << "Error: Invalid instruction: " << m_originalInstruction
+        std::cerr << "Error: Invalid instruction: " << m_OriginalInstruction
                   << '\n';
         exit(1);
     }
 }
 
-std::string SymbolicInstruction::getOpcode() const
+std::string SymbolicInstruction::GetOpcode() const
 {
-    return GetUpperCase(m_opcode);
+    return GetUpperCase(m_Opcode);
 }
 
-std::string SymbolicInstruction::getOperand1() const { return m_operand1; }
+std::string SymbolicInstruction::GetOperand1() const { return m_Operand1; }
 
-std::string SymbolicInstruction::getOperand2() const { return m_operand2; }
+std::string SymbolicInstruction::GetOperand2() const { return m_Operand2; }
 
-std::string SymbolicInstruction::getLabel() const { return m_label; }
+std::string SymbolicInstruction::GetLabel() const { return m_Label; }
 
-std::string SymbolicInstruction::getOriginalInstruction() const
+std::string SymbolicInstruction::GetOriginalInstruction() const
 {
-    return m_originalInstruction;
+    return m_OriginalInstruction;
 }
 
-void SymbolicInstruction::m_checkOperandType() const
+void SymbolicInstruction::m_CheckOperandType() const
 {
     using enum OperandType;
 
-    std::string opcode {getOpcode()};
-    int         operandCount {GetInstructionOperandCount(opcode)};
-    OperandType expectedType {SymbolicOpcode_OperandType.at(opcode)};
-    OperandType actualType1 {GetOperandType(m_operand1)};
-    OperandType actualType2 {GetOperandType(m_operand2)};
+    std::string opcode {GetOpcode()};
+    int         OperandCount {GetInstructionOperandCount(opcode)};
+    OperandType ExpectedType {SymbolicOpcode_OperandType.at(opcode)};
+    OperandType ActualType1 {GetOperandType(m_Operand1)};
+    OperandType ActualType2 {GetOperandType(m_Operand2)};
 
-    switch (operandCount)
+    switch (OperandCount)
     {
     case 0:
         break;
     case 1:
-        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_operand1))
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            GetOperandType(m_Operand1))
         {
-            throw InvalidOperandTypeError(m_operand1, expectedType,
-                                          actualType1);
+            throw InvalidOperandTypeError(m_Operand1, ExpectedType,
+                                          ActualType1);
         }
         break;
     case 2:
-        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_operand1))
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            GetOperandType(m_Operand1))
         {
-            throw InvalidOperandTypeError(m_operand1, expectedType,
-                                          actualType1);
+            throw InvalidOperandTypeError(m_Operand1, ExpectedType,
+                                          ActualType1);
         }
 
-        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_operand2))
+        if (SymbolicOpcode_OperandType.at(opcode) !=
+            GetOperandType(m_Operand2))
         {
-            throw InvalidOperandTypeError(m_operand2, expectedType,
-                                          actualType2);
+            throw InvalidOperandTypeError(m_Operand2, ExpectedType,
+                                          ActualType2);
         }
         break;
     default:
@@ -154,23 +157,23 @@ void SymbolicInstruction::m_checkOperandType() const
     }
 }
 
-void SymbolicInstruction::m_checkConstantSize() const
+void SymbolicInstruction::m_CheckConstantSize() const
 {
-    std::string opcode {GetUpperCase(m_opcode)};
+    std::string opcode {GetUpperCase(m_Opcode)};
 
-    if (opcode == "DC" && (stoi(m_operand1) > 99'999 || stoi(m_operand1) < 0))
+    if (opcode == "DC" && (stoi(m_Operand1) > 99'999 || stoi(m_Operand1) < 0))
     {
-        throw InvalidConstantSizeError(m_originalInstruction, stoi(m_operand1));
+        throw InvalidConstantSizeError(m_OriginalInstruction, stoi(m_Operand1));
     }
 }
 
-void SymbolicInstruction::m_checkLabel() const
+void SymbolicInstruction::m_CheckLabel() const
 {
-    std::string label = GetUpperCase(m_label);
+    std::string label = GetUpperCase(m_Label);
     if (SymbolicOpcode_Type.contains(label))
     {
         // Ignore this error because 'b' is used to branch, but the
         // example code uses it as a label.
-        // throw SymbolicOpcodeInLabelError(m_label);
+        // throw SymbolicOpcodeInLabelError(m_Label);
     }
 }

@@ -20,9 +20,9 @@ class FileAccess
   public:
     /**
      * @brief Constructs a file access object.
-     * @param a_filePath The path to the source file.
+     * @param a_FilePath The path to the source file.
      */
-    explicit FileAccess(const std::string& a_filePath);
+    explicit FileAccess(const std::string& a_FilePath);
 
     /**
      * @brief Closes the file.
@@ -33,19 +33,19 @@ class FileAccess
      * @brief Gets the current line from the source file.
      * @return The current line from the source file.
      */
-    std::string getCurrentLine() const;
+    std::string GetCurrentLine() const;
 
     /**
      * @brief Gets the next line from the source file.
      * @return The next line from the source file.
      */
-    std::string getNextLine();
+    std::string GetNextLine();
 
     /**
      * @brief Checks if the end of the file has been reached.
      * @return True if the end of the file has been reached, false otherwise.
      */
-    [[nodiscard]] bool endOfFile() const { return m_sourceFile.eof(); };
+    [[nodiscard]] bool EndOfFile() const { return m_SourceFile.eof(); };
 
     /**
      * @brief Rewinds the file pointer to the beginning of the file.
@@ -56,13 +56,13 @@ class FileAccess
      * @brief Gets the current line number.
      * @return The current line number.
      */
-    [[nodiscard]] inline int getCurrentLineNumber() const
+    [[nodiscard]] inline int GetCurrentLineNumber() const
     {
-        return m_currentLineNumber;
+        return m_CurrentLineNumber;
     }
 
   private:
-    std::ifstream m_sourceFile;
-    int           m_currentLineNumber {0};
-    std::string   m_currentLine;
+    std::ifstream m_SourceFile;
+    int           m_CurrentLineNumber {0};
+    std::string   m_CurrentLine;
 };

@@ -2,18 +2,18 @@
 
 #include "Errors.h"
 
-std::vector<std::string> Errors::m_errorMessages;
+std::vector<std::string> Errors::m_ErrorMessages;
 
-void Errors::initErrorReporting() { m_errorMessages.clear(); }
+void Errors::InitErrorReporting() { m_ErrorMessages.clear(); }
 
-void Errors::recordError(const std::string& a_message)
+void Errors::RecordError(const std::string& a_Message)
 {
-    m_errorMessages.push_back(a_message);
+    m_ErrorMessages.push_back(a_Message);
 }
 
-void Errors::displayErrors()
+void Errors::DisplayErrors()
 {
-    for (const auto& error : m_errorMessages)
+    for (const auto& error : m_ErrorMessages)
     {
         std::cerr << error << std::endl;
     }

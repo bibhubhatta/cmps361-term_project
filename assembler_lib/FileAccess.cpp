@@ -2,42 +2,42 @@
 
 #include "FileAccess.h"
 
-FileAccess::FileAccess(const std::string& a_filePath)
+FileAccess::FileAccess(const std::string& a_FilePath)
 {
-    m_sourceFile.open(a_filePath, std::ios::in);
+    m_SourceFile.open(a_FilePath, std::ios::in);
 
-    if (!m_sourceFile.is_open())
+    if (!m_SourceFile.is_open())
     {
         std::cerr << "Source file could not be opened, assembler terminated.\n";
         exit(1);
     }
 }
 
-FileAccess::~FileAccess() { m_sourceFile.close(); }
+FileAccess::~FileAccess() { m_SourceFile.close(); }
 
-std::string FileAccess::getNextLine()
+std::string FileAccess::GetNextLine()
 {
-    m_currentLineNumber++;
+    m_CurrentLineNumber++;
 
-    if (m_sourceFile.eof())
+    if (m_SourceFile.eof())
     {
         std::cerr << "End of file.\n";
         exit(1);
     }
 
-    std::string nextLine;
-    std::getline(m_sourceFile, nextLine);
+    std::string NextLine;
+    std::getline(m_SourceFile, NextLine);
 
-    m_currentLine = nextLine;
+    m_CurrentLine = NextLine;
 
-    return nextLine;
+    return NextLine;
 }
 
 void FileAccess::rewind()
 {
     // Clean all file flags and go back to the beginning of the file.
-    m_sourceFile.clear();
-    m_sourceFile.seekg(0, std::ios::beg);
-    m_currentLineNumber = 0;
+    m_SourceFile.clear();
+    m_SourceFile.seekg(0, std::ios::beg);
+    m_CurrentLineNumber = 0;
 }
-std::string FileAccess::getCurrentLine() const { return m_currentLine; }
+std::string FileAccess::GetCurrentLine() const { return m_CurrentLine; }

@@ -18,158 +18,158 @@
 
 /**
  * @brief Get the location of the next instruction
- * @param a_currentInstruction    The current instruction
- * @param a_currentLocation       The current location
+ * @param a_CurrentInstruction    The current instruction
+ * @param a_CurrentLocation       The current location
  * @return The location of the next instruction
  */
 int GetLocationOfNextInstruction(
-    const SymbolicInstruction& a_currentInstruction, int a_currentLocation);
+    const SymbolicInstruction& a_CurrentInstruction, int a_CurrentLocation);
 
 /**
- * @brief Check if the a_line is a comment or empty
- * @param a_line  The a_line to check
- * @return True if the a_line is a comment or empty, false otherwise
+ * @brief Check if the a_Line is a comment or empty
+ * @param a_Line  The a_Line to check
+ * @return True if the a_Line is a comment or empty, false otherwise
  */
-bool IsCommentOrEmpty(const std::string& a_line);
+bool IsCommentOrEmpty(const std::string& a_Line);
 
 /**
- * @brief Check if the a_line contains a label
- * @param a_line  The a_line to check
- * @return True if the a_line contains a label, false otherwise
+ * @brief Check if the a_Line contains a label
+ * @param a_Line  The a_Line to check
+ * @return True if the a_Line contains a label, false otherwise
  */
-bool LineContainsLabel(const std::string& a_line);
+bool LineContainsLabel(const std::string& a_Line);
 
 /**
- * @brief Get the uncommented a_line
- * @param a_line  The a_line to get the uncommented a_line from
- * @return The uncommented a_line
+ * @brief Get the uncommented a_Line
+ * @param a_Line  The a_Line to get the uncommented a_Line from
+ * @return The uncommented a_Line
  */
-std::string GetUncommentedLine(const std::string& a_line);
+std::string GetUncommentedLine(const std::string& a_Line);
 
 /**
  * @brief Get the upper case version of the string
- * @param a_str   The string to get the upper case version of
+ * @param a_Str   The string to get the upper case version of
  * @return The upper case version of the string
  */
-std::string GetUpperCase(const std::string& a_str);
+std::string GetUpperCase(const std::string& a_Str);
 
 /**
  * @brief Replace all commas in the string with spaces
- * @param a_str
+ * @param a_Str
  * @return
  */
-std::string ReplaceCommas(const std::string& a_str);
+std::string ReplaceCommas(const std::string& a_Str);
 
 /**
- * @brief Remove all comments and commas from the a_line
- * @param a_line  The a_line to remove the comments and commas from
- * @return The a_line without comments and commas
+ * @brief Remove all comments and commas from the a_Line
+ * @param a_Line  The a_Line to remove the comments and commas from
+ * @return The a_Line without comments and commas
  */
-std::string RemoveCommentsAndCommas(const std::string& a_line);
+std::string RemoveCommentsAndCommas(const std::string& a_Line);
 
 /**
  * @brief Get the instruction operand count
- * @param a_opcode    The instruction a_opcode
+ * @param a_Opcode    The instruction a_Opcode
  * @return The number of operands for the instruction
  */
-int GetInstructionOperandCount(const std::string& a_opcode);
+int GetInstructionOperandCount(const std::string& a_Opcode);
 
 /**
- * @brief Get the instruction a_operand type
- * @param a_operand   The a_operand
- * @return The a_operand type
+ * @brief Get the instruction a_Operand type
+ * @param a_Operand   The a_Operand
+ * @return The a_Operand type
  */
-OperandType GetOperandType(const std::string& a_operand);
+OperandType GetOperandType(const std::string& a_Operand);
 
 /**
  * @brief Get the instruction operand type
- * @param a_operandType The operand type
+ * @param a_OperandType The operand type
  * @return The string representation of the operand type
  */
-std::string GetOperandTypeStr(OperandType a_operandType);
+std::string GetOperandTypeStr(OperandType a_OperandType);
 
 /**
- * @brief Create a a_source file with the given a_source code and path
- * @param a_source
- * @param a_sourceFilePath
+ * @brief Create a a_Source file with the given a_Source code and path
+ * @param a_Source
+ * @param a_SourceFilePath
  */
-void CreateSourceFile(const std::string& a_source,
-                        const std::string& a_sourceFilePath);
+void CreateSourceFile(const std::string& a_Source,
+                        const std::string& a_SourceFilePath);
 
 /**
  * @brief Trim all whitespaces from the start of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  */
-inline void LTrim(std::string& a_s);
+inline void ltrim(std::string& a_S);
 
 /**
  * @brief Trim all whitespaces from the end of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  */
-inline void RTrim(std::string& a_s);
+inline void rtrim(std::string& a_S);
 
 /**
  * @brief Trim all whitespaces from the start and end of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  */
-inline void Trim(std::string& a_s);
+inline void trim(std::string& a_S);
 
 /** @brief Trim all whitespaces from the start of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  * @return The trimmed string
  */
-inline std::string LTrimCopy(std::string a_s);
+inline std::string LtrimCopy(std::string a_S);
 
 /** @brief Trim all whitespaces from the end of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  * @return The trimmed string
  */
-inline std::string RTrimCopy(std::string a_s);
+inline std::string RtrimCopy(std::string a_S);
 
 /** @brief Trim all whitespaces from the start and end of the string
- * @param a_s The string to Trim
+ * @param a_S The string to trim
  * @return The trimmed string
  */
-inline std::string TrimCopy(std::string a_s);
+inline std::string TrimCopy(std::string a_S);
 
 // The following functions should be ideally defined in the cpp file, but they
 // are included here to avoid linker errors.
 
-void LTrim(std::string& a_s)
+void ltrim(std::string& a_S)
 {
-    a_s.erase(a_s.begin(), std::ranges::find_if(a_s.begin(), a_s.end(),
+    a_S.erase(a_S.begin(), std::ranges::find_if(a_S.begin(), a_S.end(),
                                             [](unsigned char ch)
                                             { return !std::isspace(ch); }));
 }
 
-void RTrim(std::string& a_s)
+void rtrim(std::string& a_S)
 {
-    a_s.erase(std::find_if(a_s.rbegin(), a_s.rend(),
+    a_S.erase(std::find_if(a_S.rbegin(), a_S.rend(),
                          [](unsigned char ch) { return !std::isspace(ch); })
                 .base(),
-              a_s.end());
+              a_S.end());
 }
 
-void Trim(std::string& a_s)
+void trim(std::string& a_S)
 {
-    RTrim(a_s);
-    LTrim(a_s);
+    rtrim(a_S);
+    ltrim(a_S);
 }
 
-std::string LTrimCopy(std::string a_s)
+std::string LtrimCopy(std::string a_S)
 {
-    LTrim(a_s);
-    return a_s;
+    ltrim(a_S);
+    return a_S;
 }
 
-std::string RTrimCopy(std::string a_s)
+std::string RtrimCopy(std::string a_S)
 {
-    RTrim(a_s);
-    return a_s;
+    rtrim(a_S);
+    return a_S;
 }
 
-std::string TrimCopy(std::string a_s)
+std::string TrimCopy(std::string a_S)
 {
-    Trim(a_s);
-    return a_s;
+    trim(a_S);
+    return a_S;
 }
