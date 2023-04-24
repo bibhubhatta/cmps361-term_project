@@ -40,7 +40,7 @@ void Assembler::Pass1()
                     m_SymbolTable.AddSymbol(CurrentInstruction.GetLabel(),
                                             CurrentInstructionLocation);
 
-                    m_CheckLabelLength(CurrentInstruction);
+                    m_CheckLabel(CurrentInstruction);
                 }
                 CurrentInstructionLocation = GetLocationOfNextInstruction(
                     CurrentInstruction, CurrentInstructionLocation);
@@ -69,11 +69,17 @@ void Assembler::Pass1()
     }
 }
 
-void Assembler::m_CheckLabelLength(const SymbolicInstruction& a_Instruction)
+void Assembler::m_CheckLabel(const SymbolicInstruction& a_Instruction)
 {
     if (a_Instruction.GetLabel().length() > 10)
     {
         throw LabelTooLongError(a_Instruction.GetLabel());
+    }
+
+    // Check if first character is a letter
+    if (!isalpha(a_Instruction.GetLabel()[0]))
+    {
+        throw InvalidLabelNameError(a_Instruction.GetLabel());
     }
 }
 

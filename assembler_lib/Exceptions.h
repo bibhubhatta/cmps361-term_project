@@ -311,3 +311,23 @@ class LabelTooLongError : public std::exception
 
     std::string m_Message;
 };
+
+class InvalidLabelNameError : public std::exception
+{
+  public:
+    explicit InvalidLabelNameError(std::string a_Label)
+        : m_Label(std::move(a_Label)),
+          m_Message {std::format("Invalid label name: '{}'. Label name must start with a letter.", m_Label)}
+    {
+    }
+
+    [[nodiscard]] const char* what() const noexcept override
+    {
+        return m_Message.c_str();
+    }
+
+  private:
+    std::string m_Label;
+
+    std::string m_Message;
+};
