@@ -21,7 +21,7 @@ class InvalidOpcodeError : public std::exception
   public:
     explicit InvalidOpcodeError(std::string a_Opcode)
         : m_Opcode(std::move(a_Opcode)),
-          m_Message {std::format("Invalid a_Opcode: '{}'", m_Opcode)}
+          m_Message {std::format("Invalid opcode: '{}'", m_Opcode)}
     {
     }
 
@@ -48,7 +48,7 @@ class MultiplyDefinedLabelError : public std::exception
         : m_Label(std::move(a_Label)), m_PreviousLocation(a_PreviousLocation),
           m_NewLocation(a_NewLocation),
           m_Message {std::format(
-              "Multiply defined a_Label: '{}' at address {} and address {}",
+              "Multiply defined label: '{}' at address {} and address {}",
               m_Label, m_PreviousLocation, m_NewLocation)}
     {
     }
@@ -105,7 +105,7 @@ class InvalidOperandTypeError : public std::exception
     explicit InvalidOperandTypeError(std::string a_Operand, OperandType a_Expected,
                                      OperandType a_Actual)
         : m_Operand(std::move(a_Operand)), m_Expected(a_Expected), m_Actual(a_Actual),
-          m_Message {std::format("Invalid a_Operand type: '{}' a_Expected {} but "
+          m_Message {std::format("Invalid operand type: '{}' expected {} but "
                                 "found {}",
                                 m_Operand, GetOperandTypeStr(m_Expected),
                                 GetOperandTypeStr(m_Actual))}
@@ -159,7 +159,7 @@ class InsufficientMemoryError : public std::exception
   public:
     explicit InsufficientMemoryError(int a_Required, int a_Available)
         : m_Required(a_Required), m_Available(a_Available),
-          m_Message {std::format("Insufficient memory a_Required {} a_Available {}",
+          m_Message {std::format("Insufficient memory required {} available {}",
                                 m_Required, m_Available)}
     {
     }
@@ -223,7 +223,7 @@ class InvalidConstantSizeError : public std::exception
   public:
     explicit InvalidConstantSizeError(std::string a_Constant, int a_Value)
         : m_Constant(std::move(a_Constant)), m_Value(a_Value),
-          m_Message {std::format("Invalid a_Constant size: '{}' a_Value {}. "
+          m_Message {std::format("Invalid constant size: '{}' value {}. "
                                 "Constant must be between 0 and 99,999",
                                 m_Constant, m_Value)}
     {
@@ -249,7 +249,7 @@ class UndefinedLabelError : public std::exception
   public:
     explicit UndefinedLabelError(std::string a_Label)
         : m_Label(std::move(a_Label)),
-          m_Message {std::format("Undefined a_Label: '{}'", m_Label)}
+          m_Message {std::format("Undefined label: '{}'", m_Label)}
     {
     }
 
@@ -272,7 +272,7 @@ class SymbolicOpcodeInLabelError : public std::exception
   public:
     explicit SymbolicOpcodeInLabelError(std::string a_Label)
         : m_Label(std::move(a_Label)),
-          m_Message {std::format("Symbolic opcode in a_Label: '{}'", m_Label)}
+          m_Message {std::format("Symbolic opcode in label: '{}'", m_Label)}
     {
     }
 
