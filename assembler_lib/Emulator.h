@@ -25,8 +25,8 @@ class Emulator
 
     /**
      * @brief Records instructions and data into simulated memory.
-     * @param a_Location The a_Location in memory to record the a_Contents.
-     * @param a_Contents The a_Contents to record in memory.
+     * @param a_Location The location in memory to record the a_Contents.
+     * @param a_Contents The contents to record in memory.
      */
     void insert(int a_Location, long long a_Contents);
 

@@ -26,23 +26,23 @@ int GetLocationOfNextInstruction(
     const SymbolicInstruction& a_CurrentInstruction, int a_CurrentLocation);
 
 /**
- * @brief Check if the a_Line is a comment or empty
- * @param a_Line  The a_Line to check
- * @return True if the a_Line is a comment or empty, false otherwise
+ * @brief Check if the line is a comment or empty
+ * @param a_Line  The line to check
+ * @return True if the line is a comment or empty, false otherwise
  */
 bool IsCommentOrEmpty(const std::string& a_Line);
 
 /**
- * @brief Check if the a_Line contains a label
- * @param a_Line  The a_Line to check
- * @return True if the a_Line contains a label, false otherwise
+ * @brief Check if the line contains a label
+ * @param a_Line  The line to check
+ * @return True if the line contains a label, false otherwise
  */
 bool LineContainsLabel(const std::string& a_Line);
 
 /**
  * @brief Get the uncommented a_Line
- * @param a_Line  The a_Line to get the uncommented a_Line from
- * @return The uncommented a_Line
+ * @param a_Line  The line to get the uncommented a_Line from
+ * @return The uncommented line
  */
 std::string GetUncommentedLine(const std::string& a_Line);
 
@@ -62,22 +62,22 @@ std::string ReplaceCommas(const std::string& a_Str);
 
 /**
  * @brief Remove all comments and commas from the a_Line
- * @param a_Line  The a_Line to remove the comments and commas from
- * @return The a_Line without comments and commas
+ * @param a_Line  The line to remove the comments and commas from
+ * @return The line without comments and commas
  */
 std::string RemoveCommentsAndCommas(const std::string& a_Line);
 
 /**
  * @brief Get the instruction operand count
- * @param a_Opcode    The instruction a_Opcode
+ * @param a_Opcode    The instruction opcode
  * @return The number of operands for the instruction
  */
 int GetInstructionOperandCount(const std::string& a_Opcode);
 
 /**
- * @brief Get the instruction a_Operand type
- * @param a_Operand   The a_Operand
- * @return The a_Operand type
+ * @brief Get the instruction operand type
+ * @param a_Operand   The operand
+ * @return The operand type
  */
 OperandType GetOperandType(const std::string& a_Operand);
 
@@ -89,7 +89,7 @@ OperandType GetOperandType(const std::string& a_Operand);
 std::string GetOperandTypeStr(OperandType a_OperandType);
 
 /**
- * @brief Create a a_Source file with the given a_Source code and path
+ * @brief Create a source file with the given source code and path
  * @param a_Source
  * @param a_SourceFilePath
  */

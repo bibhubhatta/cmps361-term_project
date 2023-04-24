@@ -29,9 +29,9 @@ class SymbolTable
     const int MULTIPLEY_DEFINED_SYMBOL = -999;
 
     /**
-     * @brief Adds a a_Symbol to the a_Symbol table.
-     * @param a_Symbol The a_Symbol to add.
-     * @param a_Location The a_Location of the a_Symbol.
+     * @brief Adds a symbol to the symbol table.
+     * @param a_Symbol The symbol to add.
+     * @param a_Location The location of the symbol.
      */
     void AddSymbol(const std::string& a_Symbol, int a_Location);
 
@@ -41,17 +41,17 @@ class SymbolTable
     void DisplaySymbolTable() const;
 
     /**
-     * @brief Checks if a a_Symbol is in the a_Symbol table.
-     * @param a_Symbol The a_Symbol to check.
-     * @return True if the a_Symbol is in the a_Symbol table, false otherwise.
+     * @brief Checks if a symbol is in the symbol table.
+     * @param a_Symbol The symbol to check.
+     * @return True if the symbol is in the symbol table, false otherwise.
      */
     [[nodiscard]] bool LookupSymbol(const std::string& a_Symbol,
                                      int&               a_Location);
 
     /**
-     * @brief Gets the location of a a_Symbol.
-     * @param a_Symbol The a_Symbol to get the location of.
-     * @return The location of the a_Symbol.
+     * @brief Gets the location of a symbol.
+     * @param a_Symbol The symbol to get the location of.
+     * @return The location of the symbol.
      */
     [[nodiscard]] int GetLocation(const std::string& a_Symbol) const;
 
@@ -60,9 +60,9 @@ class SymbolTable
     std::map<std::string, int, std::less<>> m_SymbolTable;
 
     /**
-     * @brief Checks if a a_Symbol is in the a_Symbol table.
-     * @param a_Symbol The a_Symbol to check.
-     * @return True if the a_Symbol is in the a_Symbol table, false otherwise.
+     * @brief Checks if a symbol is in the a_Symbol table.
+     * @param a_Symbol The symbol to check.
+     * @return True if the symbol is in the symbol table, false otherwise.
      */
     [[nodiscard]] bool m_InTable(const std::string& a_Symbol) const;
 };

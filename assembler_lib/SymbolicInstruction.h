@@ -106,9 +106,9 @@ class SymbolicInstruction
     void m_CheckOperandType() const;
 
     /**
-     * @brief Checks if there are any a_Extra elements in the instruction. If so,
+     * @brief Checks if there are any extra elements in the instruction. If so,
      * throws ExtraStatementElementsError.
-     * @param a_Extra The a_Extra elements in the instruction.
+     * @param a_Extra The etra elements in the instruction.
      * @throws ExtraStatementElementsError
      */
     void m_CheckExtraElements(const std::string& a_Extra) const;

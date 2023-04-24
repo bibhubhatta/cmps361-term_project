@@ -103,7 +103,7 @@ class Assembler
     /**
      * @brief Checks if the label is too long.
      * @details If the label is too long, a LabelTooLongError is thrown.
-     * @param a_Instruction The a_Instruction that contains the label.
+     * @param a_Instruction The instruction that contains the label.
      * @throws LabelTooLongError
      */
     static void m_CheckLabelLength(const SymbolicInstruction& a_Instruction);
