@@ -130,23 +130,20 @@ void SymbolicInstruction::m_CheckOperandType() const
     case 0:
         break;
     case 1:
-        if (SymbolicOpcode_OperandType.at(opcode) !=
-            GetOperandType(m_Operand1))
+        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_Operand1))
         {
             throw InvalidOperandTypeError(m_Operand1, ExpectedType,
                                           ActualType1);
         }
         break;
     case 2:
-        if (SymbolicOpcode_OperandType.at(opcode) !=
-            GetOperandType(m_Operand1))
+        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_Operand1))
         {
             throw InvalidOperandTypeError(m_Operand1, ExpectedType,
                                           ActualType1);
         }
 
-        if (SymbolicOpcode_OperandType.at(opcode) !=
-            GetOperandType(m_Operand2))
+        if (SymbolicOpcode_OperandType.at(opcode) != GetOperandType(m_Operand2))
         {
             throw InvalidOperandTypeError(m_Operand2, ExpectedType,
                                           ActualType2);
@@ -161,9 +158,22 @@ void SymbolicInstruction::m_CheckConstantSize() const
 {
     std::string opcode {GetUpperCase(m_Opcode)};
 
-    if (opcode == "DC" && (stoi(m_Operand1) > 99'999 || stoi(m_Operand1) < 0))
+    if (opcode == "DC")
     {
-        throw InvalidConstantSizeError(m_OriginalInstruction, stoi(m_Operand1));
+        try
+        {
+            int operand {stoi(m_Operand1)};
+            if (operand > 99'999 || operand < 0)
+            {
+                throw InvalidConstantSizeError(m_OriginalInstruction,
+                                               m_Operand1);
+            }
+        }
+        catch (const std::out_of_range& e)
+        {
+            // Operand is too large to be an int
+            throw InvalidConstantSizeError(m_OriginalInstruction, m_Operand1);
+        }
     }
 }
 

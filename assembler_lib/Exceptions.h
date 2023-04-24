@@ -73,8 +73,7 @@ class UnmatchedOperandCountError : public std::exception
 {
   public:
     explicit UnmatchedOperandCountError(std::string a_SymbolicOpcode,
-                                        int         a_ExpectedCount,
-                                        int         a_ActualCount)
+                                        int a_ExpectedCount, int a_ActualCount)
         : m_SymbolicOpcode(std::move(a_SymbolicOpcode)),
           m_ExpectedCount(a_ExpectedCount), m_ActualCount(a_ActualCount),
           m_Message {
@@ -102,13 +101,15 @@ class UnmatchedOperandCountError : public std::exception
 class InvalidOperandTypeError : public std::exception
 {
   public:
-    explicit InvalidOperandTypeError(std::string a_Operand, OperandType a_Expected,
+    explicit InvalidOperandTypeError(std::string a_Operand,
+                                     OperandType a_Expected,
                                      OperandType a_Actual)
-        : m_Operand(std::move(a_Operand)), m_Expected(a_Expected), m_Actual(a_Actual),
+        : m_Operand(std::move(a_Operand)), m_Expected(a_Expected),
+          m_Actual(a_Actual),
           m_Message {std::format("Invalid operand type: '{}' expected {} but "
-                                "found {}",
-                                m_Operand, GetOperandTypeStr(m_Expected),
-                                GetOperandTypeStr(m_Actual))}
+                                 "found {}",
+                                 m_Operand, GetOperandTypeStr(m_Expected),
+                                 GetOperandTypeStr(m_Actual))}
     {
     }
 
@@ -160,7 +161,7 @@ class InsufficientMemoryError : public std::exception
     explicit InsufficientMemoryError(int a_Required, int a_Available)
         : m_Required(a_Required), m_Available(a_Available),
           m_Message {std::format("Insufficient memory required {} available {}",
-                                m_Required, m_Available)}
+                                 m_Required, m_Available)}
     {
     }
 
@@ -221,11 +222,12 @@ class StatementAfterEndError : public std::exception
 class InvalidConstantSizeError : public std::exception
 {
   public:
-    explicit InvalidConstantSizeError(std::string a_Constant, int a_Value)
+    explicit InvalidConstantSizeError(std::string a_Constant,
+                                      std::string a_Value)
         : m_Constant(std::move(a_Constant)), m_Value(a_Value),
           m_Message {std::format("Invalid constant size: '{}' value {}. "
-                                "Constant must be between 0 and 99,999",
-                                m_Constant, m_Value)}
+                                 "Constant must be between 0 and 99,999",
+                                 m_Constant, m_Value)}
     {
     }
 
@@ -236,7 +238,7 @@ class InvalidConstantSizeError : public std::exception
 
   private:
     std::string m_Constant;
-    int         m_Value {0};
+    std::string m_Value {0};
 
     std::string m_Message;
 };
@@ -296,8 +298,8 @@ class LabelTooLongError : public std::exception
     explicit LabelTooLongError(std::string a_Label)
         : m_Label(std::move(a_Label)),
           m_Message {std::format("Label too long: '{}' ({} characters). "
-                                "Maximum length is 10 characters.",
-                                m_Label, m_Label.size())}
+                                 "Maximum length is 10 characters.",
+                                 m_Label, m_Label.size())}
     {
     }
 
@@ -317,7 +319,9 @@ class InvalidLabelNameError : public std::exception
   public:
     explicit InvalidLabelNameError(std::string a_Label)
         : m_Label(std::move(a_Label)),
-          m_Message {std::format("Invalid label name: '{}'. Label name must start with a letter.", m_Label)}
+          m_Message {std::format(
+              "Invalid label name: '{}'. Label name must start with a letter.",
+              m_Label)}
     {
     }
 
