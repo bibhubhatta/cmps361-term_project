@@ -82,8 +82,8 @@ void Assembler::m_RecordError(const std::exception& a_E,
 {
     std::string ErrorDescription {
         std::format("Error {} occurred at '{}' in line {} during {}",
-                    a_E.what(), m_InstructionsFile.GetPreviousLine(),
-                    m_InstructionsFile.GetPreviousLineNumber(), a_Where)};
+                    a_E.what(), m_InstructionsFile.GetCurrentLine(),
+                    m_InstructionsFile.GetCurrentLineNumber(), a_Where)};
     Errors::RecordError(ErrorDescription);
 }
 
