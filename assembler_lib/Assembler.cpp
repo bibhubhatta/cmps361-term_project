@@ -38,7 +38,7 @@ void Assembler::Pass1()
                 if (CurrentInstruction.ContainsLabel())
                 {
                     m_SymbolTable.AddSymbol(CurrentInstruction.GetLabel(),
-                                             CurrentInstructionLocation);
+                                            CurrentInstructionLocation);
 
                     m_CheckLabelLength(CurrentInstruction);
                 }
@@ -47,6 +47,11 @@ void Assembler::Pass1()
             }
         }
 
+        catch (StatementAfterEndError& e)
+        {
+            m_RecordError(e, "pass 1");
+            return;
+        }
         catch (std::exception& e)
         {
             m_RecordError(e, "pass 1");
@@ -77,9 +82,8 @@ void Assembler::m_RecordError(const std::exception& a_E,
 {
     std::string ErrorDescription {
         std::format("Error {} occurred at '{}' in line {} during {}",
-                    a_E.what(),
-                    m_InstructionsFile.GetCurrentLine(),
-                    m_InstructionsFile.GetCurrentLineNumber(), a_Where)};
+                    a_E.what(), m_InstructionsFile.GetPreviousLine(),
+                    m_InstructionsFile.GetPreviousLineNumber(), a_Where)};
     Errors::RecordError(ErrorDescription);
 }
 
@@ -168,4 +172,14 @@ void Assembler::Pass2()
     }
 }
 
-void Assembler::RunProgramInEmulator() { m_Emulator.RunProgram(); }
+void Assembler::RunProgramInEmulator()
+{
+    if (Errors::HasErrors())
+    {
+        std::cout << "Errors occurred during assembly. "
+                     "Program will not be run.\n";
+        return;
+    }
+
+    m_Emulator.RunProgram();
+}

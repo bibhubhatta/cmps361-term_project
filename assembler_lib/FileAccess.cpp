@@ -28,6 +28,7 @@ std::string FileAccess::GetNextLine()
     std::string NextLine;
     std::getline(m_SourceFile, NextLine);
 
+    m_PreviousLine = m_CurrentLine;
     m_CurrentLine = NextLine;
 
     return NextLine;
@@ -40,4 +41,7 @@ void FileAccess::rewind()
     m_SourceFile.seekg(0, std::ios::beg);
     m_CurrentLineNumber = 0;
 }
+
 std::string FileAccess::GetCurrentLine() const { return m_CurrentLine; }
+
+std::string FileAccess::GetPreviousLine() const { return m_PreviousLine; }

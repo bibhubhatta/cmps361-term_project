@@ -75,8 +75,6 @@ int main(int argc, char* argv[])
         PressEnterToContinue();
 
         DisplayTranslation(assem);
-        // Display the errors that were encountered during the translation.
-        Errors::DisplayErrors();
 
         PressEnterToContinue();
 

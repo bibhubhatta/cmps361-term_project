@@ -29,6 +29,12 @@ class Errors
      */
     static void DisplayErrors();
 
+    /**
+     * @brief Checks if any error has been reported.
+     * @return True if there are errors, false otherwise.
+     */
+    static bool HasErrors();
+
   private:
     static std::vector<std::string> m_ErrorMessages;
 };

@@ -42,6 +42,12 @@ class FileAccess
     std::string GetNextLine();
 
     /**
+     * @brief Gets the previous line from the source file.
+     * @return The previous line from the source file.
+     */
+    std::string GetPreviousLine() const;
+
+    /**
      * @brief Checks if the end of the file has been reached.
      * @return True if the end of the file has been reached, false otherwise.
      */
@@ -61,8 +67,18 @@ class FileAccess
         return m_CurrentLineNumber;
     }
 
+    /**
+     * @brief Gets the previous line number.
+     * @return The previous line number.
+     */
+    [[nodiscard]] inline int GetPreviousLineNumber() const
+    {
+        return m_CurrentLineNumber - 1;
+    }
+
   private:
     std::ifstream m_SourceFile;
     int           m_CurrentLineNumber {0};
     std::string   m_CurrentLine;
+    std::string   m_PreviousLine;
 };
