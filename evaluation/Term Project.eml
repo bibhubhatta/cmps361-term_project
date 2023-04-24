@@ -1,0 +1,297 @@
+Delivered-To: bbhatta@ramapo.edu
+Received: by 2002:a59:c18a:0:b0:3b3:547d:6483 with SMTP id j10csp2734793vqn;
+        Mon, 24 Apr 2023 06:59:24 -0700 (PDT)
+X-Received: by 2002:ac8:5c85:0:b0:3ef:2c95:9d04 with SMTP id r5-20020ac85c85000000b003ef2c959d04mr23571445qta.65.1682344763981;
+        Mon, 24 Apr 2023 06:59:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682344763; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kqjt7qJUk2Xk1Rx5CQZ1XQbXsCLbvstk6Jpq3ejrJLej6Zkcdk7fWnkTZ+Rj73c2hS
+         vDidHmSS45ooVbem+RsBL4NatB0xvka5BtyNK779ff50zCKbykk0xZIq4lWSJdXKj5Rc
+         IQv7jY5FV6LDQhly59PW6sFP8TRpJdYpiS6PD6uYOsXLjAUewcwosFYSGGwlc8PCh+pu
+         iwiAa4pBMtCRU4p/aKYGciFfwBCKl9Vf4hMnCY4A1i+qlXCsBplYp6COILjWV4P1yDA2
+         qLnmhdQB7idbPM2HLGPO1I5O0UWuXqOIAnRg13xS2zYs64ZwLP1O4PJSLW6Sv0TG0dRn
+         7mXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:dkim-signature;
+        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
+        b=lccex7RyH13o1y5W5Jtmgcuv1WQNRP5SMS/muvGYSKJU8Y0gDQWhhux8jgoDVggbPT
+         Cw5jiTFjXbWFr5cmioZKx1YSFbdqGfXKdgH4wlBw2oFSMDz7An0c1gCm01VySofHuEZo
+         u+MjC/tg8LKt/tDzdF1BAtZQSU3S5mMZuAYgNo4Bg9g1U18FIwpsKucuzquBXpGoA1eP
+         MhrSqUoBghlabmX4877kZMhNGLrDaEYZBaTffvbFcsN89MllWAzYBpOCDqI9HHKNeiF2
+         B/7WrUrRRTKCXM+R7rEvFHhgqZPezKEKyWEnIlE1uzoUFsUVyvg7noMBlMlNlCU8Tvl/
+         zISA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=iKghNKrV;
+       spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
+Return-Path: <vmiller@ramapo.edu>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id t25-20020ac87399000000b003ef6ce3326asor2948660qtp.27.2023.04.24.06.59.23
+        for <bbhatta@ramapo.edu>
+        (Google Transport Security);
+        Mon, 24 Apr 2023 06:59:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=iKghNKrV;
+       spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ramapo-edu.20221208.gappssmtp.com; s=20221208; t=1682344762; x=1684936762;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
+        b=iKghNKrVZsgl9bH6j8el3XAEkTU78VVbvlMTvYi85IbCOQeXOGq7FoCaaL2C8+9Aeb
+         l83TKWOnMSLRuyTeBzua02Z9GgulA8kqsL5EToAJH7z/+5szOW/7wZHoiabsnafbNq3B
+         FHbukXIVoVPos3dRS0kH7I3Sp3F3iQcWQtMWZsSkwImEvAnV2K9a/NlzP12B0ZwhpykP
+         iQJI9T5m5q2ZIjzzxJ551Q5QD2Imk69uT6aBwzhTYRMYZqnoaBrN/SnjuMQU1EJCkqIc
+         TUFrZEZJapjK3VaY9kiJghUTtnoPMC5priEHQpfJTlYCbM8ESTobDT8DqtQS2aGjAw3f
+         sMjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682344762; x=1684936762;
+        h=content-language:thread-index:mime-version:message-id:date:subject
+         :in-reply-to:references:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
+        b=DyubjJRZX0E2wzwPqBDSA6PhZW2gSJuIiEaogI7VU0CekZvDzfi0RYosFNBioGcn4H
+         5KYAHhJtsvoBog07wGd+ofFR9uYrPtZ1b5n99LVVDBccO2J4BraEonsJSwgX2n7nG10H
+         FIOwVxPd97xErPQYyL77A2xkzGm3R1wNw3/Jj5z3AKoCAaUSTTo2vnJZMH1oOhEp1MUR
+         rSDEiKnCcM24xTzgvcn5rSQYg6hFKv8Elo/ixo+aRi2NNFoyIBK2sC/Bm9XN4xCe9L/H
+         BrpAJC2a2+0U5wYv8CmMkOk+F0reGjg6Z+cQtfytB1ub8yYNII7XwiJ0xQzEx/2aYAem
+         6PzQ==
+X-Gm-Message-State: AAQBX9edlRbgtWcoCd4FtohfWi2u/06U1eyz1s0l9wCwI5C3r8WKeCn5
+	Hc7vpirUHMLTF7zsrZOLZ3kP97XkKm5+y882zdczssJtDxRyVEqo3xDRNP7DuAZQsoXmLT4Wpv6
+	eMX8Kg5OE2iHjFWBZeij3RnJvlFxv+YZAy7W5toos2YXUM6fFddUWK3kyn+aKaD1tAEJvW6iY
+X-Google-Smtp-Source: AKy350bEBGxDmZkOMBOiks7iFyjLz1fEXZ35XNDziQHQvlOAOUKQFuDymRmQodsEZD0Y8AKRzCFJew==
+X-Received: by 2002:a05:622a:148e:b0:3ef:7d5d:9c3e with SMTP id t14-20020a05622a148e00b003ef7d5d9c3emr8823023qtx.34.1682344762593;
+        Mon, 24 Apr 2023 06:59:22 -0700 (PDT)
+Return-Path: <vmiller@ramapo.edu>
+Received: from BennyDog (ool-44c12ac0.dyn.optonline.net. [68.193.42.192])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05622a008600b003eeff94e2f8sm3651076qtw.0.2023.04.24.06.59.21
+        for <bbhatta@ramapo.edu>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Apr 2023 06:59:22 -0700 (PDT)
+From: <vmiller@ramapo.edu>
+To: "'Bhatta, Bibhu'" <bbhatta@ramapo.edu>
+References: <040601d976b1$16f8e6c0$44eab440$@ramapo.edu>
+In-Reply-To: <040601d976b1$16f8e6c0$44eab440$@ramapo.edu>
+Subject: RE: Term Project
+Date: Mon, 24 Apr 2023 09:59:21 -0400
+Message-ID: <043201d976b4$f84c96a0$e8e5c3e0$@ramapo.edu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0433_01D97693.713B92E0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGMNIetUXWBItOYx6QkTLAYz+ZpWq/VAKMQ
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0433_01D97693.713B92E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+I did a quick reassessment.  The grade is now 87.
+
+ 
+
+Victor J. Miller
+
+Convener of Computer Science
+
+ 
+
+vmiller@ramapo.edu <mailto:vmiller@ramapo.edu> 
+
+https://pages.ramapo.edu/~vmiller/
+
+ 
+
+From: vmiller@ramapo.edu <vmiller@ramapo.edu> 
+Sent: Monday, April 24, 2023 9:32 AM
+To: 'Bhatta, Bibhu' <bbhatta@ramapo.edu>
+Cc: vmiller@ramapo.edu
+Subject: Term Project
+
+ 
+
+Hi Bibhu,
+
+ 
+
+Below is my evaluation of your project.
+
+ 
+
+Regards,
+
+ 
+
+Victor J. Miller
+
+Convener of Computer Science
+
+ 
+
+Bibhu Bhatta - 85
+
+Pros: Second to complete.  Runs the test code.  Catches the errors: out of
+memory, undefined label, Multiply define label,  Extra operand.  Nice work
+with NumericOpcode_OperandCount to get operand count and use of enums.
+
+Cons: Not reporting errors after the offending statement.   (This was in the
+specifications) Should not run emulator if there is an error.  If there is a
+statement after end, gives misleading error message. ("missing end
+statement").  Does not handle large constants - stoi will not work for the
+possible size of the constants.  If there is an extra operand, you repeat
+the error message twice. (Same with some other errors like illegal op code.)
+Does not report a badly formed label - example: 1hay.  Not commenting
+according to the coding standards.  The function DisplaySymbol table in the
+main does not seem useful when it basically calls the same function in the
+assem object.  (Same issue DisplayTranslation) Not commenting all functions
+in .cpp files. 
+
+ 
+
+ 
+
+vmiller@ramapo.edu <mailto:vmiller@ramapo.edu> 
+
+https://pages.ramapo.edu/~vmiller/
+
+ 
+
+
+------=_NextPart_000_0433_01D97693.713B92E0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Cascadia Mono";
+	panose-1:2 11 6 9 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>I did a quick =
+reassessment.&nbsp; The grade is now 87.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'>Victor J. Miller<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-ligatures:none'>Convener of =
+Computer Science<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
+href=3D"mailto:vmiller@ramapo.edu">vmiller@ramapo.edu</a><o:p></o:p></spa=
+n></p><p class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
+href=3D"https://pages.ramapo.edu/~vmiller/">https://pages.ramapo.edu/~vmi=
+ller/</a><o:p></o:p></span></p></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'mso-ligatures:none'>From:</span></b><span =
+style=3D'mso-ligatures:none'> vmiller@ramapo.edu =
+&lt;vmiller@ramapo.edu&gt; <br><b>Sent:</b> Monday, April 24, 2023 9:32 =
+AM<br><b>To:</b> 'Bhatta, Bibhu' =
+&lt;bbhatta@ramapo.edu&gt;<br><b>Cc:</b> =
+vmiller@ramapo.edu<br><b>Subject:</b> Term =
+Project<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Hi =
+Bibhu,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Below is my evaluation of your =
+project.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'>Victor J. Miller<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-ligatures:none'>Convener of =
+Computer Science<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal =
+style=3D'margin-top:12.0pt;line-height:106%;page-break-after:avoid'><span=
+ style=3D'font-size:16.0pt;line-height:106%;font-family:"Calibri =
+Light",sans-serif;color:#2F5496;mso-ligatures:none'>Bibhu Bhatta - =
+85<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-bottom:8.0pt;line-height:106%'><span =
+style=3D'mso-ligatures:none'>Pros: Second to complete.&nbsp; Runs the =
+test code.&nbsp; Catches the errors: out of memory, undefined label, =
+Multiply define label,&nbsp; Extra operand.&nbsp; Nice work with =
+</span><span =
+style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
+Mono";color:black;mso-ligatures:none'>NumericOpcode_OperandCount</span><s=
+pan style=3D'mso-ligatures:none'> to get operand count and use of =
+enums.<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-bottom:8.0pt;line-height:106%'><span =
+style=3D'mso-ligatures:none'>Cons: Not reporting errors after the =
+offending statement.&nbsp;&nbsp; (This was in the specifications) Should =
+not run emulator if there is an error.&nbsp; If there is a statement =
+after end, gives misleading error message. (&#8220;missing end =
+statement&#8221;).&nbsp; Does not handle large constants &#8211; stoi =
+will not work for the possible size of the constants.&nbsp; If there is =
+an extra operand, you repeat the error message twice. (Same with some =
+other errors like illegal op code.)&nbsp;&nbsp; Does not report a badly =
+formed label &#8211; example: 1hay.&nbsp; Not commenting according to =
+the coding standards.&nbsp; The function DisplaySymbol table in the main =
+does not seem useful when it basically calls the same function in the =
+assem object.&nbsp; (Same issue </span><span =
+style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
+Mono";color:black;mso-ligatures:none'>DisplayTranslation) </span><span =
+style=3D'color:black;mso-ligatures:none'>Not commenting all functions in =
+.cpp files.</span><span =
+style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
+Mono";color:black;mso-ligatures:none'> </span><span =
+style=3D'mso-ligatures:none'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
+href=3D"mailto:vmiller@ramapo.edu">vmiller@ramapo.edu</a><o:p></o:p></spa=
+n></p><p class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
+href=3D"https://pages.ramapo.edu/~vmiller/">https://pages.ramapo.edu/~vmi=
+ller/</a><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0433_01D97693.713B92E0--
+
