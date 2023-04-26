@@ -1,170 +1,339 @@
 Delivered-To: bbhatta@ramapo.edu
-Received: by 2002:a59:c18a:0:b0:3b3:547d:6483 with SMTP id j10csp2734793vqn;
-        Mon, 24 Apr 2023 06:59:24 -0700 (PDT)
-X-Received: by 2002:ac8:5c85:0:b0:3ef:2c95:9d04 with SMTP id r5-20020ac85c85000000b003ef2c959d04mr23571445qta.65.1682344763981;
-        Mon, 24 Apr 2023 06:59:23 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1682344763; cv=none;
+Received: by 2002:a59:c18a:0:b0:3b3:547d:6483 with SMTP id j10csp3093515vqn;
+        Mon, 24 Apr 2023 19:32:02 -0700 (PDT)
+X-Received: by 2002:a05:6214:caa:b0:5ef:44f0:cabe with SMTP id s10-20020a0562140caa00b005ef44f0cabemr31321826qvs.12.1682389922169;
+        Mon, 24 Apr 2023 19:32:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1682389922; cv=none;
         d=google.com; s=arc-20160816;
-        b=kqjt7qJUk2Xk1Rx5CQZ1XQbXsCLbvstk6Jpq3ejrJLej6Zkcdk7fWnkTZ+Rj73c2hS
-         vDidHmSS45ooVbem+RsBL4NatB0xvka5BtyNK779ff50zCKbykk0xZIq4lWSJdXKj5Rc
-         IQv7jY5FV6LDQhly59PW6sFP8TRpJdYpiS6PD6uYOsXLjAUewcwosFYSGGwlc8PCh+pu
-         iwiAa4pBMtCRU4p/aKYGciFfwBCKl9Vf4hMnCY4A1i+qlXCsBplYp6COILjWV4P1yDA2
-         qLnmhdQB7idbPM2HLGPO1I5O0UWuXqOIAnRg13xS2zYs64ZwLP1O4PJSLW6Sv0TG0dRn
-         7mXg==
+        b=V2YqDZxoL7jeAmvyksGpIAhn36bVtNxt1GjnJSmF+wNMfRULnVQ4a0IOnn/4nR0waE
+         nIokFZ0WOiXnO4jDHox3zzHPVSIAA6uNZzqawcr+rFlH1oQQuvfaA+eaKpZqD9y8dkFR
+         E2VdYPAXXCuTf+B3WMGSZCRDvxrMZaS5P9Rt7IqJXtP2Ca1iZlGo+NnmeRGMbO1J4KXV
+         OFb90OI2BZ17Lev8K1bYz89OXCCEDat7/Yoq1l5rHY1VJ8SqEQJT7k5+pM5tItWtecaD
+         BzVl3khgIXrm8jr3g+ruc6u2zFhYqWmJh+4UErCtjAHACG7NR+pLR+f9/kvZ/G4lGwdM
+         rOTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
         h=content-language:thread-index:mime-version:message-id:date:subject
          :in-reply-to:references:to:from:dkim-signature;
-        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
-        b=lccex7RyH13o1y5W5Jtmgcuv1WQNRP5SMS/muvGYSKJU8Y0gDQWhhux8jgoDVggbPT
-         Cw5jiTFjXbWFr5cmioZKx1YSFbdqGfXKdgH4wlBw2oFSMDz7An0c1gCm01VySofHuEZo
-         u+MjC/tg8LKt/tDzdF1BAtZQSU3S5mMZuAYgNo4Bg9g1U18FIwpsKucuzquBXpGoA1eP
-         MhrSqUoBghlabmX4877kZMhNGLrDaEYZBaTffvbFcsN89MllWAzYBpOCDqI9HHKNeiF2
-         B/7WrUrRRTKCXM+R7rEvFHhgqZPezKEKyWEnIlE1uzoUFsUVyvg7noMBlMlNlCU8Tvl/
-         zISA==
+        bh=CiH4hKx0S/y1rLyLBA3tko/zZMOvX6+G9QbAfipJDMg=;
+        b=iQRfwFu6Gh8BcPhFsrYPQbNmxtJhsuOahmWGC5GlqmUJV2K/0OBBSyCuSX1i0BO8Zv
+         YMPa9lMjicO1zGeFJoEBFiDR1T+uoPW8U09gaC0cqpQGhp8Jkl/IumOFli3Up7k9q+LE
+         5jAJgC0/9YxX0JVnuMogdODs92O9lS+MvMOAGzRwCOecgGq4JihVIG+Sj4VJPAbWAU5I
+         bS0VgwmS4GVAy2qDY3j5fSSM8sdPwGdygbYzv2BTMAp4L/wzdKe6vzM0cCyicjGdEnio
+         FNiw3lZzuZTgxU9/IKPweRNPZar+KABWhDzcxZyaR/MqrI8Yn+cLA/jCYg1eRz85zdTq
+         v5Zg==
 ARC-Authentication-Results: i=1; mx.google.com;
-       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=iKghNKrV;
+       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=ZG3tYSFe;
        spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
 Return-Path: <vmiller@ramapo.edu>
 Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
-        by mx.google.com with SMTPS id t25-20020ac87399000000b003ef6ce3326asor2948660qtp.27.2023.04.24.06.59.23
+        by mx.google.com with SMTPS id cz9-20020a056214088900b005e5bbc1bfc2sor5777579qvb.0.2023.04.24.19.32.02
         for <bbhatta@ramapo.edu>
         (Google Transport Security);
-        Mon, 24 Apr 2023 06:59:23 -0700 (PDT)
+        Mon, 24 Apr 2023 19:32:02 -0700 (PDT)
 Received-SPF: pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
 Authentication-Results: mx.google.com;
-       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=iKghNKrV;
+       dkim=pass header.i=@ramapo-edu.20221208.gappssmtp.com header.s=20221208 header.b=ZG3tYSFe;
        spf=pass (google.com: domain of vmiller@ramapo.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=vmiller@ramapo.edu
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ramapo-edu.20221208.gappssmtp.com; s=20221208; t=1682344762; x=1684936762;
+        d=ramapo-edu.20221208.gappssmtp.com; s=20221208; t=1682389921; x=1684981921;
         h=content-language:thread-index:mime-version:message-id:date:subject
          :in-reply-to:references:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
-        b=iKghNKrVZsgl9bH6j8el3XAEkTU78VVbvlMTvYi85IbCOQeXOGq7FoCaaL2C8+9Aeb
-         l83TKWOnMSLRuyTeBzua02Z9GgulA8kqsL5EToAJH7z/+5szOW/7wZHoiabsnafbNq3B
-         FHbukXIVoVPos3dRS0kH7I3Sp3F3iQcWQtMWZsSkwImEvAnV2K9a/NlzP12B0ZwhpykP
-         iQJI9T5m5q2ZIjzzxJ551Q5QD2Imk69uT6aBwzhTYRMYZqnoaBrN/SnjuMQU1EJCkqIc
-         TUFrZEZJapjK3VaY9kiJghUTtnoPMC5priEHQpfJTlYCbM8ESTobDT8DqtQS2aGjAw3f
-         sMjw==
+        bh=CiH4hKx0S/y1rLyLBA3tko/zZMOvX6+G9QbAfipJDMg=;
+        b=ZG3tYSFeqQt65KThI1OTmLi3HdXGPahcXTDyU0iTf+q6XaLAK6tb5e5W0bu55r6V0T
+         MkzsRq1SVDynpyU4qloMWBvEr9H5x+w0CCAEtYvgY8Yu9LmHen91oUCfe7CTOj2GZhBa
+         bJzeHNUlhrLBwpVqeCc2+kUcoTakR+CUfP/HWbU3g5+tZTAw16EAokZq+Y6+BLz2R41i
+         VPAWc99k/t44T+ts+03/x4Dc2Lnu9u9ZvpzOnCH9QC8mxQfS0pU+BjN2q4D6Gdmw/lMO
+         alpFGa4ArIgxVR5p8V5VlHTaRnTSFKyPbfqmPXQBKrwzk9Neb90qyJIxNU6ttAhZjxdC
+         EAvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682344762; x=1684936762;
+        d=1e100.net; s=20221208; t=1682389921; x=1684981921;
         h=content-language:thread-index:mime-version:message-id:date:subject
          :in-reply-to:references:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=5AuQO4oPqjn0HWyQ7Ub7Hkk4RcNBFWAHf8hsCw7VLRg=;
-        b=DyubjJRZX0E2wzwPqBDSA6PhZW2gSJuIiEaogI7VU0CekZvDzfi0RYosFNBioGcn4H
-         5KYAHhJtsvoBog07wGd+ofFR9uYrPtZ1b5n99LVVDBccO2J4BraEonsJSwgX2n7nG10H
-         FIOwVxPd97xErPQYyL77A2xkzGm3R1wNw3/Jj5z3AKoCAaUSTTo2vnJZMH1oOhEp1MUR
-         rSDEiKnCcM24xTzgvcn5rSQYg6hFKv8Elo/ixo+aRi2NNFoyIBK2sC/Bm9XN4xCe9L/H
-         BrpAJC2a2+0U5wYv8CmMkOk+F0reGjg6Z+cQtfytB1ub8yYNII7XwiJ0xQzEx/2aYAem
-         6PzQ==
-X-Gm-Message-State: AAQBX9edlRbgtWcoCd4FtohfWi2u/06U1eyz1s0l9wCwI5C3r8WKeCn5
-	Hc7vpirUHMLTF7zsrZOLZ3kP97XkKm5+y882zdczssJtDxRyVEqo3xDRNP7DuAZQsoXmLT4Wpv6
-	eMX8Kg5OE2iHjFWBZeij3RnJvlFxv+YZAy7W5toos2YXUM6fFddUWK3kyn+aKaD1tAEJvW6iY
-X-Google-Smtp-Source: AKy350bEBGxDmZkOMBOiks7iFyjLz1fEXZ35XNDziQHQvlOAOUKQFuDymRmQodsEZD0Y8AKRzCFJew==
-X-Received: by 2002:a05:622a:148e:b0:3ef:7d5d:9c3e with SMTP id t14-20020a05622a148e00b003ef7d5d9c3emr8823023qtx.34.1682344762593;
-        Mon, 24 Apr 2023 06:59:22 -0700 (PDT)
+        bh=CiH4hKx0S/y1rLyLBA3tko/zZMOvX6+G9QbAfipJDMg=;
+        b=fPm2oeNVV96f/3w0lW+oQ9+fG1GsKLuF1Ar59+e1jdgMXeI9KtUZG0FhJYXZUYMUGH
+         A9UYDH0C831ygXmJU/My843d+naF9P1desqyyL0FXb5wCKYaliIXKbJYlXyUrPRTU2cT
+         AgBh31psxV9nvwki7oxU61ntAV1iioA7qkPUO5l+1FDRb4u0pyzP1c32kuDxwX/e8aHt
+         2nfhoSZhRoNNJ3VQAzWaawvUgRuiZZ7X1Mz07SMonTsudaLUS5XiSe5Yaz8vHO+MmkS3
+         fdEWZBtISgrFtQ5hDUiyPZlsVVZ8Lr5Q1/SBQV2jCIporWIaXWkRYnqgrNEb/m+jeNRN
+         K13g==
+X-Gm-Message-State: AAQBX9fSvWq02O+OKTxx9eCwd8OH+Qzy2UUUkzVDZoHMwzWuk5BmFDC8
+	L1SQaBZP98tx3HuhkcJ3zBL6aRty8xcRodplZumayDolHXMd+GjNzTH7h6MH01nz8qQYmdu7cKC
+	yjHYkjBOB5blh2kutQOBPbn2oDTzjDVewIuhe1pnsiEHozHgqFCm/FrY8K32ajTOwtnDQXKwA
+X-Google-Smtp-Source: AKy350bnt7Q4ptFUL9ItVedI+UYP/HxaRmEyzNvLet9aQ5suyCH7ukVugLZL+RuTOV6iV42RYIjV5w==
+X-Received: by 2002:a05:6214:1bcd:b0:5f1:5ed3:dd82 with SMTP id m13-20020a0562141bcd00b005f15ed3dd82mr29056386qvc.48.1682389920856;
+        Mon, 24 Apr 2023 19:32:00 -0700 (PDT)
 Return-Path: <vmiller@ramapo.edu>
 Received: from BennyDog (ool-44c12ac0.dyn.optonline.net. [68.193.42.192])
-        by smtp.gmail.com with ESMTPSA id o6-20020a05622a008600b003eeff94e2f8sm3651076qtw.0.2023.04.24.06.59.21
+        by smtp.gmail.com with ESMTPSA id g7-20020a0ce4c7000000b005dd8b9345casm3766183qvm.98.2023.04.24.19.31.59
         for <bbhatta@ramapo.edu>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Apr 2023 06:59:22 -0700 (PDT)
+        Mon, 24 Apr 2023 19:31:59 -0700 (PDT)
 From: <vmiller@ramapo.edu>
 To: "'Bhatta, Bibhu'" <bbhatta@ramapo.edu>
-References: <040601d976b1$16f8e6c0$44eab440$@ramapo.edu>
-In-Reply-To: <040601d976b1$16f8e6c0$44eab440$@ramapo.edu>
+References: <040601d976b1$16f8e6c0$44eab440$@ramapo.edu> <043201d976b4$f84c96a0$e8e5c3e0$@ramapo.edu> <CADxxeLfe8OS+zjW_CJ9Fbu92vSfcu81qowjBbWAB7RNJ-4WbNg@mail.gmail.com>
+In-Reply-To: <CADxxeLfe8OS+zjW_CJ9Fbu92vSfcu81qowjBbWAB7RNJ-4WbNg@mail.gmail.com>
 Subject: RE: Term Project
-Date: Mon, 24 Apr 2023 09:59:21 -0400
-Message-ID: <043201d976b4$f84c96a0$e8e5c3e0$@ramapo.edu>
+Date: Mon, 24 Apr 2023 22:31:58 -0400
+Message-ID: <060401d9771e$1c2596d0$5470c470$@ramapo.edu>
 MIME-Version: 1.0
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0433_01D97693.713B92E0"
+	boundary="----=_NextPart_000_0605_01D976FC.95152F50"
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGMNIetUXWBItOYx6QkTLAYz+ZpWq/VAKMQ
+Thread-Index: AQGMNIetUXWBItOYx6QkTLAYz+ZpWgLHISFTAtlbAy2vqMpJEA==
 Content-Language: en-us
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0433_01D97693.713B92E0
+------=_NextPart_000_0605_01D976FC.95152F50
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-I did a quick reassessment.  The grade is now 87.
-
- 
-
-Victor J. Miller
-
-Convener of Computer Science
-
- 
-
-vmiller@ramapo.edu <mailto:vmiller@ramapo.edu> 
-
-https://pages.ramapo.edu/~vmiller/
-
- 
-
-From: vmiller@ramapo.edu <vmiller@ramapo.edu> 
-Sent: Monday, April 24, 2023 9:32 AM
-To: 'Bhatta, Bibhu' <bbhatta@ramapo.edu>
-Cc: vmiller@ramapo.edu
-Subject: Term Project
-
- 
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
 Hi Bibhu,
 
- 
+=20
 
-Below is my evaluation of your project.
+I have noted the extra effort you put into this project and will take =
+that into consideration when I decide on your final grade for the =
+course.  When you are working you can always ask questions before =
+spending time on a project. =20
 
- 
+=20
+
+Your comment about thinking 99,999 is the largest number does not make =
+sense.  Each word of memory for the VC1620 was supposed to be 12 digits. =
+ There is no reason to assume that it cannot hold numbers of this size.  =
+The only numbers that are 5 digits are addresses.  The 12 digit limit is =
+clearly stated on the first line of the description of the VC 1620.  See =
+the link: =
+https://pages.ramapo.edu/~vmiller/SoftwareDesign/VC1620Spec.htm
+
+=20
 
 Regards,
 
- 
+=20
 
 Victor J. Miller
 
 Convener of Computer Science
 
- 
+=20
 
-Bibhu Bhatta - 85
+ <mailto:vmiller@ramapo.edu> vmiller@ramapo.edu
 
-Pros: Second to complete.  Runs the test code.  Catches the errors: out of
-memory, undefined label, Multiply define label,  Extra operand.  Nice work
-with NumericOpcode_OperandCount to get operand count and use of enums.
+ <https://pages.ramapo.edu/~vmiller/> https://pages.ramapo.edu/~vmiller/
 
-Cons: Not reporting errors after the offending statement.   (This was in the
-specifications) Should not run emulator if there is an error.  If there is a
-statement after end, gives misleading error message. ("missing end
-statement").  Does not handle large constants - stoi will not work for the
-possible size of the constants.  If there is an extra operand, you repeat
-the error message twice. (Same with some other errors like illegal op code.)
-Does not report a badly formed label - example: 1hay.  Not commenting
-according to the coding standards.  The function DisplaySymbol table in the
-main does not seem useful when it basically calls the same function in the
-assem object.  (Same issue DisplayTranslation) Not commenting all functions
-in .cpp files. 
+=20
 
- 
+From: Bhatta, Bibhu <bbhatta@ramapo.edu>=20
+Sent: Monday, April 24, 2023 9:35 PM
+To: vmiller@ramapo.edu
+Subject: Re: Term Project
 
- 
+=20
 
-vmiller@ramapo.edu <mailto:vmiller@ramapo.edu> 
+Hello Prof. Miller,
+
+=20
+
+Thank you for your evaluation. I have addressed the cons as described =
+below and attached the source code files. Apologies for submitting the =
+corrections if you do not accept corrections, but given that you are =
+trying to provide "industry experience," I am assuming you will accept =
+subsequent iterations after the "beta testing."=20
+
+=20
+
+I have addressed the cons below:
+
+*	Not reporting errors after the offending statement.   (This was in the =
+specifications)
+
+I misunderstood what "reporting" meant in the specs. I assumed that if =
+the error was "reported" to the Errors class by calling RecordError, it =
+would count as "reporting" the error. But apparently, you meant printing =
+it to the console. This has been fixed now.
+
+*	Should not run emulator if there is an error.=20
+
+You mentioned that translation should continue even after encountering =
+an error, so, by extension, I thought you would want the emulator to run =
+the program even if there are errors. The fact that the emulator should =
+not run after encountering an error is not explicit in the specification =
+(to the best of my knowledge).  This has been fixed now.
+
+=20
+
+*	If there is a statement after end, gives misleading error message. =
+(=E2=80=9Cmissing end statement=E2=80=9D).=20
+
+This was a bug. This has been fixed now.
+
+=20
+
+*	Does not handle large constants =E2=80=93 stoi will not work for the =
+possible size of the constants.=20
+
+I assumed the largest size of the constant to be 99,999. I could not =
+find anything on the website that mentions otherwise. Previously, stoi =
+exception would be reported, but now, the code reports that the size of =
+the constant is invalid.
+
+*	 If there is an extra operand, you repeat the error message twice. =
+(Same with some other errors like illegal op code.)=20
+
+The redundancy was intentionally built into the code to detect every =
+error encountered during each pass. When logging errors, I feel that it =
+is better to record the error that occurs at different places even if it =
+is the same cause. To record only once, I would need to make significant =
+changes to the fundamental design of the current structure of the code, =
+so I will have to pass on this.
+
+*	Does not report a badly formed label =E2=80=93 example: 1hay.
+
+This was entirely my fault; I did not notice the requirement for a label =
+name to start with a letter. This has been fixed.
+
+*	Not commenting according to the coding standards.
+
+All functions and classes have been documented with Doxygen comments. =
+All enums, dictionaries, and other data structures that define the =
+instruction set of the compiler have been commented before them to =
+explain their purpose, as required by the standards. As per the comment =
+explaining the code, please read my spiel in the next point.
+
+*	 The function DisplaySymbol table in the main does not seem useful =
+when it basically calls the same function in the assem object.  (Same =
+issue DisplayTranslation)
+
+The function DisplaySymbol and DisplayTranslation serve two main =
+purposes:
+
+1.	This increases code readability. This invalidates the need for the =
+standard to have a comment for every block of code. If the code needs a =
+separate block and a comment to explain the need for the block, it is =
+almost always wise to refactor it to a function or a method. This is the =
+reason why the project does not need so much commenting because function =
+and method names serve the purpose of explaining what the code is doing. =
+I hate comments in source code that explain what the code is doing with =
+religious ferocity -- they are unreliable and confusing, difficult to =
+maintain, and outright UGLY.=20
+2.	The functions separate the logic of the program from the interface. =
+This is crucial if the project's scope is expanded in the future, say a =
+graphical user interface.=20
+
+*	 Not commenting all functions in .cpp files.
+
+All functions have their prototype defined in the header file. Any =
+comment in the .cpp file would make it redundant, and if I remember =
+correctly the coding standard mentions that the description is only =
+necessary for the header file. About explaining the logic of the code =
+with comments, see my rant on the previous point.=20
+
+=20
+
+=20
+
+Please feel free to provide any corrections on the above. Thank you very =
+much for your support.
+
+=20
+
+Sincerely,
+
+Bibhu
+
+=20
+
+=20
+
+=20
+
+=20
+
+On Mon, Apr 24, 2023 at 9:59=E2=80=AFAM <vmiller@ramapo.edu =
+<mailto:vmiller@ramapo.edu> > wrote:
+
+I did a quick reassessment.  The grade is now 87.
+
+=20
+
+Victor J. Miller
+
+Convener of Computer Science
+
+=20
+
+vmiller@ramapo.edu <mailto:vmiller@ramapo.edu>=20
 
 https://pages.ramapo.edu/~vmiller/
 
- 
+=20
+
+From: vmiller@ramapo.edu <mailto:vmiller@ramapo.edu>  =
+<vmiller@ramapo.edu <mailto:vmiller@ramapo.edu> >=20
+Sent: Monday, April 24, 2023 9:32 AM
+To: 'Bhatta, Bibhu' <bbhatta@ramapo.edu <mailto:bbhatta@ramapo.edu> >
+Cc: vmiller@ramapo.edu <mailto:vmiller@ramapo.edu>=20
+Subject: Term Project
+
+=20
+
+Hi Bibhu,
+
+=20
+
+Below is my evaluation of your project.
+
+=20
+
+Regards,
+
+=20
+
+Victor J. Miller
+
+Convener of Computer Science
+
+=20
+
+Bibhu Bhatta - 85
+
+Pros: Second to complete.  Runs the test code.  Catches the errors: out =
+of memory, undefined label, Multiply define label,  Extra operand.  Nice =
+work with NumericOpcode_OperandCount to get operand count and use of =
+enums.
+
+Cons: Not reporting errors after the offending statement.   (This was in =
+the specifications) Should not run emulator if there is an error.  If =
+there is a statement after end, gives misleading error message. =
+(=E2=80=9Cmissing end statement=E2=80=9D).  Does not handle large =
+constants =E2=80=93 stoi will not work for the possible size of the =
+constants.  If there is an extra operand, you repeat the error message =
+twice. (Same with some other errors like illegal op code.)   Does not =
+report a badly formed label =E2=80=93 example: 1hay.  Not commenting =
+according to the coding standards.  The function DisplaySymbol table in =
+the main does not seem useful when it basically calls the same function =
+in the assem object.  (Same issue DisplayTranslation) Not commenting all =
+functions in .cpp files.=20
+
+=20
+
+=20
+
+vmiller@ramapo.edu <mailto:vmiller@ramapo.edu>=20
+
+https://pages.ramapo.edu/~vmiller/
+
+=20
 
 
-------=_NextPart_000_0433_01D97693.713B92E0
+------=_NextPart_000_0605_01D976FC.95152F50
 Content-Type: text/html;
-	charset="us-ascii"
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
@@ -172,10 +341,13 @@ xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
 xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
 xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
 /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -192,106 +364,996 @@ charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}
+	font-family:"Calibri",sans-serif;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:#0563C1;
+	color:blue;
 	text-decoration:underline;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
+span.EmailStyle18
+	{mso-style-type:personal-reply;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:581109842;
+	mso-list-template-ids:-701701914;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:750352037;
+	mso-list-template-ids:-1029931532;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:962616915;
+	mso-list-template-ids:-1472809876;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:1022390402;
+	mso-list-template-ids:-72874534;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:1037193754;
+	mso-list-template-ids:-781549308;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:1713918090;
+	mso-list-template-ids:-275228064;}
+@list l6
+	{mso-list-id:1818262283;
+	mso-list-template-ids:1708159888;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:1846745991;
+	mso-list-template-ids:2114338688;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1851870098;
+	mso-list-template-ids:-813002810;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:2037273058;
+	mso-list-template-ids:251402254;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>I did a quick =
-reassessment.&nbsp; The grade is now 87.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'>Victor J. Miller<o:p></o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-ligatures:none'>Convener of =
-Computer Science<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
-href=3D"mailto:vmiller@ramapo.edu">vmiller@ramapo.edu</a><o:p></o:p></spa=
-n></p><p class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
-href=3D"https://pages.ramapo.edu/~vmiller/">https://pages.ramapo.edu/~vmi=
-ller/</a><o:p></o:p></span></p></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div =
-style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in'><p class=3DMsoNormal><b><span =
-style=3D'mso-ligatures:none'>From:</span></b><span =
-style=3D'mso-ligatures:none'> vmiller@ramapo.edu =
-&lt;vmiller@ramapo.edu&gt; <br><b>Sent:</b> Monday, April 24, 2023 9:32 =
-AM<br><b>To:</b> 'Bhatta, Bibhu' =
-&lt;bbhatta@ramapo.edu&gt;<br><b>Cc:</b> =
-vmiller@ramapo.edu<br><b>Subject:</b> Term =
-Project<o:p></o:p></span></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Hi =
-Bibhu,<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Below is my evaluation of your =
-project.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>Hi Bibhu,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I have noted =
+the extra effort you put into this project and will take that into =
+consideration when I decide on your final grade for the course.=C2=A0 =
+When you are working you can always ask questions before spending time =
+on a project.=C2=A0 <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Your comment =
+about thinking 99,999 is the largest number does not make sense.=C2=A0 =
+Each word of memory for the VC1620 was supposed to be 12 digits.=C2=A0 =
+There is no reason to assume that it cannot hold numbers of this =
+size.=C2=A0 The only numbers that are 5 digits are addresses.=C2=A0 The =
+12 digit limit is clearly stated on the first line of the description of =
+the VC 1620.=C2=A0 See the link: <a =
+href=3D"https://pages.ramapo.edu/~vmiller/SoftwareDesign/VC1620Spec.htm">=
+https://pages.ramapo.edu/~vmiller/SoftwareDesign/VC1620Spec.htm</a><o:p><=
+/o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
 class=3DMsoNormal>Regards,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'>Victor J. Miller<o:p></o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-ligatures:none'>Convener of =
-Computer Science<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Victor J. =
+Miller<o:p></o:p></p><p class=3DMsoNormal>Convener of Computer =
+Science<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><a href=3D"mailto:vmiller@ramapo.edu"><span =
+style=3D'color:#0563C1'>vmiller@ramapo.edu</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><a href=3D"https://pages.ramapo.edu/~vmiller/"><span =
+style=3D'color:#0563C1'>https://pages.ramapo.edu/~vmiller/</span></a><o:p=
+></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b>From:</b> Bhatta, Bibhu =
+&lt;bbhatta@ramapo.edu&gt; <br><b>Sent:</b> Monday, April 24, 2023 9:35 =
+PM<br><b>To:</b> vmiller@ramapo.edu<br><b>Subject:</b> Re: Term =
+Project<o:p></o:p></p></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal>Hello Prof. Miller,<o:p></o:p></p><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal>Thank you for your evaluation. I have addressed the =
+cons as described below and attached the source code files. Apologies =
+for submitting the corrections if you do not accept corrections, but =
+given that you are trying to provide &quot;industry experience,&quot; I =
+am assuming you will accept subsequent iterations after the &quot;beta =
+testing.&quot;&nbsp;<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
+have addressed the cons below:<o:p></o:p></p></div></div></div><div><ul =
+type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l6 =
+level1 lfo1'><span style=3D'color:#500050'>Not reporting errors after =
+the offending statement.&nbsp;&nbsp; (This was in the =
+specifications)</span><o:p></o:p></li></ul></div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>I misunderstood =
+what &quot;reporting&quot; meant in the specs. I assumed that if the =
+error was &quot;reported&quot; to the Errors class by calling =
+RecordError, it would count as &quot;reporting&quot; the error. But =
+apparently, you meant printing it to the console. This has been fixed =
+now.</span><o:p></o:p></p></div></div><div><ul type=3Ddisc><li =
 class=3DMsoNormal =
-style=3D'margin-top:12.0pt;line-height:106%;page-break-after:avoid'><span=
- style=3D'font-size:16.0pt;line-height:106%;font-family:"Calibri =
-Light",sans-serif;color:#2F5496;mso-ligatures:none'>Bibhu Bhatta - =
-85<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'margin-bottom:8.0pt;line-height:106%'><span =
-style=3D'mso-ligatures:none'>Pros: Second to complete.&nbsp; Runs the =
-test code.&nbsp; Catches the errors: out of memory, undefined label, =
-Multiply define label,&nbsp; Extra operand.&nbsp; Nice work with =
-</span><span =
-style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
-Mono";color:black;mso-ligatures:none'>NumericOpcode_OperandCount</span><s=
-pan style=3D'mso-ligatures:none'> to get operand count and use of =
-enums.<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'margin-bottom:8.0pt;line-height:106%'><span =
-style=3D'mso-ligatures:none'>Cons: Not reporting errors after the =
-offending statement.&nbsp;&nbsp; (This was in the specifications) Should =
-not run emulator if there is an error.&nbsp; If there is a statement =
-after end, gives misleading error message. (&#8220;missing end =
-statement&#8221;).&nbsp; Does not handle large constants &#8211; stoi =
-will not work for the possible size of the constants.&nbsp; If there is =
-an extra operand, you repeat the error message twice. (Same with some =
-other errors like illegal op code.)&nbsp;&nbsp; Does not report a badly =
-formed label &#8211; example: 1hay.&nbsp; Not commenting according to =
-the coding standards.&nbsp; The function DisplaySymbol table in the main =
-does not seem useful when it basically calls the same function in the =
-assem object.&nbsp; (Same issue </span><span =
-style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
-Mono";color:black;mso-ligatures:none'>DisplayTranslation) </span><span =
-style=3D'color:black;mso-ligatures:none'>Not commenting all functions in =
-.cpp files.</span><span =
-style=3D'font-size:9.5pt;line-height:106%;font-family:"Cascadia =
-Mono";color:black;mso-ligatures:none'> </span><span =
-style=3D'mso-ligatures:none'><o:p></o:p></span></p><p =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l7 =
+level1 lfo2'><span style=3D'color:#500050'>Should not </span>run =
+emulator<span style=3D'color:#500050'> if there is an =
+error.&nbsp;</span><o:p></o:p></li></ul></div><div><div><p =
+class=3DMsoNormal><span style=3D'color:black'>You mentioned that =
+translation should continue even after encountering an error, so, by =
+extension, I thought you would want the emulator to run the program even =
+if there are errors. The fact that the emulator should not run after =
+encountering an error is not explicit in the specification (to the best =
+of my knowledge).&nbsp;&nbsp;</span><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>This has been fixed =
+now.</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div><div><ul =
+type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l0 =
+level1 lfo3'><span style=3D'color:#500050'>If there is a statement after =
+end, gives misleading error message. (=E2=80=9Cmissing end =
+statement=E2=80=9D).&nbsp;</span><o:p></o:p></li></ul></div><div><div><p =
+class=3DMsoNormal><span style=3D'color:black'>This was a =
+bug.&nbsp;</span><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>This has been fixed =
+now.</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div><div><ul =
+type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l2 =
+level1 lfo4'><span style=3D'color:#500050'>Does not handle large =
+constants =E2=80=93 stoi will not work for the possible size of the =
+constants.&nbsp;</span><o:p></o:p></li></ul></div><div><div><p =
+class=3DMsoNormal><span style=3D'color:black'>I assumed the largest size =
+of the constant to be 99,999. I could not find anything on the website =
+that mentions otherwise. Previously, stoi exception would be reported, =
+but now, the code reports that the size of the constant is =
+invalid.</span><o:p></o:p></p></div></div><div><div><div><ul =
+type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l8 =
+level1 lfo5'><span style=3D'color:#500050'>&nbsp;If there is an extra =
+operand, you repeat the error message twice. (Same with some other =
+errors like illegal op code.)&nbsp;</span><o:p></o:p></li></ul><div><p =
+class=3DMsoNormal><span style=3D'color:black'>The redundancy was =
+intentionally built into the code to detect every error encountered =
+during each pass. When logging errors, I feel that it is better to =
+record the error that occurs at different places even if it is the same =
+cause. To record only once, I would need to make significant changes to =
+the fundamental design of the current structure of the code, so I will =
+have to pass on this.</span><o:p></o:p></p></div><ul type=3Ddisc><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l9 =
+level1 lfo6'><span style=3D'color:#500050'>Does not report a badly =
+formed label =E2=80=93 example: 1hay.</span><o:p></o:p></li></ul><div><p =
+class=3DMsoNormal><span style=3D'color:black'>This was entirely my =
+fault; I did not notice the requirement for a label name to start with a =
+letter. This has been fixed.</span><o:p></o:p></p></div><ul =
+type=3Ddisc><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l4 =
+level1 lfo7'><span style=3D'color:#500050'>Not commenting according to =
+the coding standards.</span><o:p></o:p></li></ul><div><p =
+class=3DMsoNormal><span style=3D'color:black'>All functions and classes =
+have been documented with Doxygen comments. All enums, dictionaries, and =
+other data structures that define the instruction set of the compiler =
+have been commented before them to explain their purpose, as required by =
+the standards. As per the comment explaining the code, please read my =
+spiel in the next point.</span><o:p></o:p></p></div><ul type=3Ddisc><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l3 =
+level1 lfo8'><span style=3D'color:#500050'>&nbsp;The function =
+DisplaySymbol table in the main does not seem useful when it basically =
+calls the same function in the assem object.&nbsp; (Same =
+issue&nbsp;</span><span style=3D'font-size:9.5pt;font-family:"Cascadia =
+Mono";color:black'>DisplayTranslation)</span><o:p></o:p></li></ul><div><d=
+iv><p class=3DMsoNormal>The function DisplaySymbol and =
+DisplayTranslation serve two main purposes:<o:p></o:p></p></div><div><ol =
+start=3D1 type=3D1><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l5 =
+level1 lfo9'>This increases code readability. This invalidates the need =
+for the standard to have a comment for every block of code. If =
+the&nbsp;code needs a separate block&nbsp;and a comment to explain the =
+need for the block, it is almost always wise to refactor it to a =
+function or a method. This is the reason why the&nbsp;project does not =
+need so much commenting because function and method names serve the =
+purpose of explaining what the&nbsp;code is doing. I hate comments in =
+source code that explain what the&nbsp;code is doing with religious =
+ferocity -- they are unreliable and confusing, difficult to maintain, =
+and outright UGLY.&nbsp;<o:p></o:p></li><li class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l5 =
+level1 lfo9'>The functions separate the logic of the program from the =
+interface. This is crucial if the project's scope is expanded in the =
+future, say a graphical user =
+interface.&nbsp;<o:p></o:p></li></ol></div></div><ul type=3Ddisc><li =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l1 =
+level1 lfo10'><span style=3D'font-size:9.5pt;font-family:"Cascadia =
+Mono";color:black'>&nbsp;</span><span style=3D'color:black'>Not =
+commenting all functions in .cpp =
+files.</span><o:p></o:p></li></ul><div><p class=3DMsoNormal><span =
+style=3D'color:black'>All functions have their prototype defined in the =
+header file. Any comment in the .cpp file would make it redundant, and =
+if I remember correctly the coding standard mentions that the =
+description is only necessary for the header file. About explaining the =
+logic of the code with comments, see my rant on the previous =
+point.&nbsp;</span><o:p></o:p></p></div></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal><span style=3D'color:black'>Please feel free to =
+provide any corrections on the above. Thank you very much for your =
+support.</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
 class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
+style=3D'color:black'>Sincerely,</span><o:p></o:p></p></div><div><p =
 class=3DMsoNormal><span =
-style=3D'mso-ligatures:none'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
-href=3D"mailto:vmiller@ramapo.edu">vmiller@ramapo.edu</a><o:p></o:p></spa=
-n></p><p class=3DMsoNormal><span style=3D'mso-ligatures:none'><a =
-href=3D"https://pages.ramapo.edu/~vmiller/">https://pages.ramapo.edu/~vmi=
-ller/</a><o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_000_0433_01D97693.713B92E0--
+style=3D'color:black'>Bibhu</span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
+Mon, Apr 24, 2023 at 9:59=E2=80=AFAM &lt;<a =
+href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a>&gt; =
+wrote:<o:p></o:p></p></div><blockquote =
+style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
+6.0pt;margin-left:4.8pt;margin-right:0in'><div><div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I did a =
+quick reassessment.&nbsp; The grade is now 87.<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Victor J. =
+Miller<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Convener of =
+Computer Science<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"https://pages.ramapo.edu/~vmiller/" =
+target=3D"_blank">https://pages.ramapo.edu/~vmiller/</a><o:p></o:p></p></=
+div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b>From:</b>=
+ <a href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a> &lt;<a =
+href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a>&gt; <br><b>Sent:</b> Monday, =
+April 24, 2023 9:32 AM<br><b>To:</b> 'Bhatta, Bibhu' &lt;<a =
+href=3D"mailto:bbhatta@ramapo.edu" =
+target=3D"_blank">bbhatta@ramapo.edu</a>&gt;<br><b>Cc:</b> <a =
+href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a><br><b>Subject:</b> Term =
+Project<o:p></o:p></p></div></div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Hi =
+Bibhu,<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Below is my =
+evaluation of your project.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Regards,<o:p=
+></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Victor J. =
+Miller<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Convener of =
+Computer Science<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'margin-top:12.0pt;mso-margin-bottom-alt:auto;line-height:105%;br=
+eak-after:avoid'><span =
+style=3D'font-size:16.0pt;line-height:105%;font-family:"Calibri =
+Light",sans-serif;color:#2F5496'>Bibhu Bhatta - =
+85</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;margin-bottom:8.0pt;line-height:105%'>Pr=
+os: Second to complete.&nbsp; Runs the test code.&nbsp; Catches the =
+errors: out of memory, undefined label, Multiply define label,&nbsp; =
+Extra operand.&nbsp; Nice work with <span =
+style=3D'font-size:9.5pt;line-height:105%;font-family:"Cascadia =
+Mono";color:black'>NumericOpcode_OperandCount</span> to get operand =
+count and use of enums.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;margin-bottom:8.0pt;line-height:105%'>Co=
+ns: Not reporting errors after the offending statement.&nbsp;&nbsp; =
+(This was in the specifications) Should not run emulator if there is an =
+error.&nbsp; If there is a statement after end, gives misleading error =
+message. (=E2=80=9Cmissing end statement=E2=80=9D).&nbsp; Does not =
+handle large constants =E2=80=93 stoi will not work for the possible =
+size of the constants.&nbsp; If there is an extra operand, you repeat =
+the error message twice. (Same with some other errors like illegal op =
+code.)&nbsp;&nbsp; Does not report a badly formed label =E2=80=93 =
+example: 1hay.&nbsp; Not commenting according to the coding =
+standards.&nbsp; The function DisplaySymbol table in the main does not =
+seem useful when it basically calls the same function in the assem =
+object.&nbsp; (Same issue <span =
+style=3D'font-size:9.5pt;line-height:105%;font-family:"Cascadia =
+Mono";color:black'>DisplayTranslation) </span><span =
+style=3D'color:black'>Not commenting all functions in .cpp =
+files.</span><span =
+style=3D'font-size:9.5pt;line-height:105%;font-family:"Cascadia =
+Mono";color:black'> </span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"mailto:vmiller@ramapo.edu" =
+target=3D"_blank">vmiller@ramapo.edu</a><o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"https://pages.ramapo.edu/~vmiller/" =
+target=3D"_blank">https://pages.ramapo.edu/~vmiller/</a><o:p></o:p></p><p=
+ class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
+/o:p></p></div></div></div></blockquote></div></div></div></div></body></=
+html>
+------=_NextPart_000_0605_01D976FC.95152F50--
 

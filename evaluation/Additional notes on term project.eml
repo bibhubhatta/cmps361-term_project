@@ -1,0 +1,100 @@
+MIME-Version: 1.0
+Date: Tue, 25 Apr 2023 23:02:02 -0400
+References: <064c01d97777$26020360$72060a20$@ramapo.edu>
+In-Reply-To: <064c01d97777$26020360$72060a20$@ramapo.edu>
+Message-ID: <CADxxeLd48HM4KEUfxChJAospo55rUeVDgbAQc39cfCqxi4WqsA@mail.gmail.com>
+Subject: Re: Additional notes on term project
+From: "Bhatta, Bibhu" <bbhatta@ramapo.edu>
+To: vmiller@ramapo.edu
+Content-Type: multipart/alternative; boundary="0000000000009edcd205fa3476bb"
+
+--0000000000009edcd205fa3476bb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you for the clarification, Prof. Miller!
+
+On Tue, Apr 25, 2023 at 9:09=E2=80=AFAM <vmiller@ramapo.edu> wrote:
+
+> Hi Bibhu,
+>
+>
+>
+> Just a couple more comments.
+>
+>
+>
+>    - I am fine with you using Doxygen.  There were some functions that
+>    were not commented.  To me the coding standard I discussed in class
+>    indicates that if the functions are implemented in the .cpp file they
+>    should be commented there with a minimal comment in the .h file.
+>    - On the DisplaySymbol table function response that you made: I feel
+>    that just calling the function that displays the symbol table from the
+>    symbol table object should be very clear.
+>
+>
+>
+> Keep in mind that your participation in class has been very helpful will
+> add significantly to your final grade.  So, you are still on track for an=
+ A
+> grade in the class.
+>
+>
+>
+> Regards,
+>
+>
+>
+> Victor J. Miller
+>
+> Convener of Computer Science
+>
+>
+>
+> vmiller@ramapo.edu
+>
+> https://pages.ramapo.edu/~vmiller/
+>
+>
+>
+
+--0000000000009edcd205fa3476bb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you for the clarification, Prof. Miller!<br></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, =
+Apr 25, 2023 at 9:09=E2=80=AFAM &lt;<a href=3D"mailto:vmiller@ramapo.edu">v=
+miller@ramapo.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div class=3D"msg-8309160366990222957"><div lang=3D"EN-US"=
+ style=3D"overflow-wrap: break-word;"><div class=3D"m_-8309160366990222957W=
+ordSection1"><p class=3D"MsoNormal">Hi Bibhu,<u></u><u></u></p><p class=3D"=
+MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Just a couple mor=
+e comments.<u></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p=
+><ul style=3D"margin-top:0in" type=3D"disc"><li class=3D"m_-830916036699022=
+2957MsoListParagraph" style=3D"margin-left:0in">I am fine with you using Do=
+xygen.=C2=A0 There were some functions that were not commented.=C2=A0 To me=
+ the coding standard I discussed in class indicates that if the functions a=
+re implemented in the .cpp file they should be commented there with a minim=
+al comment in the .h file.<u></u><u></u></li><li class=3D"m_-83091603669902=
+22957MsoListParagraph" style=3D"margin-left:0in">On the DisplaySymbol table=
+ function response that you made: I feel that just calling the function tha=
+t displays the symbol table from the symbol table object should be very cle=
+ar.=C2=A0 <u></u><u></u></li></ul><p class=3D"MsoNormal"><u></u>=C2=A0<u></=
+u></p><p class=3D"MsoNormal">Keep in mind that your participation in class =
+has been very helpful will add significantly to your final grade.=C2=A0 So,=
+ you are still on track for an A grade in the class.<u></u><u></u></p><p cl=
+ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal">Regards,<u=
+></u><u></u></p><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p><p class=3D"=
+MsoNormal"><span>Victor J. Miller<u></u><u></u></span></p><p class=3D"MsoNo=
+rmal"><span>Convener of Computer Science<u></u><u></u></span></p><p class=
+=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal">=
+<span><a href=3D"mailto:vmiller@ramapo.edu" target=3D"_blank"><span style=
+=3D"color:rgb(5,99,193)">vmiller@ramapo.edu</span></a><u></u><u></u></span>=
+</p><p class=3D"MsoNormal"><span><a href=3D"https://pages.ramapo.edu/~vmill=
+er/" target=3D"_blank"><span style=3D"color:rgb(5,99,193)">https://pages.ra=
+mapo.edu/~vmiller/</span></a><u></u><u></u></span></p><p class=3D"MsoNormal=
+"><u></u>=C2=A0<u></u></p></div></div></div></blockquote></div>
+
+--0000000000009edcd205fa3476bb--
